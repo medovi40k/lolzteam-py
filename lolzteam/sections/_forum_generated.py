@@ -2733,4 +2733,3 @@ class OauthSection:
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", "/oauth/token", params=params)
-

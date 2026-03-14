@@ -1,4 +1,5 @@
 """lolzteam.clients.forum — Forum API client."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -48,31 +49,40 @@ class ForumClient:
 
     BASE_URL = "https://prod-api.lolz.live"
 
-    def __init__(self, token: str, proxy: str | None = None,
-                 timeout: float = DEFAULT_TIMEOUT, max_retries: int = DEFAULT_RETRY_COUNT,
-                 language: str = "en") -> None:
+    def __init__(
+        self,
+        token: str,
+        proxy: str | None = None,
+        timeout: float = DEFAULT_TIMEOUT,
+        max_retries: int = DEFAULT_RETRY_COUNT,
+        language: str = "en",
+    ) -> None:
         self._transport = Transport(
-            token=token, base_url=self.BASE_URL, proxy=proxy,
-            timeout=timeout, max_retries=max_retries, language=language,
+            token=token,
+            base_url=self.BASE_URL,
+            proxy=proxy,
+            timeout=timeout,
+            max_retries=max_retries,
+            language=language,
         )
-        self.assets         = AssetsSection(self._transport)
-        self.oauth          = OauthSection(self._transport)
-        self.categories     = CategoriesSection(self._transport)
-        self.forums         = ForumsSection(self._transport)
-        self.links          = LinksSection(self._transport)
-        self.navigation     = NavigationSection(self._transport)
-        self.pages          = PagesSection(self._transport)
-        self.threads        = ThreadsSection(self._transport)
-        self.posts          = PostsSection(self._transport)
-        self.profile_posts  = ProfilePostsSection(self._transport)
-        self.conversations  = ConversationsSection(self._transport)
-        self.notifications  = NotificationsSection(self._transport)
-        self.search         = SearchSection(self._transport)
-        self.tags           = TagsSection(self._transport)
-        self.chatbox        = ChatboxSection(self._transport)
-        self.forms          = FormsSection(self._transport)
-        self.batch          = BatchSection(self._transport)
-        self.users          = UsersSection(self._transport)
+        self.assets = AssetsSection(self._transport)
+        self.oauth = OauthSection(self._transport)
+        self.categories = CategoriesSection(self._transport)
+        self.forums = ForumsSection(self._transport)
+        self.links = LinksSection(self._transport)
+        self.navigation = NavigationSection(self._transport)
+        self.pages = PagesSection(self._transport)
+        self.threads = ThreadsSection(self._transport)
+        self.posts = PostsSection(self._transport)
+        self.profile_posts = ProfilePostsSection(self._transport)
+        self.conversations = ConversationsSection(self._transport)
+        self.notifications = NotificationsSection(self._transport)
+        self.search = SearchSection(self._transport)
+        self.tags = TagsSection(self._transport)
+        self.chatbox = ChatboxSection(self._transport)
+        self.forms = FormsSection(self._transport)
+        self.batch = BatchSection(self._transport)
+        self.users = UsersSection(self._transport)
 
     def request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return self._transport.request(method, path, **kwargs)

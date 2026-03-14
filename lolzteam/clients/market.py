@@ -8,6 +8,7 @@ Sections match the official API documentation grouping:
   publishing, purchasing, cart, payments, invoices, custom_discounts,
   proxy, imap, batch
 """
+
 from __future__ import annotations
 
 from typing import Any
@@ -68,24 +69,28 @@ class MarketClient:
         language: str = "en",
     ) -> None:
         self._transport = Transport(
-            token=token, base_url=self.BASE_URL, proxy=proxy,
-            timeout=timeout, max_retries=max_retries, language=language,
+            token=token,
+            base_url=self.BASE_URL,
+            proxy=proxy,
+            timeout=timeout,
+            max_retries=max_retries,
+            language=language,
         )
-        self.profile         = ProfileSection(self._transport)
-        self.categories      = CategoriesSection(self._transport)
-        self.accounts_list   = AccountsListSection(self._transport)
-        self.managing        = ManagingSection(self._transport)
-        self.steam           = SteamSection(self._transport)
-        self.telegram        = TelegramSection(self._transport)
-        self.publishing      = PublishingSection(self._transport)
-        self.purchasing      = PurchasingSection(self._transport)
-        self.cart            = CartSection(self._transport)
-        self.payments        = PaymentsSection(self._transport)
-        self.invoices        = InvoicesSection(self._transport)
+        self.profile = ProfileSection(self._transport)
+        self.categories = CategoriesSection(self._transport)
+        self.accounts_list = AccountsListSection(self._transport)
+        self.managing = ManagingSection(self._transport)
+        self.steam = SteamSection(self._transport)
+        self.telegram = TelegramSection(self._transport)
+        self.publishing = PublishingSection(self._transport)
+        self.purchasing = PurchasingSection(self._transport)
+        self.cart = CartSection(self._transport)
+        self.payments = PaymentsSection(self._transport)
+        self.invoices = InvoicesSection(self._transport)
         self.custom_discounts = CustomDiscountsSection(self._transport)
-        self.proxy           = ProxySection(self._transport)
-        self.imap            = ImapSection(self._transport)
-        self.batch           = BatchSection(self._transport)
+        self.proxy = ProxySection(self._transport)
+        self.imap = ImapSection(self._transport)
+        self.batch = BatchSection(self._transport)
 
     def request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return self._transport.request(method, path, **kwargs)

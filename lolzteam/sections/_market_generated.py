@@ -1978,4 +1978,3 @@ class BatchSection:
         data: dict[str, Any] = {}
         if requests is not None: data["requests"] = requests
         return await self._client.request_async("POST", "/batch", params=params, json=data)
-
