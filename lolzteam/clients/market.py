@@ -9,14 +9,28 @@ Sections match the official API documentation grouping:
   proxy, imap, batch
 """
 from __future__ import annotations
-from typing import Any, Dict, Optional
-from .._http import Transport, DEFAULT_TIMEOUT, DEFAULT_RETRY_COUNT
+
+from typing import Any
+
+from .._http import DEFAULT_RETRY_COUNT, DEFAULT_TIMEOUT, Transport
 from ..sections._market_generated import (
-    ProfileSection, CategoriesSection, AccountsListSection,
-    ManagingSection, SteamSection, TelegramSection, PublishingSection,
-    PurchasingSection, CartSection, PaymentsSection, InvoicesSection,
-    CustomDiscountsSection, ProxySection, ImapSection, BatchSection,
+    AccountsListSection,
+    BatchSection,
+    CartSection,
+    CategoriesSection,
+    CustomDiscountsSection,
+    ImapSection,
+    InvoicesSection,
+    ManagingSection,
+    PaymentsSection,
+    ProfileSection,
+    ProxySection,
+    PublishingSection,
+    PurchasingSection,
+    SteamSection,
+    TelegramSection,
 )
+
 
 class MarketClient:
     """
@@ -48,7 +62,7 @@ class MarketClient:
     def __init__(
         self,
         token: str,
-        proxy: Optional[str] = None,
+        proxy: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         max_retries: int = DEFAULT_RETRY_COUNT,
         language: str = "en",
@@ -73,10 +87,10 @@ class MarketClient:
         self.imap            = ImapSection(self._transport)
         self.batch           = BatchSection(self._transport)
 
-    def request(self, method: str, path: str, **kwargs: Any) -> Dict[str, Any]:
+    def request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return self._transport.request(method, path, **kwargs)
 
-    async def request_async(self, method: str, path: str, **kwargs: Any) -> Dict[str, Any]:
+    async def request_async(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return await self._transport.request_async(method, path, **kwargs)
 
     def close(self) -> None:
@@ -85,13 +99,13 @@ class MarketClient:
     async def aclose(self) -> None:
         await self._transport.aclose()
 
-    def __enter__(self) -> "MarketClient":
+    def __enter__(self) -> MarketClient:
         return self
 
     def __exit__(self, *_: Any) -> None:
         self.close()
 
-    async def __aenter__(self) -> "MarketClient":
+    async def __aenter__(self) -> MarketClient:
         return self
 
     async def __aexit__(self, *_: Any) -> None:

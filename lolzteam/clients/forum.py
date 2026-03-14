@@ -1,14 +1,30 @@
 """lolzteam.clients.forum — Forum API client."""
 from __future__ import annotations
-from typing import Any, Dict, Optional
-from .._http import Transport, DEFAULT_TIMEOUT, DEFAULT_RETRY_COUNT
+
+from typing import Any
+
+from .._http import DEFAULT_RETRY_COUNT, DEFAULT_TIMEOUT, Transport
 from ..sections._forum_generated import (
-    AssetsSection, CategoriesSection, ForumsSection, LinksSection,
-    NavigationSection, PagesSection, ThreadsSection, PostsSection,
-    ProfilePostsSection, ConversationsSection, NotificationsSection,
-    SearchSection, TagsSection, ChatboxSection, FormsSection,
-    BatchSection, UsersSection, OauthSection,
+    AssetsSection,
+    BatchSection,
+    CategoriesSection,
+    ChatboxSection,
+    ConversationsSection,
+    FormsSection,
+    ForumsSection,
+    LinksSection,
+    NavigationSection,
+    NotificationsSection,
+    OauthSection,
+    PagesSection,
+    PostsSection,
+    ProfilePostsSection,
+    SearchSection,
+    TagsSection,
+    ThreadsSection,
+    UsersSection,
 )
+
 
 class ForumClient:
     """
@@ -32,7 +48,7 @@ class ForumClient:
 
     BASE_URL = "https://prod-api.lolz.live"
 
-    def __init__(self, token: str, proxy: Optional[str] = None,
+    def __init__(self, token: str, proxy: str | None = None,
                  timeout: float = DEFAULT_TIMEOUT, max_retries: int = DEFAULT_RETRY_COUNT,
                  language: str = "en") -> None:
         self._transport = Transport(
@@ -58,10 +74,10 @@ class ForumClient:
         self.batch          = BatchSection(self._transport)
         self.users          = UsersSection(self._transport)
 
-    def request(self, method: str, path: str, **kwargs: Any) -> Dict[str, Any]:
+    def request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return self._transport.request(method, path, **kwargs)
 
-    async def request_async(self, method: str, path: str, **kwargs: Any) -> Dict[str, Any]:
+    async def request_async(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return await self._transport.request_async(method, path, **kwargs)
 
     def close(self) -> None:
@@ -70,13 +86,13 @@ class ForumClient:
     async def aclose(self) -> None:
         await self._transport.aclose()
 
-    def __enter__(self) -> "ForumClient":
+    def __enter__(self) -> ForumClient:
         return self
 
     def __exit__(self, *_: Any) -> None:
         self.close()
 
-    async def __aenter__(self) -> "ForumClient":
+    async def __aenter__(self) -> ForumClient:
         return self
 
     async def __aexit__(self, *_: Any) -> None:

@@ -10,7 +10,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 logger = logging.getLogger("lolzteam")
 
@@ -54,7 +54,7 @@ class SyncHTTPClient:
         self,
         token: str,
         base_url: str,
-        proxy: Optional[str] = None,
+        proxy: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         max_retries: int = DEFAULT_RETRY_COUNT,
         language: str = "en",
@@ -86,11 +86,11 @@ class SyncHTTPClient:
         method: str,
         path: str,
         *,
-        params: Optional[Dict[str, Any]] = None,
-        json: Optional[Dict[str, Any]] = None,
+        params: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
         use_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         url = self._base_url + path
         # Strip None values
         params = {k: v for k, v in (params or {}).items() if v is not None}
@@ -139,7 +139,7 @@ class SyncHTTPClient:
     def close(self) -> None:
         self._session.close()
 
-    def __enter__(self) -> "SyncHTTPClient":
+    def __enter__(self) -> SyncHTTPClient:
         return self
 
     def __exit__(self, *_: Any) -> None:
@@ -158,7 +158,7 @@ class AsyncHTTPClient:
         self,
         token: str,
         base_url: str,
-        proxy: Optional[str] = None,
+        proxy: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         max_retries: int = DEFAULT_RETRY_COUNT,
         language: str = "en",
@@ -180,7 +180,7 @@ class AsyncHTTPClient:
             "Accept-Language": language,
         }
 
-        kwargs: Dict[str, Any] = {
+        kwargs: dict[str, Any] = {
             "headers": headers,
             "timeout": timeout,
         }
@@ -201,11 +201,11 @@ class AsyncHTTPClient:
         method: str,
         path: str,
         *,
-        params: Optional[Dict[str, Any]] = None,
-        json: Optional[Dict[str, Any]] = None,
+        params: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
         use_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         url = self._base_url + path
         params = {k: v for k, v in (params or {}).items() if v is not None}
         body = {k: v for k, v in (json or {}).items() if v is not None} or None
@@ -252,7 +252,7 @@ class AsyncHTTPClient:
     async def aclose(self) -> None:
         await self._client.aclose()
 
-    async def __aenter__(self) -> "AsyncHTTPClient":
+    async def __aenter__(self) -> AsyncHTTPClient:
         return self
 
     async def __aexit__(self, *_: Any) -> None:
@@ -272,7 +272,7 @@ class Transport:
         self,
         token: str,
         base_url: str,
-        proxy: Optional[str] = None,
+        proxy: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         max_retries: int = DEFAULT_RETRY_COUNT,
         language: str = "en",
@@ -285,8 +285,8 @@ class Transport:
             max_retries=max_retries,
             language=language,
         )
-        self._sync: Optional[SyncHTTPClient] = None
-        self._async: Optional[AsyncHTTPClient] = None
+        self._sync: SyncHTTPClient | None = None
+        self._async: AsyncHTTPClient | None = None
 
     @property
     def sync(self) -> SyncHTTPClient:
@@ -300,12 +300,12 @@ class Transport:
             self._async = AsyncHTTPClient(**self._kwargs)
         return self._async
 
-    def request(self, method: str, path: str, **kwargs: Any) -> Dict[str, Any]:
+    def request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return self.sync.request(method, path, **kwargs)
 
     async def request_async(
         self, method: str, path: str, **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         return await self.asynchronous.request_async(method, path, **kwargs)
 
     def close(self) -> None:
@@ -318,7 +318,7 @@ class Transport:
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
-def _parse_retry_after(value: Optional[str]) -> Optional[float]:
+def _parse_retry_after(value: str | None) -> float | None:
     if value is None:
         return None
     try:

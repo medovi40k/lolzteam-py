@@ -4,7 +4,9 @@
 # fmt: off
 
 from __future__ import annotations
-from typing import Any, Dict, List, Optional
+
+from typing import Any
+
 
 class ProfileSection:
     """Auto-generated section for tag: profile"""
@@ -13,49 +15,49 @@ class ProfileSection:
         self._client = client
         self._use_json = True
 
-    def profile_get(self) -> Dict[str, Any]:
+    def profile_get(self) -> dict[str, Any]:
         """Get profile"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/me", params=params)
 
-    async def profile_get_async(self) -> Dict[str, Any]:
+    async def profile_get_async(self) -> dict[str, Any]:
         """Get profile"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/me", params=params)
 
-    def profile_edit(self, disable_steam_guard: Optional[int] = None, allow_ask_discount: Optional[int] = None, currency: Optional[str] = None) -> Dict[str, Any]:
+    def profile_edit(self, disable_steam_guard: int | None = None, allow_ask_discount: int | None = None, currency: str | None = None) -> dict[str, Any]:
         """Edit market settings"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if disable_steam_guard is not None: data["disable_steam_guard"] = disable_steam_guard
         if allow_ask_discount is not None: data["allow_ask_discount"] = allow_ask_discount
         if currency is not None: data["currency"] = currency
         return self._client.request("PUT", "/me", params=params, json=data)
 
-    async def profile_edit_async(self, disable_steam_guard: Optional[int] = None, allow_ask_discount: Optional[int] = None, currency: Optional[str] = None) -> Dict[str, Any]:
+    async def profile_edit_async(self, disable_steam_guard: int | None = None, allow_ask_discount: int | None = None, currency: str | None = None) -> dict[str, Any]:
         """Edit market settings"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if disable_steam_guard is not None: data["disable_steam_guard"] = disable_steam_guard
         if allow_ask_discount is not None: data["allow_ask_discount"] = allow_ask_discount
         if currency is not None: data["currency"] = currency
         return await self._client.request_async("PUT", "/me", params=params, json=data)
 
-    def profile_claims(self, page: Optional[int] = None) -> Dict[str, Any]:
+    def profile_claims(self, page: int | None = None) -> dict[str, Any]:
         """Get claims"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return self._client.request("GET", "/profile/claims", params=params)
 
-    async def profile_claims_async(self, page: Optional[int] = None) -> Dict[str, Any]:
+    async def profile_claims_async(self, page: int | None = None) -> dict[str, Any]:
         """Get claims"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return await self._client.request_async("GET", "/profile/claims", params=params)
 
@@ -68,42 +70,42 @@ class CategoriesSection:
         self._client = client
         self._use_json = True
 
-    def categories_get(self) -> Dict[str, Any]:
+    def categories_get(self) -> dict[str, Any]:
         """Get categories"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/categories", params=params)
 
-    async def categories_get_async(self) -> Dict[str, Any]:
+    async def categories_get_async(self) -> dict[str, Any]:
         """Get categories"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/categories", params=params)
 
-    def categories_params(self, category_id: int) -> Dict[str, Any]:
+    def categories_params(self, category_id: int) -> dict[str, Any]:
         """Get category search params"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if category_id is not None: params["category_id"] = category_id
         return self._client.request("GET", "/categories/params", params=params)
 
-    async def categories_params_async(self, category_id: int) -> Dict[str, Any]:
+    async def categories_params_async(self, category_id: int) -> dict[str, Any]:
         """Get category search params"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if category_id is not None: params["category_id"] = category_id
         return await self._client.request_async("GET", "/categories/params", params=params)
 
-    def categories_games(self) -> Dict[str, Any]:
+    def categories_games(self) -> dict[str, Any]:
         """Get category games"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/games", params=params)
 
-    async def categories_games_async(self) -> Dict[str, Any]:
+    async def categories_games_async(self) -> dict[str, Any]:
         """Get category games"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/games", params=params)
 
 
@@ -115,10 +117,10 @@ class AccountsListSection:
         self._client = client
         self._use_json = True
 
-    def accounts_search(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None, currency: Optional[str] = None, order_by: Optional[str] = None) -> Dict[str, Any]:
+    def accounts_search(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None, currency: str | None = None, order_by: str | None = None) -> dict[str, Any]:
         """Get last accounts (all categories)"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
@@ -126,10 +128,10 @@ class AccountsListSection:
         if order_by is not None: params["order_by"] = order_by
         return self._client.request("GET", "/", params=params)
 
-    async def accounts_search_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None, currency: Optional[str] = None, order_by: Optional[str] = None) -> Dict[str, Any]:
+    async def accounts_search_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None, currency: str | None = None, order_by: str | None = None) -> dict[str, Any]:
         """Get last accounts (all categories)"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
@@ -137,523 +139,523 @@ class AccountsListSection:
         if order_by is not None: params["order_by"] = order_by
         return await self._client.request_async("GET", "/", params=params)
 
-    def accounts_search_steam(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None, origin: Optional[str] = None) -> Dict[str, Any]:
+    def accounts_search_steam(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None, origin: str | None = None) -> dict[str, Any]:
         """Search Steam accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         if origin is not None: params["origin"] = origin
         return self._client.request("GET", "/steam", params=params)
 
-    async def accounts_search_steam_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None, origin: Optional[str] = None) -> Dict[str, Any]:
+    async def accounts_search_steam_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None, origin: str | None = None) -> dict[str, Any]:
         """Search Steam accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         if origin is not None: params["origin"] = origin
         return await self._client.request_async("GET", "/steam", params=params)
 
-    def accounts_search_fortnite(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_fortnite(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Fortnite accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/fortnite", params=params)
 
-    async def accounts_search_fortnite_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_fortnite_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Fortnite accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/fortnite", params=params)
 
-    def accounts_search_riot(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_riot(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Riot accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/riot", params=params)
 
-    async def accounts_search_riot_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_riot_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Riot accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/riot", params=params)
 
-    def accounts_search_telegram(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_telegram(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Telegram accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/telegram", params=params)
 
-    async def accounts_search_telegram_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_telegram_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Telegram accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/telegram", params=params)
 
-    def accounts_search_discord(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_discord(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Discord accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/discord", params=params)
 
-    async def accounts_search_discord_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_discord_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Discord accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/discord", params=params)
 
-    def list_user_items(self, page: Optional[int] = None, category_id: Optional[int] = None) -> Dict[str, Any]:
+    def list_user_items(self, page: int | None = None, category_id: int | None = None) -> dict[str, Any]:
         """Get all your accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if category_id is not None: params["category_id"] = category_id
         return self._client.request("GET", "/user/items", params=params)
 
-    async def list_user_items_async(self, page: Optional[int] = None, category_id: Optional[int] = None) -> Dict[str, Any]:
+    async def list_user_items_async(self, page: int | None = None, category_id: int | None = None) -> dict[str, Any]:
         """Get all your accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if category_id is not None: params["category_id"] = category_id
         return await self._client.request_async("GET", "/user/items", params=params)
 
-    def list_orders(self, page: Optional[int] = None) -> Dict[str, Any]:
+    def list_orders(self, page: int | None = None) -> dict[str, Any]:
         """Get all purchased accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return self._client.request("GET", "/user/orders", params=params)
 
-    async def list_orders_async(self, page: Optional[int] = None) -> Dict[str, Any]:
+    async def list_orders_async(self, page: int | None = None) -> dict[str, Any]:
         """Get all purchased accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return await self._client.request_async("GET", "/user/orders", params=params)
 
-    def list_favorites(self, page: Optional[int] = None) -> Dict[str, Any]:
+    def list_favorites(self, page: int | None = None) -> dict[str, Any]:
         """Get all favourite accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return self._client.request("GET", "/user/favorites", params=params)
 
-    async def list_favorites_async(self, page: Optional[int] = None) -> Dict[str, Any]:
+    async def list_favorites_async(self, page: int | None = None) -> dict[str, Any]:
         """Get all favourite accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return await self._client.request_async("GET", "/user/favorites", params=params)
 
-    def list_viewed(self, page: Optional[int] = None) -> Dict[str, Any]:
+    def list_viewed(self, page: int | None = None) -> dict[str, Any]:
         """Get all viewed accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return self._client.request("GET", "/user/viewed", params=params)
 
-    async def list_viewed_async(self, page: Optional[int] = None) -> Dict[str, Any]:
+    async def list_viewed_async(self, page: int | None = None) -> dict[str, Any]:
         """Get all viewed accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return await self._client.request_async("GET", "/user/viewed", params=params)
 
-    def accounts_search_supercell(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_supercell(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Supercell accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/supercell", params=params)
 
-    async def accounts_search_supercell_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_supercell_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Supercell accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/supercell", params=params)
 
-    def accounts_search_gifts(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_gifts(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Gift accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/gifts", params=params)
 
-    async def accounts_search_gifts_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_gifts_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Gift accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/gifts", params=params)
 
-    def accounts_search_epicgames(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_epicgames(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Epic Games accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/epicgames", params=params)
 
-    async def accounts_search_epicgames_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_epicgames_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Epic Games accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/epicgames", params=params)
 
-    def accounts_search_eft(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_eft(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search EFT accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/escapefromtarkov", params=params)
 
-    async def accounts_search_eft_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_eft_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search EFT accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/escapefromtarkov", params=params)
 
-    def accounts_search_socialclub(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_socialclub(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Social Club accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/socialclub", params=params)
 
-    async def accounts_search_socialclub_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_socialclub_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Social Club accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/socialclub", params=params)
 
-    def accounts_search_uplay(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_uplay(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Uplay accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/uplay", params=params)
 
-    async def accounts_search_uplay_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_uplay_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Uplay accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/uplay", params=params)
 
-    def accounts_search_tiktok(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_tiktok(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search TikTok accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/tiktok", params=params)
 
-    async def accounts_search_tiktok_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_tiktok_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search TikTok accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/tiktok", params=params)
 
-    def accounts_search_instagram(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_instagram(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Instagram accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/instagram", params=params)
 
-    async def accounts_search_instagram_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_instagram_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Instagram accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/instagram", params=params)
 
-    def accounts_search_battlenet(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_battlenet(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search BattleNet accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/battlenet", params=params)
 
-    async def accounts_search_battlenet_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_battlenet_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search BattleNet accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/battlenet", params=params)
 
-    def accounts_search_vpn(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_vpn(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search VPN accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/vpn", params=params)
 
-    async def accounts_search_vpn_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_vpn_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search VPN accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/vpn", params=params)
 
-    def accounts_search_roblox(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_roblox(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Roblox accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/roblox", params=params)
 
-    async def accounts_search_roblox_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_roblox_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Roblox accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/roblox", params=params)
 
-    def accounts_search_warface(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_warface(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Warface accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/warface", params=params)
 
-    async def accounts_search_warface_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_warface_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Warface accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/warface", params=params)
 
-    def accounts_search_minecraft(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_minecraft(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Minecraft accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/minecraft", params=params)
 
-    async def accounts_search_minecraft_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_minecraft_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Minecraft accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/minecraft", params=params)
 
-    def accounts_search_chatgpt(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_chatgpt(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search ChatGPT accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/chatgpt", params=params)
 
-    async def accounts_search_chatgpt_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_chatgpt_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search ChatGPT accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/chatgpt", params=params)
 
-    def accounts_search_mihoyo(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_mihoyo(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search miHoYo accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/mihoyo", params=params)
 
-    async def accounts_search_mihoyo_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_mihoyo_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search miHoYo accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/mihoyo", params=params)
 
-    def accounts_search_wot(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_wot(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search World of Tanks accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/wot", params=params)
 
-    async def accounts_search_wot_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_wot_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search World of Tanks accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/wot", params=params)
 
-    def accounts_search_wotblitz(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_wotblitz(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search WoT Blitz accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/wotblitz", params=params)
 
-    async def accounts_search_wotblitz_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_wotblitz_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search WoT Blitz accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/wotblitz", params=params)
 
-    def accounts_search_ea(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_ea(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search EA (Origin) accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/ea", params=params)
 
-    async def accounts_search_ea_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_ea_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search EA (Origin) accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/ea", params=params)
 
-    def accounts_search_hytale(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    def accounts_search_hytale(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Hytale accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return self._client.request("GET", "/hytale", params=params)
 
-    async def accounts_search_hytale_async(self, page: Optional[int] = None, price_min: Optional[float] = None, price_max: Optional[float] = None) -> Dict[str, Any]:
+    async def accounts_search_hytale_async(self, page: int | None = None, price_min: float | None = None, price_max: float | None = None) -> dict[str, Any]:
         """Search Hytale accounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if price_min is not None: params["price_min"] = price_min
         if price_max is not None: params["price_max"] = price_max
         return await self._client.request_async("GET", "/hytale", params=params)
 
-    def list_states(self, item_ids: str) -> Dict[str, Any]:
+    def list_states(self, item_ids: str) -> dict[str, Any]:
         """Get user items states"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if item_ids is not None: params["item_ids"] = item_ids
         return self._client.request("GET", "/user/items/states", params=params)
 
-    async def list_states_async(self, item_ids: str) -> Dict[str, Any]:
+    async def list_states_async(self, item_ids: str) -> dict[str, Any]:
         """Get user items states"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if item_ids is not None: params["item_ids"] = item_ids
         return await self._client.request_async("GET", "/user/items/states", params=params)
 
-    def list_download(self, item_ids: str) -> Dict[str, Any]:
+    def list_download(self, item_ids: str) -> dict[str, Any]:
         """Download accounts data"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if item_ids is not None: params["item_ids"] = item_ids
         return self._client.request("GET", "/user/items/download", params=params)
 
-    async def list_download_async(self, item_ids: str) -> Dict[str, Any]:
+    async def list_download_async(self, item_ids: str) -> dict[str, Any]:
         """Download accounts data"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if item_ids is not None: params["item_ids"] = item_ids
         return await self._client.request_async("GET", "/user/items/download", params=params)
 
@@ -666,23 +668,23 @@ class ManagingSection:
         self._client = client
         self._use_json = True
 
-    def managing_get(self, item_id: int) -> Dict[str, Any]:
+    def managing_get(self, item_id: int) -> dict[str, Any]:
         """Get account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}", params=params)
 
-    async def managing_get_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_get_async(self, item_id: int) -> dict[str, Any]:
         """Get account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}", params=params)
 
-    def managing_edit(self, item_id: int, price: Optional[float] = None, currency: Optional[str] = None, item_origin: Optional[str] = None, title_en: Optional[str] = None, title_ru: Optional[str] = None, description_en: Optional[str] = None, description_ru: Optional[str] = None, extended_guarantee: Optional[int] = None, key_values: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def managing_edit(self, item_id: int, price: float | None = None, currency: str | None = None, item_origin: str | None = None, title_en: str | None = None, title_ru: str | None = None, description_en: str | None = None, description_ru: str | None = None, extended_guarantee: int | None = None, key_values: dict[str, Any] | None = None) -> dict[str, Any]:
         """Edit account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
         if item_origin is not None: data["item_origin"] = item_origin
@@ -694,11 +696,11 @@ class ManagingSection:
         if key_values is not None: data["key_values"] = key_values
         return self._client.request("PUT", f"/{item_id}", params=params, json=data)
 
-    async def managing_edit_async(self, item_id: int, price: Optional[float] = None, currency: Optional[str] = None, item_origin: Optional[str] = None, title_en: Optional[str] = None, title_ru: Optional[str] = None, description_en: Optional[str] = None, description_ru: Optional[str] = None, extended_guarantee: Optional[int] = None, key_values: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    async def managing_edit_async(self, item_id: int, price: float | None = None, currency: str | None = None, item_origin: str | None = None, title_en: str | None = None, title_ru: str | None = None, description_en: str | None = None, description_ru: str | None = None, extended_guarantee: int | None = None, key_values: dict[str, Any] | None = None) -> dict[str, Any]:
         """Edit account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
         if item_origin is not None: data["item_origin"] = item_origin
@@ -710,355 +712,355 @@ class ManagingSection:
         if key_values is not None: data["key_values"] = key_values
         return await self._client.request_async("PUT", f"/{item_id}", params=params, json=data)
 
-    def managing_delete(self, item_id: int, reason: Optional[str] = None) -> Dict[str, Any]:
+    def managing_delete(self, item_id: int, reason: str | None = None) -> dict[str, Any]:
         """Delete account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if reason is not None: params["reason"] = reason
         return self._client.request("DELETE", f"/{item_id}", params=params)
 
-    async def managing_delete_async(self, item_id: int, reason: Optional[str] = None) -> Dict[str, Any]:
+    async def managing_delete_async(self, item_id: int, reason: str | None = None) -> dict[str, Any]:
         """Delete account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if reason is not None: params["reason"] = reason
         return await self._client.request_async("DELETE", f"/{item_id}", params=params)
 
-    def managing_bulk_get(self, item_ids: List[int]) -> Dict[str, Any]:
+    def managing_bulk_get(self, item_ids: list[int]) -> dict[str, Any]:
         """Bulk get accounts"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if item_ids is not None: data["item_ids"] = item_ids
         return self._client.request("POST", "/bulk", params=params, json=data)
 
-    async def managing_bulk_get_async(self, item_ids: List[int]) -> Dict[str, Any]:
+    async def managing_bulk_get_async(self, item_ids: list[int]) -> dict[str, Any]:
         """Bulk get accounts"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if item_ids is not None: data["item_ids"] = item_ids
         return await self._client.request_async("POST", "/bulk", params=params, json=data)
 
-    def managing_bump(self, item_id: int) -> Dict[str, Any]:
+    def managing_bump(self, item_id: int) -> dict[str, Any]:
         """Bump account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/bump", params=params)
 
-    async def managing_bump_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_bump_async(self, item_id: int) -> dict[str, Any]:
         """Bump account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/bump", params=params)
 
-    def managing_auto_bump(self, item_id: int, interval: Optional[int] = None) -> Dict[str, Any]:
+    def managing_auto_bump(self, item_id: int, interval: int | None = None) -> dict[str, Any]:
         """Enable auto bump"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if interval is not None: data["interval"] = interval
         return self._client.request("POST", f"/{item_id}/auto-bump", params=params, json=data)
 
-    async def managing_auto_bump_async(self, item_id: int, interval: Optional[int] = None) -> Dict[str, Any]:
+    async def managing_auto_bump_async(self, item_id: int, interval: int | None = None) -> dict[str, Any]:
         """Enable auto bump"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if interval is not None: data["interval"] = interval
         return await self._client.request_async("POST", f"/{item_id}/auto-bump", params=params, json=data)
 
-    def managing_auto_bump_disable(self, item_id: int) -> Dict[str, Any]:
+    def managing_auto_bump_disable(self, item_id: int) -> dict[str, Any]:
         """Disable auto bump"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/{item_id}/auto-bump", params=params)
 
-    async def managing_auto_bump_disable_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_auto_bump_disable_async(self, item_id: int) -> dict[str, Any]:
         """Disable auto bump"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/{item_id}/auto-bump", params=params)
 
-    def managing_open(self, item_id: int) -> Dict[str, Any]:
+    def managing_open(self, item_id: int) -> dict[str, Any]:
         """Open account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/open", params=params)
 
-    async def managing_open_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_open_async(self, item_id: int) -> dict[str, Any]:
         """Open account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/open", params=params)
 
-    def managing_close(self, item_id: int) -> Dict[str, Any]:
+    def managing_close(self, item_id: int) -> dict[str, Any]:
         """Close account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/close", params=params)
 
-    async def managing_close_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_close_async(self, item_id: int) -> dict[str, Any]:
         """Close account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/close", params=params)
 
-    def managing_note(self, item_id: int, note: Optional[str] = None) -> Dict[str, Any]:
+    def managing_note(self, item_id: int, note: str | None = None) -> dict[str, Any]:
         """Edit note"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if note is not None: data["note"] = note
         return self._client.request("POST", f"/{item_id}/note", params=params, json=data)
 
-    async def managing_note_async(self, item_id: int, note: Optional[str] = None) -> Dict[str, Any]:
+    async def managing_note_async(self, item_id: int, note: str | None = None) -> dict[str, Any]:
         """Edit note"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if note is not None: data["note"] = note
         return await self._client.request_async("POST", f"/{item_id}/note", params=params, json=data)
 
-    def managing_tag(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    def managing_tag(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Add tag"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if tag_id is not None: data["tag_id"] = tag_id
         return self._client.request("POST", f"/{item_id}/tag", params=params, json=data)
 
-    async def managing_tag_async(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    async def managing_tag_async(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Add tag"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if tag_id is not None: data["tag_id"] = tag_id
         return await self._client.request_async("POST", f"/{item_id}/tag", params=params, json=data)
 
-    def managing_untag(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    def managing_untag(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Remove tag"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if tag_id is not None: params["tag_id"] = tag_id
         return self._client.request("DELETE", f"/{item_id}/tag", params=params)
 
-    async def managing_untag_async(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    async def managing_untag_async(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Remove tag"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if tag_id is not None: params["tag_id"] = tag_id
         return await self._client.request_async("DELETE", f"/{item_id}/tag", params=params)
 
-    def managing_stick(self, item_id: int) -> Dict[str, Any]:
+    def managing_stick(self, item_id: int) -> dict[str, Any]:
         """Stick account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/stick", params=params)
 
-    async def managing_stick_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_stick_async(self, item_id: int) -> dict[str, Any]:
         """Stick account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/stick", params=params)
 
-    def managing_unstick(self, item_id: int) -> Dict[str, Any]:
+    def managing_unstick(self, item_id: int) -> dict[str, Any]:
         """Unstick account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/{item_id}/stick", params=params)
 
-    async def managing_unstick_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_unstick_async(self, item_id: int) -> dict[str, Any]:
         """Unstick account"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/{item_id}/stick", params=params)
 
-    def managing_favorite(self, item_id: int) -> Dict[str, Any]:
+    def managing_favorite(self, item_id: int) -> dict[str, Any]:
         """Add to favourites"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/favorite", params=params)
 
-    async def managing_favorite_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_favorite_async(self, item_id: int) -> dict[str, Any]:
         """Add to favourites"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/favorite", params=params)
 
-    def managing_unfavorite(self, item_id: int) -> Dict[str, Any]:
+    def managing_unfavorite(self, item_id: int) -> dict[str, Any]:
         """Remove from favourites"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/{item_id}/favorite", params=params)
 
-    async def managing_unfavorite_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_unfavorite_async(self, item_id: int) -> dict[str, Any]:
         """Remove from favourites"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/{item_id}/favorite", params=params)
 
-    def managing_transfer(self, item_id: int, username: str, secret_answer: str) -> Dict[str, Any]:
+    def managing_transfer(self, item_id: int, username: str, secret_answer: str) -> dict[str, Any]:
         """Transfer account ownership"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if username is not None: data["username"] = username
         if secret_answer is not None: data["secret_answer"] = secret_answer
         return self._client.request("POST", f"/{item_id}/transfer", params=params, json=data)
 
-    async def managing_transfer_async(self, item_id: int, username: str, secret_answer: str) -> Dict[str, Any]:
+    async def managing_transfer_async(self, item_id: int, username: str, secret_answer: str) -> dict[str, Any]:
         """Transfer account ownership"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if username is not None: data["username"] = username
         if secret_answer is not None: data["secret_answer"] = secret_answer
         return await self._client.request_async("POST", f"/{item_id}/transfer", params=params, json=data)
 
-    def managing_change_password(self, item_id: int, _cancel: Optional[int] = None) -> Dict[str, Any]:
+    def managing_change_password(self, item_id: int, _cancel: int | None = None) -> dict[str, Any]:
         """Change account password"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if _cancel is not None: params["_cancel"] = _cancel
         return self._client.request("POST", f"/{item_id}/change-password", params=params)
 
-    async def managing_change_password_async(self, item_id: int, _cancel: Optional[int] = None) -> Dict[str, Any]:
+    async def managing_change_password_async(self, item_id: int, _cancel: int | None = None) -> dict[str, Any]:
         """Change account password"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if _cancel is not None: params["_cancel"] = _cancel
         return await self._client.request_async("POST", f"/{item_id}/change-password", params=params)
 
-    def managing_check_guarantee(self, item_id: int) -> Dict[str, Any]:
+    def managing_check_guarantee(self, item_id: int) -> dict[str, Any]:
         """Check guarantee"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/check-guarantee", params=params)
 
-    async def managing_check_guarantee_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_check_guarantee_async(self, item_id: int) -> dict[str, Any]:
         """Check guarantee"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/check-guarantee", params=params)
 
-    def managing_refuse_guarantee(self, item_id: int) -> Dict[str, Any]:
+    def managing_refuse_guarantee(self, item_id: int) -> dict[str, Any]:
         """Cancel guarantee"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/refuse-guarantee", params=params)
 
-    async def managing_refuse_guarantee_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_refuse_guarantee_async(self, item_id: int) -> dict[str, Any]:
         """Cancel guarantee"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/refuse-guarantee", params=params)
 
-    def managing_temp_email_password(self, item_id: int) -> Dict[str, Any]:
+    def managing_temp_email_password(self, item_id: int) -> dict[str, Any]:
         """Get temp email password"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/temp-email-password", params=params)
 
-    async def managing_temp_email_password_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_temp_email_password_async(self, item_id: int) -> dict[str, Any]:
         """Get temp email password"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/temp-email-password", params=params)
 
-    def managing_ai_price(self, item_id: int) -> Dict[str, Any]:
+    def managing_ai_price(self, item_id: int) -> dict[str, Any]:
         """Get AI price"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/ai-price", params=params)
 
-    async def managing_ai_price_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_ai_price_async(self, item_id: int) -> dict[str, Any]:
         """Get AI price"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/ai-price", params=params)
 
-    def managing_image(self, item_id: int) -> Dict[str, Any]:
+    def managing_image(self, item_id: int) -> dict[str, Any]:
         """Get account image"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/image", params=params)
 
-    async def managing_image_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_image_async(self, item_id: int) -> dict[str, Any]:
         """Get account image"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/image", params=params)
 
-    def managing_email_letters(self, item_id: int) -> Dict[str, Any]:
+    def managing_email_letters(self, item_id: int) -> dict[str, Any]:
         """Get email letters"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if item_id is not None: params["item_id"] = item_id
         return self._client.request("GET", "/letters2", params=params)
 
-    async def managing_email_letters_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_email_letters_async(self, item_id: int) -> dict[str, Any]:
         """Get email letters"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if item_id is not None: params["item_id"] = item_id
         return await self._client.request_async("GET", "/letters2", params=params)
 
-    def managing_create_claim(self, item_id: int, message: Optional[str] = None) -> Dict[str, Any]:
+    def managing_create_claim(self, item_id: int, message: str | None = None) -> dict[str, Any]:
         """Create claim for account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if message is not None: data["message"] = message
         return self._client.request("POST", f"/{item_id}/create-claim", params=params, json=data)
 
-    async def managing_create_claim_async(self, item_id: int, message: Optional[str] = None) -> Dict[str, Any]:
+    async def managing_create_claim_async(self, item_id: int, message: str | None = None) -> dict[str, Any]:
         """Create claim for account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if message is not None: data["message"] = message
         return await self._client.request_async("POST", f"/{item_id}/create-claim", params=params, json=data)
 
-    def managing_auto_buy_price(self, item_id: int) -> Dict[str, Any]:
+    def managing_auto_buy_price(self, item_id: int) -> dict[str, Any]:
         """Get auto buy price"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/auto-buy-price", params=params)
 
-    async def managing_auto_buy_price_async(self, item_id: int) -> Dict[str, Any]:
+    async def managing_auto_buy_price_async(self, item_id: int) -> dict[str, Any]:
         """Get auto buy price"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/auto-buy-price", params=params)
 
-    def managing_public_tag(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    def managing_public_tag(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Add a public tag"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if tag_id is not None: data["tag_id"] = tag_id
         return self._client.request("POST", f"/{item_id}/public-tag", params=params, json=data)
 
-    async def managing_public_tag_async(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    async def managing_public_tag_async(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Add a public tag"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if tag_id is not None: data["tag_id"] = tag_id
         return await self._client.request_async("POST", f"/{item_id}/public-tag", params=params, json=data)
 
-    def managing_public_untag(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    def managing_public_untag(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Remove a public tag"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if tag_id is not None: params["tag_id"] = tag_id
         return self._client.request("DELETE", f"/{item_id}/public-tag", params=params)
 
-    async def managing_public_untag_async(self, item_id: int, tag_id: int) -> Dict[str, Any]:
+    async def managing_public_untag_async(self, item_id: int, tag_id: int) -> dict[str, Any]:
         """Remove a public tag"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if tag_id is not None: params["tag_id"] = tag_id
         return await self._client.request_async("DELETE", f"/{item_id}/public-tag", params=params)
 
@@ -1071,124 +1073,124 @@ class SteamSection:
         self._client = client
         self._use_json = True
 
-    def steam_get_mafile(self, item_id: int) -> Dict[str, Any]:
+    def steam_get_mafile(self, item_id: int) -> dict[str, Any]:
         """Get mafile"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/steam/mafile", params=params)
 
-    async def steam_get_mafile_async(self, item_id: int) -> Dict[str, Any]:
+    async def steam_get_mafile_async(self, item_id: int) -> dict[str, Any]:
         """Get mafile"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/steam/mafile", params=params)
 
-    def steam_add_mafile(self, item_id: int, mafile: str) -> Dict[str, Any]:
+    def steam_add_mafile(self, item_id: int, mafile: str) -> dict[str, Any]:
         """Add mafile"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if mafile is not None: data["mafile"] = mafile
         return self._client.request("POST", f"/{item_id}/steam/mafile", params=params, json=data)
 
-    async def steam_add_mafile_async(self, item_id: int, mafile: str) -> Dict[str, Any]:
+    async def steam_add_mafile_async(self, item_id: int, mafile: str) -> dict[str, Any]:
         """Add mafile"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if mafile is not None: data["mafile"] = mafile
         return await self._client.request_async("POST", f"/{item_id}/steam/mafile", params=params, json=data)
 
-    def steam_remove_mafile(self, item_id: int) -> Dict[str, Any]:
+    def steam_remove_mafile(self, item_id: int) -> dict[str, Any]:
         """Remove mafile"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/{item_id}/steam/mafile", params=params)
 
-    async def steam_remove_mafile_async(self, item_id: int) -> Dict[str, Any]:
+    async def steam_remove_mafile_async(self, item_id: int) -> dict[str, Any]:
         """Remove mafile"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/{item_id}/steam/mafile", params=params)
 
-    def steam_guard_code(self, item_id: int) -> Dict[str, Any]:
+    def steam_guard_code(self, item_id: int) -> dict[str, Any]:
         """Get Steam Guard code"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/steam/mafile-code", params=params)
 
-    async def steam_guard_code_async(self, item_id: int) -> Dict[str, Any]:
+    async def steam_guard_code_async(self, item_id: int) -> dict[str, Any]:
         """Get Steam Guard code"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/steam/mafile-code", params=params)
 
-    def steam_inventory_value(self, item_id: int) -> Dict[str, Any]:
+    def steam_inventory_value(self, item_id: int) -> dict[str, Any]:
         """Get inventory value"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/steam/value", params=params)
 
-    async def steam_inventory_value_async(self, item_id: int) -> Dict[str, Any]:
+    async def steam_inventory_value_async(self, item_id: int) -> dict[str, Any]:
         """Get inventory value"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/steam/value", params=params)
 
-    def steam_update_inventory_value(self, item_id: int) -> Dict[str, Any]:
+    def steam_update_inventory_value(self, item_id: int) -> dict[str, Any]:
         """Update inventory value"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/steam/update-value", params=params)
 
-    async def steam_update_inventory_value_async(self, item_id: int) -> Dict[str, Any]:
+    async def steam_update_inventory_value_async(self, item_id: int) -> dict[str, Any]:
         """Update inventory value"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/steam/update-value", params=params)
 
-    def steam_confirm_sda(self, item_id: int, id: int, nonce: int) -> Dict[str, Any]:
+    def steam_confirm_sda(self, item_id: int, id: int, nonce: int) -> dict[str, Any]:
         """Confirm SDA"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if id is not None: data["id"] = id
         if nonce is not None: data["nonce"] = nonce
         return self._client.request("POST", f"/{item_id}/steam/sda", params=params, json=data)
 
-    async def steam_confirm_sda_async(self, item_id: int, id: int, nonce: int) -> Dict[str, Any]:
+    async def steam_confirm_sda_async(self, item_id: int, id: int, nonce: int) -> dict[str, Any]:
         """Confirm SDA"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if id is not None: data["id"] = id
         if nonce is not None: data["nonce"] = nonce
         return await self._client.request_async("POST", f"/{item_id}/steam/sda", params=params, json=data)
 
-    def steam_html_preview(self, item_id: int, type: Optional[str] = None) -> Dict[str, Any]:
+    def steam_html_preview(self, item_id: int, type: str | None = None) -> dict[str, Any]:
         """Get Steam HTML preview"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if type is not None: params["type"] = type
         return self._client.request("GET", f"/{item_id}/steam/html", params=params)
 
-    async def steam_html_preview_async(self, item_id: int, type: Optional[str] = None) -> Dict[str, Any]:
+    async def steam_html_preview_async(self, item_id: int, type: str | None = None) -> dict[str, Any]:
         """Get Steam HTML preview"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if type is not None: params["type"] = type
         return await self._client.request_async("GET", f"/{item_id}/steam/html", params=params)
 
-    def steam_account_inventory_value(self, item_id: int) -> Dict[str, Any]:
+    def steam_account_inventory_value(self, item_id: int) -> dict[str, Any]:
         """Get account Steam inventory value (cached)"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/steam/inventory-value", params=params)
 
-    async def steam_account_inventory_value_async(self, item_id: int) -> Dict[str, Any]:
+    async def steam_account_inventory_value_async(self, item_id: int) -> dict[str, Any]:
         """Get account Steam inventory value (cached)"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/steam/inventory-value", params=params)
 
 
@@ -1200,28 +1202,28 @@ class TelegramSection:
         self._client = client
         self._use_json = True
 
-    def telegram_confirmation_code(self, item_id: int) -> Dict[str, Any]:
+    def telegram_confirmation_code(self, item_id: int) -> dict[str, Any]:
         """Get Telegram confirmation code"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/{item_id}/telegram/confirmation-code", params=params)
 
-    async def telegram_confirmation_code_async(self, item_id: int) -> Dict[str, Any]:
+    async def telegram_confirmation_code_async(self, item_id: int) -> dict[str, Any]:
         """Get Telegram confirmation code"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/{item_id}/telegram/confirmation-code", params=params)
 
-    def telegram_reset_auth(self, item_id: int) -> Dict[str, Any]:
+    def telegram_reset_auth(self, item_id: int) -> dict[str, Any]:
         """Telegram reset auth"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/telegram/reset-auth", params=params)
 
-    async def telegram_reset_auth_async(self, item_id: int) -> Dict[str, Any]:
+    async def telegram_reset_auth_async(self, item_id: int) -> dict[str, Any]:
         """Telegram reset auth"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/telegram/reset-auth", params=params)
 
 
@@ -1233,11 +1235,11 @@ class PublishingSection:
         self._client = client
         self._use_json = True
 
-    def publishing_fast_sell(self, category_id: int, price: float, currency: str, item_origin: str, login: str, password: str, title_en: Optional[str] = None, title_ru: Optional[str] = None, description_en: Optional[str] = None, description_ru: Optional[str] = None, extended_guarantee: Optional[int] = None, allow_ask_discount: Optional[int] = None, proxy_id: Optional[int] = None) -> Dict[str, Any]:
+    def publishing_fast_sell(self, category_id: int, price: float, currency: str, item_origin: str, login: str, password: str, title_en: str | None = None, title_ru: str | None = None, description_en: str | None = None, description_ru: str | None = None, extended_guarantee: int | None = None, allow_ask_discount: int | None = None, proxy_id: int | None = None) -> dict[str, Any]:
         """Fast account upload"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if category_id is not None: data["category_id"] = category_id
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
@@ -1253,11 +1255,11 @@ class PublishingSection:
         if proxy_id is not None: data["proxy_id"] = proxy_id
         return self._client.request("POST", "/fast-sell", params=params, json=data)
 
-    async def publishing_fast_sell_async(self, category_id: int, price: float, currency: str, item_origin: str, login: str, password: str, title_en: Optional[str] = None, title_ru: Optional[str] = None, description_en: Optional[str] = None, description_ru: Optional[str] = None, extended_guarantee: Optional[int] = None, allow_ask_discount: Optional[int] = None, proxy_id: Optional[int] = None) -> Dict[str, Any]:
+    async def publishing_fast_sell_async(self, category_id: int, price: float, currency: str, item_origin: str, login: str, password: str, title_en: str | None = None, title_ru: str | None = None, description_en: str | None = None, description_ru: str | None = None, extended_guarantee: int | None = None, allow_ask_discount: int | None = None, proxy_id: int | None = None) -> dict[str, Any]:
         """Fast account upload"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if category_id is not None: data["category_id"] = category_id
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
@@ -1273,11 +1275,11 @@ class PublishingSection:
         if proxy_id is not None: data["proxy_id"] = proxy_id
         return await self._client.request_async("POST", "/fast-sell", params=params, json=data)
 
-    def publishing_add(self, category_id: int, price: float, currency: str, item_origin: str, title_en: Optional[str] = None, title_ru: Optional[str] = None, extended_guarantee: Optional[int] = None) -> Dict[str, Any]:
+    def publishing_add(self, category_id: int, price: float, currency: str, item_origin: str, title_en: str | None = None, title_ru: str | None = None, extended_guarantee: int | None = None) -> dict[str, Any]:
         """Add account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if category_id is not None: data["category_id"] = category_id
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
@@ -1287,11 +1289,11 @@ class PublishingSection:
         if extended_guarantee is not None: data["extended_guarantee"] = extended_guarantee
         return self._client.request("POST", "/add", params=params, json=data)
 
-    async def publishing_add_async(self, category_id: int, price: float, currency: str, item_origin: str, title_en: Optional[str] = None, title_ru: Optional[str] = None, extended_guarantee: Optional[int] = None) -> Dict[str, Any]:
+    async def publishing_add_async(self, category_id: int, price: float, currency: str, item_origin: str, title_en: str | None = None, title_ru: str | None = None, extended_guarantee: int | None = None) -> dict[str, Any]:
         """Add account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if category_id is not None: data["category_id"] = category_id
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
@@ -1301,31 +1303,31 @@ class PublishingSection:
         if extended_guarantee is not None: data["extended_guarantee"] = extended_guarantee
         return await self._client.request_async("POST", "/add", params=params, json=data)
 
-    def publishing_check(self, item_id: int, login: str, password: str) -> Dict[str, Any]:
+    def publishing_check(self, item_id: int, login: str, password: str) -> dict[str, Any]:
         """Check account details"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if item_id is not None: data["item_id"] = item_id
         if login is not None: data["login"] = login
         if password is not None: data["password"] = password
         return self._client.request("POST", "/check", params=params, json=data)
 
-    async def publishing_check_async(self, item_id: int, login: str, password: str) -> Dict[str, Any]:
+    async def publishing_check_async(self, item_id: int, login: str, password: str) -> dict[str, Any]:
         """Check account details"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if item_id is not None: data["item_id"] = item_id
         if login is not None: data["login"] = login
         if password is not None: data["password"] = password
         return await self._client.request_async("POST", "/check", params=params, json=data)
 
-    def publishing_external(self, category_id: int, price: float, currency: str, item_origin: str, title_en: str, title_ru: Optional[str] = None, description_en: Optional[str] = None, description_ru: Optional[str] = None) -> Dict[str, Any]:
+    def publishing_external(self, category_id: int, price: float, currency: str, item_origin: str, title_en: str, title_ru: str | None = None, description_en: str | None = None, description_ru: str | None = None) -> dict[str, Any]:
         """Add an external account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if category_id is not None: data["category_id"] = category_id
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
@@ -1336,11 +1338,11 @@ class PublishingSection:
         if description_ru is not None: data["description_ru"] = description_ru
         return self._client.request("POST", "/external", params=params, json=data)
 
-    async def publishing_external_async(self, category_id: int, price: float, currency: str, item_origin: str, title_en: str, title_ru: Optional[str] = None, description_en: Optional[str] = None, description_ru: Optional[str] = None) -> Dict[str, Any]:
+    async def publishing_external_async(self, category_id: int, price: float, currency: str, item_origin: str, title_en: str, title_ru: str | None = None, description_en: str | None = None, description_ru: str | None = None) -> dict[str, Any]:
         """Add an external account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if category_id is not None: data["category_id"] = category_id
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
@@ -1360,78 +1362,78 @@ class PurchasingSection:
         self._client = client
         self._use_json = True
 
-    def purchasing_fast_buy(self, item_id: int, price: float, currency: Optional[str] = None) -> Dict[str, Any]:
+    def purchasing_fast_buy(self, item_id: int, price: float, currency: str | None = None) -> dict[str, Any]:
         """Fast buy account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
         return self._client.request("POST", f"/{item_id}/fast-buy", params=params, json=data)
 
-    async def purchasing_fast_buy_async(self, item_id: int, price: float, currency: Optional[str] = None) -> Dict[str, Any]:
+    async def purchasing_fast_buy_async(self, item_id: int, price: float, currency: str | None = None) -> dict[str, Any]:
         """Fast buy account"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         if currency is not None: data["currency"] = currency
         return await self._client.request_async("POST", f"/{item_id}/fast-buy", params=params, json=data)
 
-    def purchasing_check(self, item_id: int) -> Dict[str, Any]:
+    def purchasing_check(self, item_id: int) -> dict[str, Any]:
         """Check account validity"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/{item_id}/check-account", params=params)
 
-    async def purchasing_check_async(self, item_id: int) -> Dict[str, Any]:
+    async def purchasing_check_async(self, item_id: int) -> dict[str, Any]:
         """Check account validity"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/{item_id}/check-account", params=params)
 
-    def purchasing_confirm(self, item_id: int, price: Optional[float] = None) -> Dict[str, Any]:
+    def purchasing_confirm(self, item_id: int, price: float | None = None) -> dict[str, Any]:
         """Confirm buy"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         return self._client.request("POST", f"/{item_id}/confirm-buy", params=params, json=data)
 
-    async def purchasing_confirm_async(self, item_id: int, price: Optional[float] = None) -> Dict[str, Any]:
+    async def purchasing_confirm_async(self, item_id: int, price: float | None = None) -> dict[str, Any]:
         """Confirm buy"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         return await self._client.request_async("POST", f"/{item_id}/confirm-buy", params=params, json=data)
 
-    def purchasing_discount_request(self, item_id: int, price: float) -> Dict[str, Any]:
+    def purchasing_discount_request(self, item_id: int, price: float) -> dict[str, Any]:
         """Request discount"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         return self._client.request("POST", f"/{item_id}/discount", params=params, json=data)
 
-    async def purchasing_discount_request_async(self, item_id: int, price: float) -> Dict[str, Any]:
+    async def purchasing_discount_request_async(self, item_id: int, price: float) -> dict[str, Any]:
         """Request discount"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if price is not None: data["price"] = price
         return await self._client.request_async("POST", f"/{item_id}/discount", params=params, json=data)
 
-    def purchasing_discount_cancel(self, item_id: int) -> Dict[str, Any]:
+    def purchasing_discount_cancel(self, item_id: int) -> dict[str, Any]:
         """Cancel discount request"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/{item_id}/discount", params=params)
 
-    async def purchasing_discount_cancel_async(self, item_id: int) -> Dict[str, Any]:
+    async def purchasing_discount_cancel_async(self, item_id: int) -> dict[str, Any]:
         """Cancel discount request"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/{item_id}/discount", params=params)
 
 
@@ -1443,40 +1445,40 @@ class CartSection:
         self._client = client
         self._use_json = True
 
-    def cart_get(self) -> Dict[str, Any]:
+    def cart_get(self) -> dict[str, Any]:
         """Get cart items"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/cart", params=params)
 
-    async def cart_get_async(self) -> Dict[str, Any]:
+    async def cart_get_async(self) -> dict[str, Any]:
         """Get cart items"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/cart", params=params)
 
-    def cart_add(self, item_id: int) -> Dict[str, Any]:
+    def cart_add(self, item_id: int) -> dict[str, Any]:
         """Add item to cart"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("POST", f"/cart/{item_id}", params=params)
 
-    async def cart_add_async(self, item_id: int) -> Dict[str, Any]:
+    async def cart_add_async(self, item_id: int) -> dict[str, Any]:
         """Add item to cart"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/cart/{item_id}", params=params)
 
-    def cart_delete(self, item_id: int) -> Dict[str, Any]:
+    def cart_delete(self, item_id: int) -> dict[str, Any]:
         """Delete item from cart"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/cart/{item_id}", params=params)
 
-    async def cart_delete_async(self, item_id: int) -> Dict[str, Any]:
+    async def cart_delete_async(self, item_id: int) -> dict[str, Any]:
         """Delete item from cart"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/cart/{item_id}", params=params)
 
 
@@ -1488,10 +1490,10 @@ class PaymentsSection:
         self._client = client
         self._use_json = True
 
-    def payments_history(self, type: Optional[str] = None, pmin: Optional[float] = None, pmax: Optional[float] = None, page: Optional[int] = None, receiver: Optional[str] = None, sender: Optional[str] = None, start_date: Optional[str] = None, end_date: Optional[str] = None, wallet: Optional[str] = None, comment: Optional[str] = None, is_hold: Optional[int] = None) -> Dict[str, Any]:
+    def payments_history(self, type: str | None = None, pmin: float | None = None, pmax: float | None = None, page: int | None = None, receiver: str | None = None, sender: str | None = None, start_date: str | None = None, end_date: str | None = None, wallet: str | None = None, comment: str | None = None, is_hold: int | None = None) -> dict[str, Any]:
         """Get payments history"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if type is not None: params["type"] = type
         if pmin is not None: params["pmin"] = pmin
         if pmax is not None: params["pmax"] = pmax
@@ -1505,10 +1507,10 @@ class PaymentsSection:
         if is_hold is not None: params["is_hold"] = is_hold
         return self._client.request("GET", "/user/payments", params=params)
 
-    async def payments_history_async(self, type: Optional[str] = None, pmin: Optional[float] = None, pmax: Optional[float] = None, page: Optional[int] = None, receiver: Optional[str] = None, sender: Optional[str] = None, start_date: Optional[str] = None, end_date: Optional[str] = None, wallet: Optional[str] = None, comment: Optional[str] = None, is_hold: Optional[int] = None) -> Dict[str, Any]:
+    async def payments_history_async(self, type: str | None = None, pmin: float | None = None, pmax: float | None = None, page: int | None = None, receiver: str | None = None, sender: str | None = None, start_date: str | None = None, end_date: str | None = None, wallet: str | None = None, comment: str | None = None, is_hold: int | None = None) -> dict[str, Any]:
         """Get payments history"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if type is not None: params["type"] = type
         if pmin is not None: params["pmin"] = pmin
         if pmax is not None: params["pmax"] = pmax
@@ -1522,11 +1524,11 @@ class PaymentsSection:
         if is_hold is not None: params["is_hold"] = is_hold
         return await self._client.request_async("GET", "/user/payments", params=params)
 
-    def payments_transfer(self, amount: float, currency: str, secret_answer: str, user_id: Optional[int] = None, username: Optional[str] = None, comment: Optional[str] = None, hold: Optional[int] = None, hold_option: Optional[str] = None) -> Dict[str, Any]:
+    def payments_transfer(self, amount: float, currency: str, secret_answer: str, user_id: int | None = None, username: str | None = None, comment: str | None = None, hold: int | None = None, hold_option: str | None = None) -> dict[str, Any]:
         """Transfer money to user"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if amount is not None: data["amount"] = amount
         if currency is not None: data["currency"] = currency
         if secret_answer is not None: data["secret_answer"] = secret_answer
@@ -1537,11 +1539,11 @@ class PaymentsSection:
         if hold_option is not None: data["hold_option"] = hold_option
         return self._client.request("POST", "/money/transfer", params=params, json=data)
 
-    async def payments_transfer_async(self, amount: float, currency: str, secret_answer: str, user_id: Optional[int] = None, username: Optional[str] = None, comment: Optional[str] = None, hold: Optional[int] = None, hold_option: Optional[str] = None) -> Dict[str, Any]:
+    async def payments_transfer_async(self, amount: float, currency: str, secret_answer: str, user_id: int | None = None, username: str | None = None, comment: str | None = None, hold: int | None = None, hold_option: str | None = None) -> dict[str, Any]:
         """Transfer money to user"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if amount is not None: data["amount"] = amount
         if currency is not None: data["currency"] = currency
         if secret_answer is not None: data["secret_answer"] = secret_answer
@@ -1552,99 +1554,99 @@ class PaymentsSection:
         if hold_option is not None: data["hold_option"] = hold_option
         return await self._client.request_async("POST", "/money/transfer", params=params, json=data)
 
-    def payments_cancel_transfer(self, operation_id: str) -> Dict[str, Any]:
+    def payments_cancel_transfer(self, operation_id: str) -> dict[str, Any]:
         """Cancel held transfer"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if operation_id is not None: data["operation_id"] = operation_id
         return self._client.request("POST", "/money/cancel-transfer", params=params, json=data)
 
-    async def payments_cancel_transfer_async(self, operation_id: str) -> Dict[str, Any]:
+    async def payments_cancel_transfer_async(self, operation_id: str) -> dict[str, Any]:
         """Cancel held transfer"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if operation_id is not None: data["operation_id"] = operation_id
         return await self._client.request_async("POST", "/money/cancel-transfer", params=params, json=data)
 
-    def payments_fee(self, amount: float, currency: str) -> Dict[str, Any]:
+    def payments_fee(self, amount: float, currency: str) -> dict[str, Any]:
         """Check transfer fee"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if amount is not None: params["amount"] = amount
         if currency is not None: params["currency"] = currency
         return self._client.request("GET", "/balance/fee", params=params)
 
-    async def payments_fee_async(self, amount: float, currency: str) -> Dict[str, Any]:
+    async def payments_fee_async(self, amount: float, currency: str) -> dict[str, Any]:
         """Check transfer fee"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if amount is not None: params["amount"] = amount
         if currency is not None: params["currency"] = currency
         return await self._client.request_async("GET", "/balance/fee", params=params)
 
-    def payments_currency(self) -> Dict[str, Any]:
+    def payments_currency(self) -> dict[str, Any]:
         """Get currency rates"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/balance/currency", params=params)
 
-    async def payments_currency_async(self) -> Dict[str, Any]:
+    async def payments_currency_async(self) -> dict[str, Any]:
         """Get currency rates"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/balance/currency", params=params)
 
-    def payments_balance_list(self) -> Dict[str, Any]:
+    def payments_balance_list(self) -> dict[str, Any]:
         """Get list of balances"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/balance/list", params=params)
 
-    async def payments_balance_list_async(self) -> Dict[str, Any]:
+    async def payments_balance_list_async(self) -> dict[str, Any]:
         """Get list of balances"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/balance/list", params=params)
 
-    def payments_balance_exchange(self, from_balance: str, to_balance: str, amount: float) -> Dict[str, Any]:
+    def payments_balance_exchange(self, from_balance: str, to_balance: str, amount: float) -> dict[str, Any]:
         """Exchange balance"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if from_balance is not None: data["from_balance"] = from_balance
         if to_balance is not None: data["to_balance"] = to_balance
         if amount is not None: data["amount"] = amount
         return self._client.request("POST", "/balance/exchange", params=params, json=data)
 
-    async def payments_balance_exchange_async(self, from_balance: str, to_balance: str, amount: float) -> Dict[str, Any]:
+    async def payments_balance_exchange_async(self, from_balance: str, to_balance: str, amount: float) -> dict[str, Any]:
         """Exchange balance"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if from_balance is not None: data["from_balance"] = from_balance
         if to_balance is not None: data["to_balance"] = to_balance
         if amount is not None: data["amount"] = amount
         return await self._client.request_async("POST", "/balance/exchange", params=params, json=data)
 
-    def payments_payout_services(self) -> Dict[str, Any]:
+    def payments_payout_services(self) -> dict[str, Any]:
         """Get payout services"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/balance/payout/services", params=params)
 
-    async def payments_payout_services_async(self) -> Dict[str, Any]:
+    async def payments_payout_services_async(self) -> dict[str, Any]:
         """Get payout services"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/balance/payout/services", params=params)
 
-    def payments_payout(self, service: str, wallet: str, amount: float, currency: str, include_fee: Optional[int] = None, extra: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def payments_payout(self, service: str, wallet: str, amount: float, currency: str, include_fee: int | None = None, extra: dict[str, Any] | None = None) -> dict[str, Any]:
         """Create payout"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if service is not None: data["service"] = service
         if wallet is not None: data["wallet"] = wallet
         if amount is not None: data["amount"] = amount
@@ -1653,11 +1655,11 @@ class PaymentsSection:
         if extra is not None: data["extra"] = extra
         return self._client.request("POST", "/balance/payout", params=params, json=data)
 
-    async def payments_payout_async(self, service: str, wallet: str, amount: float, currency: str, include_fee: Optional[int] = None, extra: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    async def payments_payout_async(self, service: str, wallet: str, amount: float, currency: str, include_fee: int | None = None, extra: dict[str, Any] | None = None) -> dict[str, Any]:
         """Create payout"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if service is not None: data["service"] = service
         if wallet is not None: data["wallet"] = wallet
         if amount is not None: data["amount"] = amount
@@ -1666,23 +1668,23 @@ class PaymentsSection:
         if extra is not None: data["extra"] = extra
         return await self._client.request_async("POST", "/balance/payout", params=params, json=data)
 
-    def payments_auto_list(self) -> Dict[str, Any]:
+    def payments_auto_list(self) -> dict[str, Any]:
         """Get auto payments"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/auto-payments", params=params)
 
-    async def payments_auto_list_async(self) -> Dict[str, Any]:
+    async def payments_auto_list_async(self) -> dict[str, Any]:
         """Get auto payments"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/auto-payments", params=params)
 
-    def payments_auto_create(self, amount: float, currency: str, secret_answer: str, user_id: int, comment: Optional[str] = None, day: Optional[int] = None) -> Dict[str, Any]:
+    def payments_auto_create(self, amount: float, currency: str, secret_answer: str, user_id: int, comment: str | None = None, day: int | None = None) -> dict[str, Any]:
         """Create auto payment"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if amount is not None: data["amount"] = amount
         if currency is not None: data["currency"] = currency
         if secret_answer is not None: data["secret_answer"] = secret_answer
@@ -1691,11 +1693,11 @@ class PaymentsSection:
         if day is not None: data["day"] = day
         return self._client.request("POST", "/auto-payments", params=params, json=data)
 
-    async def payments_auto_create_async(self, amount: float, currency: str, secret_answer: str, user_id: int, comment: Optional[str] = None, day: Optional[int] = None) -> Dict[str, Any]:
+    async def payments_auto_create_async(self, amount: float, currency: str, secret_answer: str, user_id: int, comment: str | None = None, day: int | None = None) -> dict[str, Any]:
         """Create auto payment"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if amount is not None: data["amount"] = amount
         if currency is not None: data["currency"] = currency
         if secret_answer is not None: data["secret_answer"] = secret_answer
@@ -1704,16 +1706,16 @@ class PaymentsSection:
         if day is not None: data["day"] = day
         return await self._client.request_async("POST", "/auto-payments", params=params, json=data)
 
-    def payments_auto_delete(self, auto_payment_id: int) -> Dict[str, Any]:
+    def payments_auto_delete(self, auto_payment_id: int) -> dict[str, Any]:
         """Delete auto payment"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/auto-payments/{auto_payment_id}", params=params)
 
-    async def payments_auto_delete_async(self, auto_payment_id: int) -> Dict[str, Any]:
+    async def payments_auto_delete_async(self, auto_payment_id: int) -> dict[str, Any]:
         """Delete auto payment"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/auto-payments/{auto_payment_id}", params=params)
 
 
@@ -1725,27 +1727,27 @@ class InvoicesSection:
         self._client = client
         self._use_json = True
 
-    def invoices_list(self, page: Optional[int] = None, status: Optional[str] = None) -> Dict[str, Any]:
+    def invoices_list(self, page: int | None = None, status: str | None = None) -> dict[str, Any]:
         """Get invoice list"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if status is not None: params["status"] = status
         return self._client.request("GET", "/invoices", params=params)
 
-    async def invoices_list_async(self, page: Optional[int] = None, status: Optional[str] = None) -> Dict[str, Any]:
+    async def invoices_list_async(self, page: int | None = None, status: str | None = None) -> dict[str, Any]:
         """Get invoice list"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if status is not None: params["status"] = status
         return await self._client.request_async("GET", "/invoices", params=params)
 
-    def invoices_create(self, currency: str, amount: float, payment_id: str, comment: Optional[str] = None, url_success: Optional[str] = None, url_callback: Optional[str] = None, lifetime: Optional[int] = None, merchant_id: Optional[int] = None) -> Dict[str, Any]:
+    def invoices_create(self, currency: str, amount: float, payment_id: str, comment: str | None = None, url_success: str | None = None, url_callback: str | None = None, lifetime: int | None = None, merchant_id: int | None = None) -> dict[str, Any]:
         """Create invoice"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if currency is not None: data["currency"] = currency
         if amount is not None: data["amount"] = amount
         if payment_id is not None: data["payment_id"] = payment_id
@@ -1756,11 +1758,11 @@ class InvoicesSection:
         if merchant_id is not None: data["merchant_id"] = merchant_id
         return self._client.request("POST", "/invoices", params=params, json=data)
 
-    async def invoices_create_async(self, currency: str, amount: float, payment_id: str, comment: Optional[str] = None, url_success: Optional[str] = None, url_callback: Optional[str] = None, lifetime: Optional[int] = None, merchant_id: Optional[int] = None) -> Dict[str, Any]:
+    async def invoices_create_async(self, currency: str, amount: float, payment_id: str, comment: str | None = None, url_success: str | None = None, url_callback: str | None = None, lifetime: int | None = None, merchant_id: int | None = None) -> dict[str, Any]:
         """Create invoice"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if currency is not None: data["currency"] = currency
         if amount is not None: data["amount"] = amount
         if payment_id is not None: data["payment_id"] = payment_id
@@ -1771,16 +1773,16 @@ class InvoicesSection:
         if merchant_id is not None: data["merchant_id"] = merchant_id
         return await self._client.request_async("POST", "/invoices", params=params, json=data)
 
-    def invoices_get(self, invoice_id: int) -> Dict[str, Any]:
+    def invoices_get(self, invoice_id: int) -> dict[str, Any]:
         """Get invoice"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", f"/invoices/{invoice_id}", params=params)
 
-    async def invoices_get_async(self, invoice_id: int) -> Dict[str, Any]:
+    async def invoices_get_async(self, invoice_id: int) -> dict[str, Any]:
         """Get invoice"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/invoices/{invoice_id}", params=params)
 
 
@@ -1792,64 +1794,64 @@ class CustomDiscountsSection:
         self._client = client
         self._use_json = True
 
-    def custom_discounts_get(self) -> Dict[str, Any]:
+    def custom_discounts_get(self) -> dict[str, Any]:
         """Get custom discounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/custom-discounts", params=params)
 
-    async def custom_discounts_get_async(self) -> Dict[str, Any]:
+    async def custom_discounts_get_async(self) -> dict[str, Any]:
         """Get custom discounts"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/custom-discounts", params=params)
 
-    def custom_discounts_create(self, discount: float, user_id: int, categories: Optional[List[int]] = None) -> Dict[str, Any]:
+    def custom_discounts_create(self, discount: float, user_id: int, categories: list[int] | None = None) -> dict[str, Any]:
         """Create custom discount"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if discount is not None: data["discount"] = discount
         if user_id is not None: data["user_id"] = user_id
         if categories is not None: data["categories"] = categories
         return self._client.request("POST", "/custom-discounts", params=params, json=data)
 
-    async def custom_discounts_create_async(self, discount: float, user_id: int, categories: Optional[List[int]] = None) -> Dict[str, Any]:
+    async def custom_discounts_create_async(self, discount: float, user_id: int, categories: list[int] | None = None) -> dict[str, Any]:
         """Create custom discount"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if discount is not None: data["discount"] = discount
         if user_id is not None: data["user_id"] = user_id
         if categories is not None: data["categories"] = categories
         return await self._client.request_async("POST", "/custom-discounts", params=params, json=data)
 
-    def custom_discounts_edit(self, discount_id: int, discount: Optional[float] = None) -> Dict[str, Any]:
+    def custom_discounts_edit(self, discount_id: int, discount: float | None = None) -> dict[str, Any]:
         """Edit custom discount"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if discount is not None: data["discount"] = discount
         return self._client.request("PUT", f"/custom-discounts/{discount_id}", params=params, json=data)
 
-    async def custom_discounts_edit_async(self, discount_id: int, discount: Optional[float] = None) -> Dict[str, Any]:
+    async def custom_discounts_edit_async(self, discount_id: int, discount: float | None = None) -> dict[str, Any]:
         """Edit custom discount"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if discount is not None: data["discount"] = discount
         return await self._client.request_async("PUT", f"/custom-discounts/{discount_id}", params=params, json=data)
 
-    def custom_discounts_delete(self, discount_id: int) -> Dict[str, Any]:
+    def custom_discounts_delete(self, discount_id: int) -> dict[str, Any]:
         """Delete custom discount"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/custom-discounts/{discount_id}", params=params)
 
-    async def custom_discounts_delete_async(self, discount_id: int) -> Dict[str, Any]:
+    async def custom_discounts_delete_async(self, discount_id: int) -> dict[str, Any]:
         """Delete custom discount"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/custom-discounts/{discount_id}", params=params)
 
 
@@ -1861,50 +1863,50 @@ class ProxySection:
         self._client = client
         self._use_json = True
 
-    def proxy_get(self) -> Dict[str, Any]:
+    def proxy_get(self) -> dict[str, Any]:
         """Get proxy list"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("GET", "/proxy", params=params)
 
-    async def proxy_get_async(self) -> Dict[str, Any]:
+    async def proxy_get_async(self) -> dict[str, Any]:
         """Get proxy list"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/proxy", params=params)
 
-    def proxy_add(self, proxy_row: str, proxy_type: Optional[str] = None) -> Dict[str, Any]:
+    def proxy_add(self, proxy_row: str, proxy_type: str | None = None) -> dict[str, Any]:
         """Add proxy"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if proxy_row is not None: data["proxy_row"] = proxy_row
         if proxy_type is not None: data["proxy_type"] = proxy_type
         return self._client.request("POST", "/proxy", params=params, json=data)
 
-    async def proxy_add_async(self, proxy_row: str, proxy_type: Optional[str] = None) -> Dict[str, Any]:
+    async def proxy_add_async(self, proxy_row: str, proxy_type: str | None = None) -> dict[str, Any]:
         """Add proxy"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if proxy_row is not None: data["proxy_row"] = proxy_row
         if proxy_type is not None: data["proxy_type"] = proxy_type
         return await self._client.request_async("POST", "/proxy", params=params, json=data)
 
-    def proxy_delete(self, proxy_id: Optional[int] = None, delete_all: Optional[int] = None) -> Dict[str, Any]:
+    def proxy_delete(self, proxy_id: int | None = None, delete_all: int | None = None) -> dict[str, Any]:
         """Delete proxy"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if proxy_id is not None: data["proxy_id"] = proxy_id
         if delete_all is not None: data["delete_all"] = delete_all
         return self._client.request("DELETE", "/proxy", params=params, json=data)
 
-    async def proxy_delete_async(self, proxy_id: Optional[int] = None, delete_all: Optional[int] = None) -> Dict[str, Any]:
+    async def proxy_delete_async(self, proxy_id: int | None = None, delete_all: int | None = None) -> dict[str, Any]:
         """Delete proxy"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if proxy_id is not None: data["proxy_id"] = proxy_id
         if delete_all is not None: data["delete_all"] = delete_all
         return await self._client.request_async("DELETE", "/proxy", params=params, json=data)
@@ -1918,38 +1920,38 @@ class ImapSection:
         self._client = client
         self._use_json = True
 
-    def imap_create(self, host: str, username: str, password: str, port: Optional[int] = None) -> Dict[str, Any]:
+    def imap_create(self, host: str, username: str, password: str, port: int | None = None) -> dict[str, Any]:
         """Create IMAP config"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if host is not None: data["host"] = host
         if port is not None: data["port"] = port
         if username is not None: data["username"] = username
         if password is not None: data["password"] = password
         return self._client.request("POST", "/imap", params=params, json=data)
 
-    async def imap_create_async(self, host: str, username: str, password: str, port: Optional[int] = None) -> Dict[str, Any]:
+    async def imap_create_async(self, host: str, username: str, password: str, port: int | None = None) -> dict[str, Any]:
         """Create IMAP config"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if host is not None: data["host"] = host
         if port is not None: data["port"] = port
         if username is not None: data["username"] = username
         if password is not None: data["password"] = password
         return await self._client.request_async("POST", "/imap", params=params, json=data)
 
-    def imap_delete(self) -> Dict[str, Any]:
+    def imap_delete(self) -> dict[str, Any]:
         """Delete IMAP config"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return self._client.request("DELETE", "/imap", params=params)
 
-    async def imap_delete_async(self) -> Dict[str, Any]:
+    async def imap_delete_async(self) -> dict[str, Any]:
         """Delete IMAP config"""
 
-        params: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", "/imap", params=params)
 
 
@@ -1961,19 +1963,19 @@ class BatchSection:
         self._client = client
         self._use_json = True
 
-    def batch_execute(self, requests: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def batch_execute(self, requests: list[dict[str, Any]]) -> dict[str, Any]:
         """Execute batch requests"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if requests is not None: data["requests"] = requests
         return self._client.request("POST", "/batch", params=params, json=data)
 
-    async def batch_execute_async(self, requests: List[Dict[str, Any]]) -> Dict[str, Any]:
+    async def batch_execute_async(self, requests: list[dict[str, Any]]) -> dict[str, Any]:
         """Execute batch requests"""
 
-        params: Dict[str, Any] = {}
-        data: Dict[str, Any] = {}
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
         if requests is not None: data["requests"] = requests
         return await self._client.request_async("POST", "/batch", params=params, json=data)
 

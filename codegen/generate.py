@@ -9,11 +9,10 @@ Usage:
     python generate.py --all
 """
 
-import json
 import argparse
+import json
 import re
 from pathlib import Path
-from typing import Any
 
 # Maps OpenAPI type -> Python type hint
 TYPE_MAP = {
@@ -64,7 +63,6 @@ def build_method(
     parameters = operation.get("parameters", [])
     request_body = operation.get("requestBody", {})
     summary = operation.get("summary", "")
-    tags = operation.get("tags", [])
 
     # Collect all params — required first, optional second
     required_params: list[str] = []
@@ -148,10 +146,10 @@ def build_method(
     lines.append(f"    def {to_snake(operation_id)}({params_str}) -> Dict[str, Any]:")
     if doc:
         lines.append(doc)
-    lines.append(f"        params: Dict[str, Any] = {{}}")
+    lines.append("        params: Dict[str, Any] = {}")
     lines.extend(query_lines)
     if body_params:
-        lines.append(f"        data: Dict[str, Any] = {{}}")
+        lines.append("        data: Dict[str, Any] = {}")
         lines.extend(body_lines)
     if path_params:
         path_arg = f'f"{path_fmt}"'
@@ -174,10 +172,10 @@ def build_method(
     )
     if doc:
         lines.append(doc)
-    lines.append(f"        params: Dict[str, Any] = {{}}")
+    lines.append("        params: Dict[str, Any] = {}")
     lines.extend(query_lines)
     if body_params:
-        lines.append(f"        data: Dict[str, Any] = {{}}")
+        lines.append("        data: Dict[str, Any] = {}")
         lines.extend(body_lines)
     if body_params:
         lines.append(

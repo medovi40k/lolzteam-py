@@ -1,8 +1,8 @@
 """lolzteam — Python API wrapper for lolz.live (Forum) and lzt.market (Market)."""
 
+from ._http import LolzteamHTTPError, RateLimitError
 from .clients.forum import ForumClient
 from .clients.market import MarketClient
-from ._http import LolzteamHTTPError, RateLimitError
 
 __all__ = [
     "ForumClient",
