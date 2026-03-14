@@ -40,9 +40,9 @@ def get_py_type(schema: dict) -> str:
     if t == "array":
         items = schema.get("items", {})
         inner = get_py_type(items)
-        return f"List[{inner}]"
+        return f"list[{inner}]"
     if t == "object":
-        return "Dict[str, Any]"
+        return "dict[str, Any]"
     return TYPE_MAP.get(t, "Any")
 
 
@@ -87,7 +87,7 @@ def build_method(
         if required:
             required_params.append(f"{p_name}: {p_type}")
         else:
-            optional_params.append(f"{p_name}: Optional[{p_type}] = None")
+            optional_params.append(f"{p_name}: {p_type} | None = None")
         query_params.append(p["name"])
         param_docs.append(f"        :param {p_name}: {p.get('description', '')}")
 
@@ -95,7 +95,10 @@ def build_method(
     body_params: list[str] = []
     if request_body:
         content = request_body.get("content", {})
-        schema = content.get("application/json", {}).get("schema", {})
+        schema = (
+            content.get("application/json", {})
+            .get("schema", {})
+        )
         props = schema.get("properties", {})
         required_fields = schema.get("required", [])
         for prop_name, prop_schema in props.items():
@@ -105,9 +108,11 @@ def build_method(
             if is_req:
                 required_params.append(f"{snake_prop}: {prop_type}")
             else:
-                optional_params.append(f"{snake_prop}: Optional[{prop_type}] = None")
+                optional_params.append(f"{snake_prop}: {prop_type} | None = None")
             body_params.append(prop_name)
-            param_docs.append(f"        :param {snake_prop}: {prop_schema.get('description', '')}")
+            param_docs.append(
+                f"        :param {snake_prop}: {prop_schema.get('description', '')}"
+            )
 
     func_params = required_params + optional_params
 
@@ -138,45 +143,47 @@ def build_method(
     lines: list[str] = []
 
     # ---- sync version ----
-    lines.append(f"    def {to_snake(operation_id)}({params_str}) -> Dict[str, Any]:")
+    lines.append(f"    def {to_snake(operation_id)}({params_str}) -> dict[str, Any]:")
     if doc:
         lines.append(doc)
-    lines.append("        params: Dict[str, Any] = {}")
+    lines.append("        params: dict[str, Any] = {}")
     lines.extend(query_lines)
     if body_params:
-        lines.append("        data: Dict[str, Any] = {}")
+        lines.append("        data: dict[str, Any] = {}")
         lines.extend(body_lines)
     if path_params:
         path_arg = f'f"{path_fmt}"'
     else:
         path_arg = f'"{path_fmt}"'
-
+    
     if body_params:
         lines.append(
-            f'        return self._client.request("{http_method.upper()}", {path_arg}, params=params, json=data)'
+            f"        return self._client.request(\"{http_method.upper()}\", {path_arg}, params=params, json=data)"
         )
     else:
         lines.append(
-            f'        return self._client.request("{http_method.upper()}", {path_arg}, params=params)'
+            f"        return self._client.request(\"{http_method.upper()}\", {path_arg}, params=params)"
         )
     lines.append("")
 
     # ---- async version ----
-    lines.append(f"    async def {to_snake(operation_id)}_async({params_str}) -> Dict[str, Any]:")
+    lines.append(
+        f"    async def {to_snake(operation_id)}_async({params_str}) -> dict[str, Any]:"
+    )
     if doc:
         lines.append(doc)
-    lines.append("        params: Dict[str, Any] = {}")
+    lines.append("        params: dict[str, Any] = {}")
     lines.extend(query_lines)
     if body_params:
-        lines.append("        data: Dict[str, Any] = {}")
+        lines.append("        data: dict[str, Any] = {}")
         lines.extend(body_lines)
     if body_params:
         lines.append(
-            f'        return await self._client.request_async("{http_method.upper()}", {path_arg}, params=params, json=data)'
+            f"        return await self._client.request_async(\"{http_method.upper()}\", {path_arg}, params=params, json=data)"
         )
     else:
         lines.append(
-            f'        return await self._client.request_async("{http_method.upper()}", {path_arg}, params=params)'
+            f"        return await self._client.request_async(\"{http_method.upper()}\", {path_arg}, params=params)"
         )
     lines.append("")
 
@@ -189,9 +196,9 @@ def generate_section_class(tag: str, methods_code: str, use_json: bool = False) 
     uj = "True" if use_json else "False"
     return (
         f"class {class_name}:\n"
-        f'    """Auto-generated section for tag: {tag}"""\n'
+        f"    \"\"\"Auto-generated section for tag: {tag}\"\"\"\n"
         f"\n"
-        f"    def __init__(self, client: Any) -> None:\n"
+        f"    def __init__(self, client: object) -> None:\n"
         f"        self._client = client\n"
         f"        self._use_json = {uj}\n"
         f"\n"
@@ -233,21 +240,19 @@ def generate_from_schema(schema_path: str, output_path: str, api_name: str) -> N
         methods_code = "\n".join(methods)
         sections.append(generate_section_class(tag, methods_code, use_json=(api_name == "market")))
 
-    header = f"""# AUTO-GENERATED by codegen/generate.py
+    header = f'''# AUTO-GENERATED by codegen/generate.py
 # Source schema: {Path(schema_path).name}
 # DO NOT EDIT MANUALLY — regenerate from schema instead.
 # fmt: off
 
 from __future__ import annotations
-from typing import Any, Dict, List, Optional
+from typing import Any  # noqa: I001
 
-"""
+'''
 
     output = header + "\n\n".join(sections)
     Path(output_path).write_text(output)
-    print(
-        f"[codegen] Generated {output_path}  ({len(tag_methods)} sections, {sum(len(v) for v in tag_methods.values())} operations)"
-    )
+    print(f"[codegen] Generated {output_path}  ({len(tag_methods)} sections, {sum(len(v) for v in tag_methods.values())} operations)")
 
 
 def main() -> None:

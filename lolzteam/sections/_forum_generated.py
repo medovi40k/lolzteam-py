@@ -4,14 +4,12 @@
 # fmt: off
 
 from __future__ import annotations
-
-from typing import Any
-
+from typing import Any  # noqa: I001
 
 class AssetsSection:
     """Auto-generated section for tag: assets"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -34,7 +32,7 @@ class AssetsSection:
 class CategoriesSection:
     """Auto-generated section for tag: categories"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -73,7 +71,7 @@ class CategoriesSection:
 class ForumsSection:
     """Auto-generated section for tag: forums"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -216,7 +214,7 @@ class ForumsSection:
 class LinksSection:
     """Auto-generated section for tag: links"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -249,7 +247,7 @@ class LinksSection:
 class NavigationSection:
     """Auto-generated section for tag: navigation"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -272,7 +270,7 @@ class NavigationSection:
 class PagesSection:
     """Auto-generated section for tag: pages"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -309,7 +307,7 @@ class PagesSection:
 class ThreadsSection:
     """Auto-generated section for tag: threads"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -808,7 +806,7 @@ class ThreadsSection:
 class PostsSection:
     """Auto-generated section for tag: posts"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -1061,7 +1059,7 @@ class PostsSection:
 class UsersSection:
     """Auto-generated section for tag: users"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -1522,7 +1520,7 @@ class UsersSection:
 class ProfilePostsSection:
     """Auto-generated section for tag: profile_posts"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -1799,7 +1797,7 @@ class ProfilePostsSection:
 class ConversationsSection:
     """Auto-generated section for tag: conversations"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2176,7 +2174,7 @@ class ConversationsSection:
 class NotificationsSection:
     """Auto-generated section for tag: notifications"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2231,7 +2229,7 @@ class NotificationsSection:
 class TagsSection:
     """Auto-generated section for tag: tags"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2298,7 +2296,7 @@ class TagsSection:
 class SearchSection:
     """Auto-generated section for tag: search"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2465,7 +2463,7 @@ class SearchSection:
 class ChatboxSection:
     """Auto-generated section for tag: chatbox"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2662,7 +2660,7 @@ class ChatboxSection:
 class FormsSection:
     """Auto-generated section for tag: forms"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2697,7 +2695,7 @@ class FormsSection:
 class BatchSection:
     """Auto-generated section for tag: batch"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2718,7 +2716,7 @@ class BatchSection:
 class OauthSection:
     """Auto-generated section for tag: oauth"""
 
-    def __init__(self, client: Any) -> None:
+    def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
@@ -2733,3 +2731,4 @@ class OauthSection:
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", "/oauth/token", params=params)
+

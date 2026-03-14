@@ -17,7 +17,7 @@ logger = logging.getLogger("lolzteam")
 # ── Retryable status codes ──────────────────────────────────────────────────
 RETRY_STATUSES = {429, 502, 503}
 DEFAULT_RETRY_COUNT = 5
-DEFAULT_RETRY_BACKOFF = 1.0  # seconds between retries (doubles each time)
+DEFAULT_RETRY_BACKOFF = 1.0   # seconds between retries (doubles each time)
 DEFAULT_TIMEOUT = 30.0
 
 # ── Token header ────────────────────────────────────────────────────────────
@@ -303,7 +303,9 @@ class Transport:
     def request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         return self.sync.request(method, path, **kwargs)
 
-    async def request_async(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
+    async def request_async(
+        self, method: str, path: str, **kwargs: Any
+    ) -> dict[str, Any]:
         return await self.asynchronous.request_async(method, path, **kwargs)
 
     def close(self) -> None:

@@ -70,8 +70,8 @@ select = ["E", "F", "I", "UP"]
 ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
-"lolzteam/sections/_forum_generated.py" = ["E701"]
-"lolzteam/sections/_market_generated.py" = ["E701"]
+"lolzteam/sections/_forum_generated.py" = ["E701", "I001"]
+"lolzteam/sections/_market_generated.py" = ["E701", "I001"]
 
 [tool.mypy]
 python_version = "3.9"
