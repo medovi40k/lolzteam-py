@@ -1,0 +1,110 @@
+name: Release to PyPI
+
+on:
+  push:
+    tags:
+      - "v*.*.*"   # triggers on v0.1.0, v1.2.3, etc.
+
+permissions:
+  contents: write   # needed to create GitHub Release
+  id-token: write   # needed for PyPI trusted publishing (OIDC)
+
+jobs:
+  # ── 1. Run tests before releasing ──────────────────────────────────────────
+  test:
+    name: Test before release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+          python codegen/generate.py --all
+          pytest -q
+
+  # ── 2. Build & publish to PyPI ─────────────────────────────────────────────
+  publish-pypi:
+    name: Publish to PyPI
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/lolzteam/
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate from schemas (ensure generated files are up-to-date)
+        run: |
+          pip install -e ".[dev]"
+          python codegen/generate.py --all
+
+      - name: Build distributions
+        run: |
+          pip install build
+          python -m build
+
+      - name: Publish to PyPI (OIDC trusted publishing)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # No API token needed — uses GitHub OIDC.
+        # Configure trusted publisher on PyPI dashboard:
+        #   Publisher: GitHub Actions
+        #   Owner: <your-org>
+        #   Repo: lolzteam-py
+        #   Workflow: release.yml
+        #   Environment: pypi
+
+  # ── 3. Create GitHub Release ───────────────────────────────────────────────
+  github-release:
+    name: Create GitHub Release
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog from git log
+        id: changelog
+        run: |
+          PREV_TAG=$(git tag --sort=-version:refname | sed -n '2p')
+          if [ -z "$PREV_TAG" ]; then
+            LOG=$(git log --oneline)
+          else
+            LOG=$(git log "${PREV_TAG}..HEAD" --oneline)
+          fi
+          echo "CHANGELOG<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$LOG" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: lolzteam-py v${{ steps.version.outputs.VERSION }}
+          body: |
+            ## Changes
+            ${{ steps.changelog.outputs.CHANGELOG }}
+
+            ## Install
+            ```bash
+            pip install lolzteam==${{ steps.version.outputs.VERSION }}
+            # sync only:
+            pip install "lolzteam[sync]==${{ steps.version.outputs.VERSION }}"
+            # async only:
+            pip install "lolzteam[async]==${{ steps.version.outputs.VERSION }}"
+            # everything:
+            pip install "lolzteam[all]==${{ steps.version.outputs.VERSION }}"
+            ```
+          generate_release_notes: true
+          files: dist/*
