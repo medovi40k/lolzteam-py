@@ -51,7 +51,7 @@ def get_py_type(schema: dict) -> str:
         return f"list[{inner}]"
     if t == "object":
         return "dict[str, Any]"
-    return TYPE_MAP.get(t, "Any")
+    return TYPE_MAP.get(t, "Any") if t is not None else "Any"
 
 
 def resolve_path_params(path: str) -> list[str]:
@@ -206,7 +206,7 @@ def generate_section_class(tag: str, methods_code: str, use_json: bool = False) 
         f"class {class_name}:\n"
         f"    \"\"\"Auto-generated section for tag: {tag}\"\"\"\n"
         f"\n"
-        f"    def __init__(self, client: object) -> None:\n"
+        f"    def __init__(self, client: Any) -> None:\n"
         f"        self._client = client\n"
         f"        self._use_json = {uj}\n"
         f"\n"
@@ -240,7 +240,7 @@ def generate_from_schema(schema_path: str, output_path: str, api_name: str) -> N
 
     # Build output
     sections: list[str] = []
-    class_names: list[str] = []
+    class_names: list[tuple[str, str]] = []
 
     for tag, methods in tag_methods.items():
         class_name = "".join(w.capitalize() for w in tag.replace("_", " ").split()) + "Section"
