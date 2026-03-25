@@ -6,21 +6,42 @@
 from __future__ import annotations
 from typing import Any  # noqa: I001
 
-class AssetsSection:
-    """Auto-generated section for tag: assets"""
+class AuthenticationSection:
+    """Auto-generated section for tag: Authentication"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def assets_css(self, css: list[str] | None = None) -> dict[str, Any]:
+    def o_auth__token(self) -> dict[str, Any]:
+        """Get Access Token"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", "/oauth/token", params=params)
+
+    async def o_auth__token_async(self) -> dict[str, Any]:
+        """Get Access Token"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", "/oauth/token", params=params)
+
+
+
+class AssetsSection:
+    """Auto-generated section for tag: Assets"""
+
+    def __init__(self, client: object) -> None:
+        self._client = client
+        self._use_json = False
+
+    def assets__css(self, css: list[str] | None = None) -> dict[str, Any]:
         """Get CSS"""
 
         params: dict[str, Any] = {}
         if css is not None: params["css"] = css
         return self._client.request("GET", "/css", params=params)
 
-    async def assets_css_async(self, css: list[str] | None = None) -> dict[str, Any]:
+    async def assets__css_async(self, css: list[str] | None = None) -> dict[str, Any]:
         """Get CSS"""
 
         params: dict[str, Any] = {}
@@ -30,14 +51,14 @@ class AssetsSection:
 
 
 class CategoriesSection:
-    """Auto-generated section for tag: categories"""
+    """Auto-generated section for tag: Categories"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def categories_list(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List categories"""
+    def categories__list(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Categories"""
 
         params: dict[str, Any] = {}
         if parent_category_id is not None: params["parent_category_id"] = parent_category_id
@@ -45,8 +66,8 @@ class CategoriesSection:
         if order is not None: params["order"] = order
         return self._client.request("GET", "/categories", params=params)
 
-    async def categories_list_async(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List categories"""
+    async def categories__list_async(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Categories"""
 
         params: dict[str, Any] = {}
         if parent_category_id is not None: params["parent_category_id"] = parent_category_id
@@ -54,14 +75,14 @@ class CategoriesSection:
         if order is not None: params["order"] = order
         return await self._client.request_async("GET", "/categories", params=params)
 
-    def categories_get(self, category_id: int) -> dict[str, Any]:
-        """Get category"""
+    def categories__get(self, category_id: int) -> dict[str, Any]:
+        """Get Category"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/categories/{category_id}", params=params)
 
-    async def categories_get_async(self, category_id: int) -> dict[str, Any]:
-        """Get category"""
+    async def categories__get_async(self, category_id: int) -> dict[str, Any]:
+        """Get Category"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/categories/{category_id}", params=params)
@@ -69,14 +90,14 @@ class CategoriesSection:
 
 
 class ForumsSection:
-    """Auto-generated section for tag: forums"""
+    """Auto-generated section for tag: Forums"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def forums_list(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List forums"""
+    def forums__list(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Forums"""
 
         params: dict[str, Any] = {}
         if parent_category_id is not None: params["parent_category_id"] = parent_category_id
@@ -84,8 +105,8 @@ class ForumsSection:
         if order is not None: params["order"] = order
         return self._client.request("GET", "/forums", params=params)
 
-    async def forums_list_async(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List forums"""
+    async def forums__list_async(self, parent_category_id: int | None = None, parent_forum_id: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Forums"""
 
         params: dict[str, Any] = {}
         if parent_category_id is not None: params["parent_category_id"] = parent_category_id
@@ -93,88 +114,44 @@ class ForumsSection:
         if order is not None: params["order"] = order
         return await self._client.request_async("GET", "/forums", params=params)
 
-    def forums_grouped(self) -> dict[str, Any]:
-        """Get forums tree"""
+    def forums__grouped(self) -> dict[str, Any]:
+        """Get Forums Tree"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", "/forums/grouped", params=params)
 
-    async def forums_grouped_async(self) -> dict[str, Any]:
-        """Get forums tree"""
+    async def forums__grouped_async(self) -> dict[str, Any]:
+        """Get Forums Tree"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/forums/grouped", params=params)
 
-    def forums_followed(self, total: bool | None = None) -> dict[str, Any]:
-        """Followed forums"""
-
-        params: dict[str, Any] = {}
-        if total is not None: params["total"] = total
-        return self._client.request("GET", "/forums/followed", params=params)
-
-    async def forums_followed_async(self, total: bool | None = None) -> dict[str, Any]:
-        """Followed forums"""
-
-        params: dict[str, Any] = {}
-        if total is not None: params["total"] = total
-        return await self._client.request_async("GET", "/forums/followed", params=params)
-
-    def forums_get_feed_options(self) -> dict[str, Any]:
-        """Get feed options"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", "/forums/feed/options", params=params)
-
-    async def forums_get_feed_options_async(self) -> dict[str, Any]:
-        """Get feed options"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", "/forums/feed/options", params=params)
-
-    def forums_edit_feed_options(self, node_ids: list[int] | None = None, keywords: list[str] | None = None) -> dict[str, Any]:
-        """Edit feed options"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if node_ids is not None: data["node_ids"] = node_ids
-        if keywords is not None: data["keywords"] = keywords
-        return self._client.request("PUT", "/forums/feed/options", params=params, json=data)
-
-    async def forums_edit_feed_options_async(self, node_ids: list[int] | None = None, keywords: list[str] | None = None) -> dict[str, Any]:
-        """Edit feed options"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if node_ids is not None: data["node_ids"] = node_ids
-        if keywords is not None: data["keywords"] = keywords
-        return await self._client.request_async("PUT", "/forums/feed/options", params=params, json=data)
-
-    def forums_get(self, forum_id: int) -> dict[str, Any]:
-        """Get forum"""
+    def forums__get(self, forum_id: int) -> dict[str, Any]:
+        """Get Forum"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/forums/{forum_id}", params=params)
 
-    async def forums_get_async(self, forum_id: int) -> dict[str, Any]:
-        """Get forum"""
+    async def forums__get_async(self, forum_id: int) -> dict[str, Any]:
+        """Get Forum"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/forums/{forum_id}", params=params)
 
-    def forums_followers(self, forum_id: int) -> dict[str, Any]:
-        """Forum followers"""
+    def forums__followers(self, forum_id: int) -> dict[str, Any]:
+        """Get Followers"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/forums/{forum_id}/followers", params=params)
 
-    async def forums_followers_async(self, forum_id: int) -> dict[str, Any]:
-        """Forum followers"""
+    async def forums__followers_async(self, forum_id: int) -> dict[str, Any]:
+        """Get Followers"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/forums/{forum_id}/followers", params=params)
 
-    def forums_follow(self, forum_id: int, post: bool | None = None, alert: bool | None = None, email: bool | None = None, prefix_ids: list[int] | None = None, minimal_contest_amount: int | None = None) -> dict[str, Any]:
-        """Follow forum"""
+    def forums__follow(self, forum_id: int, post: bool | None = None, alert: bool | None = None, email: bool | None = None, prefix_ids: list[int] | None = None, minimal_contest_amount: int | None = None) -> dict[str, Any]:
+        """Follow Forum"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -185,8 +162,8 @@ class ForumsSection:
         if minimal_contest_amount is not None: data["minimal_contest_amount"] = minimal_contest_amount
         return self._client.request("POST", f"/forums/{forum_id}/followers", params=params, json=data)
 
-    async def forums_follow_async(self, forum_id: int, post: bool | None = None, alert: bool | None = None, email: bool | None = None, prefix_ids: list[int] | None = None, minimal_contest_amount: int | None = None) -> dict[str, Any]:
-        """Follow forum"""
+    async def forums__follow_async(self, forum_id: int, post: bool | None = None, alert: bool | None = None, email: bool | None = None, prefix_ids: list[int] | None = None, minimal_contest_amount: int | None = None) -> dict[str, Any]:
+        """Follow Forum"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -197,69 +174,150 @@ class ForumsSection:
         if minimal_contest_amount is not None: data["minimal_contest_amount"] = minimal_contest_amount
         return await self._client.request_async("POST", f"/forums/{forum_id}/followers", params=params, json=data)
 
-    def forums_unfollow(self, forum_id: int) -> dict[str, Any]:
-        """Unfollow forum"""
+    def forums__unfollow(self, forum_id: int) -> dict[str, Any]:
+        """Unfollow Forum"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/forums/{forum_id}/followers", params=params)
 
-    async def forums_unfollow_async(self, forum_id: int) -> dict[str, Any]:
-        """Unfollow forum"""
+    async def forums__unfollow_async(self, forum_id: int) -> dict[str, Any]:
+        """Unfollow Forum"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/forums/{forum_id}/followers", params=params)
 
+    def forums__followed(self, total: bool | None = None) -> dict[str, Any]:
+        """Get Followed Forums"""
+
+        params: dict[str, Any] = {}
+        if total is not None: params["total"] = total
+        return self._client.request("GET", "/forums/followed", params=params)
+
+    async def forums__followed_async(self, total: bool | None = None) -> dict[str, Any]:
+        """Get Followed Forums"""
+
+        params: dict[str, Any] = {}
+        if total is not None: params["total"] = total
+        return await self._client.request_async("GET", "/forums/followed", params=params)
+
+    def forums__get_feed_options(self) -> dict[str, Any]:
+        """Get Feed Options"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("GET", "/forums/feed/options", params=params)
+
+    async def forums__get_feed_options_async(self) -> dict[str, Any]:
+        """Get Feed Options"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("GET", "/forums/feed/options", params=params)
+
+    def forums__edit_feed_options(self, node_ids: list[int] | None = None, keywords: list[str] | None = None) -> dict[str, Any]:
+        """Edit Feed Options"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if node_ids is not None: data["node_ids"] = node_ids
+        if keywords is not None: data["keywords"] = keywords
+        return self._client.request("PUT", "/forums/feed/options", params=params, json=data)
+
+    async def forums__edit_feed_options_async(self, node_ids: list[int] | None = None, keywords: list[str] | None = None) -> dict[str, Any]:
+        """Edit Feed Options"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if node_ids is not None: data["node_ids"] = node_ids
+        if keywords is not None: data["keywords"] = keywords
+        return await self._client.request_async("PUT", "/forums/feed/options", params=params, json=data)
 
 
-class LinksSection:
-    """Auto-generated section for tag: links"""
+
+class LinkForumsSection:
+    """Auto-generated section for tag: Link Forums"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def links_list(self) -> dict[str, Any]:
-        """List link forums"""
+    def links__list(self) -> dict[str, Any]:
+        """Get Links Forum"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", "/link-forums", params=params)
 
-    async def links_list_async(self) -> dict[str, Any]:
-        """List link forums"""
+    async def links__list_async(self) -> dict[str, Any]:
+        """Get Links Forum"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/link-forums", params=params)
 
-    def links_get(self, link_id: int) -> dict[str, Any]:
-        """Get link forum"""
+    def links__get(self, link_id: int) -> dict[str, Any]:
+        """Get Link Forum"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/link-forums/{link_id}", params=params)
 
-    async def links_get_async(self, link_id: int) -> dict[str, Any]:
-        """Get link forum"""
+    async def links__get_async(self, link_id: int) -> dict[str, Any]:
+        """Get Link Forum"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/link-forums/{link_id}", params=params)
 
 
 
-class NavigationSection:
-    """Auto-generated section for tag: navigation"""
+class PagesSection:
+    """Auto-generated section for tag: Pages"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def navigation_list(self, parent: int | None = None) -> dict[str, Any]:
-        """Navigation elements"""
+    def pages__list(self, parent_page_id: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Pages"""
+
+        params: dict[str, Any] = {}
+        if parent_page_id is not None: params["parent_page_id"] = parent_page_id
+        if order is not None: params["order"] = order
+        return self._client.request("GET", "/pages", params=params)
+
+    async def pages__list_async(self, parent_page_id: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Pages"""
+
+        params: dict[str, Any] = {}
+        if parent_page_id is not None: params["parent_page_id"] = parent_page_id
+        if order is not None: params["order"] = order
+        return await self._client.request_async("GET", "/pages", params=params)
+
+    def pages__get(self, page_id: int) -> dict[str, Any]:
+        """Get Page"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("GET", f"/pages/{page_id}", params=params)
+
+    async def pages__get_async(self, page_id: int) -> dict[str, Any]:
+        """Get Page"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("GET", f"/pages/{page_id}", params=params)
+
+
+
+class NavigationSection:
+    """Auto-generated section for tag: Navigation"""
+
+    def __init__(self, client: object) -> None:
+        self._client = client
+        self._use_json = False
+
+    def navigation__list(self, parent: int | None = None) -> dict[str, Any]:
+        """Get Navigation"""
 
         params: dict[str, Any] = {}
         if parent is not None: params["parent"] = parent
         return self._client.request("GET", "/navigation", params=params)
 
-    async def navigation_list_async(self, parent: int | None = None) -> dict[str, Any]:
-        """Navigation elements"""
+    async def navigation__list_async(self, parent: int | None = None) -> dict[str, Any]:
+        """Get Navigation"""
 
         params: dict[str, Any] = {}
         if parent is not None: params["parent"] = parent
@@ -267,52 +325,15 @@ class NavigationSection:
 
 
 
-class PagesSection:
-    """Auto-generated section for tag: pages"""
-
-    def __init__(self, client: object) -> None:
-        self._client = client
-        self._use_json = False
-
-    def pages_list(self, parent_page_id: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List pages"""
-
-        params: dict[str, Any] = {}
-        if parent_page_id is not None: params["parent_page_id"] = parent_page_id
-        if order is not None: params["order"] = order
-        return self._client.request("GET", "/pages", params=params)
-
-    async def pages_list_async(self, parent_page_id: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List pages"""
-
-        params: dict[str, Any] = {}
-        if parent_page_id is not None: params["parent_page_id"] = parent_page_id
-        if order is not None: params["order"] = order
-        return await self._client.request_async("GET", "/pages", params=params)
-
-    def pages_get(self, page_id: int) -> dict[str, Any]:
-        """Get page"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", f"/pages/{page_id}", params=params)
-
-    async def pages_get_async(self, page_id: int) -> dict[str, Any]:
-        """Get page"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", f"/pages/{page_id}", params=params)
-
-
-
 class ThreadsSection:
-    """Auto-generated section for tag: threads"""
+    """Auto-generated section for tag: Threads"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def threads_list(self, forum_id: str | None = None, tab: str | None = None, state: str | None = None, period: str | None = None, title: str | None = None, title_only: bool | None = None, creator_user_id: int | None = None, sticky: bool | None = None, prefix_ids: list[int] | None = None, prefix_ids_not: list[int] | None = None, thread_tag_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None, direction: str | None = None, thread_create_date: int | None = None, thread_update_date: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """List threads"""
+    def threads__list(self, forum_id: int | None = None, tab: str | None = None, state: str | None = None, period: str | None = None, title: str | None = None, title_only: bool | None = None, creator_user_id: int | None = None, sticky: bool | None = None, prefix_ids: list[int] | None = None, prefix_ids_not: list[int] | None = None, thread_tag_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None, direction: str | None = None, thread_create_date: int | None = None, thread_update_date: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Threads"""
 
         params: dict[str, Any] = {}
         if forum_id is not None: params["forum_id"] = forum_id
@@ -335,8 +356,8 @@ class ThreadsSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return self._client.request("GET", "/threads", params=params)
 
-    async def threads_list_async(self, forum_id: str | None = None, tab: str | None = None, state: str | None = None, period: str | None = None, title: str | None = None, title_only: bool | None = None, creator_user_id: int | None = None, sticky: bool | None = None, prefix_ids: list[int] | None = None, prefix_ids_not: list[int] | None = None, thread_tag_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None, direction: str | None = None, thread_create_date: int | None = None, thread_update_date: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """List threads"""
+    async def threads__list_async(self, forum_id: int | None = None, tab: str | None = None, state: str | None = None, period: str | None = None, title: str | None = None, title_only: bool | None = None, creator_user_id: int | None = None, sticky: bool | None = None, prefix_ids: list[int] | None = None, prefix_ids_not: list[int] | None = None, thread_tag_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None, direction: str | None = None, thread_create_date: int | None = None, thread_update_date: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Threads"""
 
         params: dict[str, Any] = {}
         if forum_id is not None: params["forum_id"] = forum_id
@@ -359,13 +380,13 @@ class ThreadsSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return await self._client.request_async("GET", "/threads", params=params)
 
-    def threads_create(self, forum_id: int, post_body: str, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
-        """Create thread"""
+    def threads__create(self, post_body: str, forum_id: int, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
+        """Create Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if forum_id is not None: data["forum_id"] = forum_id
         if post_body is not None: data["post_body"] = post_body
+        if forum_id is not None: data["forum_id"] = forum_id
         if title is not None: data["title"] = title
         if title_en is not None: data["title_en"] = title_en
         if prefix_id is not None: data["prefix_id"] = prefix_id
@@ -382,13 +403,13 @@ class ThreadsSection:
         if watch_thread_email is not None: data["watch_thread_email"] = watch_thread_email
         return self._client.request("POST", "/threads", params=params, json=data)
 
-    async def threads_create_async(self, forum_id: int, post_body: str, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
-        """Create thread"""
+    async def threads__create_async(self, post_body: str, forum_id: int, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
+        """Create Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if forum_id is not None: data["forum_id"] = forum_id
         if post_body is not None: data["post_body"] = post_body
+        if forum_id is not None: data["forum_id"] = forum_id
         if title is not None: data["title"] = title
         if title_en is not None: data["title_en"] = title_en
         if prefix_id is not None: data["prefix_id"] = prefix_id
@@ -405,8 +426,8 @@ class ThreadsSection:
         if watch_thread_email is not None: data["watch_thread_email"] = watch_thread_email
         return await self._client.request_async("POST", "/threads", params=params, json=data)
 
-    def threads_create_contest(self, post_body: str, contest_type: str, prize_type: str, require_like_count: int, require_total_like_count: int, title: str | None = None, title_en: str | None = None, length_value: int | None = None, length_option: str | None = None, count_winners: int | None = None, prize_data_money: float | None = None, is_money_places: bool | None = None, prize_data_places: list[float] | None = None, prize_data_upgrade: int | None = None, secret_answer: str | None = None, tags: list[str] | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None) -> dict[str, Any]:
-        """Create contest thread"""
+    def threads__create_contest(self, post_body: str, contest_type: str, prize_type: str, require_like_count: int, require_total_like_count: int, title: str | None = None, title_en: str | None = None, length_value: int | None = None, length_option: str | None = None, count_winners: int | None = None, prize_data_money: float | None = None, is_money_places: bool | None = None, prize_data_places: list[float] | None = None, prize_data_upgrade: int | None = None, secret_answer: str | None = None, tags: list[str] | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
+        """Create Contest"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -433,10 +454,13 @@ class ThreadsSection:
         if allow_ask_hidden_content is not None: data["allow_ask_hidden_content"] = allow_ask_hidden_content
         if schedule_date is not None: data["schedule_date"] = schedule_date
         if schedule_time is not None: data["schedule_time"] = schedule_time
+        if watch_thread_state is not None: data["watch_thread_state"] = watch_thread_state
+        if watch_thread is not None: data["watch_thread"] = watch_thread
+        if watch_thread_email is not None: data["watch_thread_email"] = watch_thread_email
         return self._client.request("POST", "/contests", params=params, json=data)
 
-    async def threads_create_contest_async(self, post_body: str, contest_type: str, prize_type: str, require_like_count: int, require_total_like_count: int, title: str | None = None, title_en: str | None = None, length_value: int | None = None, length_option: str | None = None, count_winners: int | None = None, prize_data_money: float | None = None, is_money_places: bool | None = None, prize_data_places: list[float] | None = None, prize_data_upgrade: int | None = None, secret_answer: str | None = None, tags: list[str] | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None) -> dict[str, Any]:
-        """Create contest thread"""
+    async def threads__create_contest_async(self, post_body: str, contest_type: str, prize_type: str, require_like_count: int, require_total_like_count: int, title: str | None = None, title_en: str | None = None, length_value: int | None = None, length_option: str | None = None, count_winners: int | None = None, prize_data_money: float | None = None, is_money_places: bool | None = None, prize_data_places: list[float] | None = None, prize_data_upgrade: int | None = None, secret_answer: str | None = None, tags: list[str] | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
+        """Create Contest"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -463,10 +487,13 @@ class ThreadsSection:
         if allow_ask_hidden_content is not None: data["allow_ask_hidden_content"] = allow_ask_hidden_content
         if schedule_date is not None: data["schedule_date"] = schedule_date
         if schedule_time is not None: data["schedule_time"] = schedule_time
+        if watch_thread_state is not None: data["watch_thread_state"] = watch_thread_state
+        if watch_thread is not None: data["watch_thread"] = watch_thread
+        if watch_thread_email is not None: data["watch_thread_email"] = watch_thread_email
         return await self._client.request_async("POST", "/contests", params=params, json=data)
 
-    def threads_claim(self, as_responder: str, as_is_market_deal: bool, as_amount: float, transfer_type: str, post_body: str, as_market_item_id: int | None = None, as_data: str | None = None, currency: str | None = None, pay_claim: str | None = None, as_funds_receipt: str | None = None, as_tg_login_screenshot: str | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None) -> dict[str, Any]:
-        """Create claim thread"""
+    def threads__claim(self, as_responder: str, as_is_market_deal: bool, as_amount: float, transfer_type: str, post_body: str, as_market_item_id: int | None = None, as_data: str | None = None, currency: str | None = None, pay_claim: str | None = None, as_funds_receipt: str | None = None, as_tg_login_screenshot: str | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
+        """Create Claim"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -481,7 +508,6 @@ class ThreadsSection:
         if as_funds_receipt is not None: data["as_funds_receipt"] = as_funds_receipt
         if as_tg_login_screenshot is not None: data["as_tg_login_screenshot"] = as_tg_login_screenshot
         if tags is not None: data["tags"] = tags
-        if post_body is not None: data["post_body"] = post_body
         if hide_contacts is not None: data["hide_contacts"] = hide_contacts
         if allow_ask_hidden_content is not None: data["allow_ask_hidden_content"] = allow_ask_hidden_content
         if reply_group is not None: data["reply_group"] = reply_group
@@ -489,10 +515,14 @@ class ThreadsSection:
         if dont_alert_followers is not None: data["dont_alert_followers"] = dont_alert_followers
         if schedule_date is not None: data["schedule_date"] = schedule_date
         if schedule_time is not None: data["schedule_time"] = schedule_time
+        if watch_thread_state is not None: data["watch_thread_state"] = watch_thread_state
+        if watch_thread is not None: data["watch_thread"] = watch_thread
+        if watch_thread_email is not None: data["watch_thread_email"] = watch_thread_email
+        if post_body is not None: data["post_body"] = post_body
         return self._client.request("POST", "/claims", params=params, json=data)
 
-    async def threads_claim_async(self, as_responder: str, as_is_market_deal: bool, as_amount: float, transfer_type: str, post_body: str, as_market_item_id: int | None = None, as_data: str | None = None, currency: str | None = None, pay_claim: str | None = None, as_funds_receipt: str | None = None, as_tg_login_screenshot: str | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None) -> dict[str, Any]:
-        """Create claim thread"""
+    async def threads__claim_async(self, as_responder: str, as_is_market_deal: bool, as_amount: float, transfer_type: str, post_body: str, as_market_item_id: int | None = None, as_data: str | None = None, currency: str | None = None, pay_claim: str | None = None, as_funds_receipt: str | None = None, as_tg_login_screenshot: str | None = None, tags: list[str] | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None, dont_alert_followers: bool | None = None, schedule_date: str | None = None, schedule_time: str | None = None, watch_thread_state: bool | None = None, watch_thread: bool | None = None, watch_thread_email: bool | None = None) -> dict[str, Any]:
+        """Create Claim"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -507,7 +537,6 @@ class ThreadsSection:
         if as_funds_receipt is not None: data["as_funds_receipt"] = as_funds_receipt
         if as_tg_login_screenshot is not None: data["as_tg_login_screenshot"] = as_tg_login_screenshot
         if tags is not None: data["tags"] = tags
-        if post_body is not None: data["post_body"] = post_body
         if hide_contacts is not None: data["hide_contacts"] = hide_contacts
         if allow_ask_hidden_content is not None: data["allow_ask_hidden_content"] = allow_ask_hidden_content
         if reply_group is not None: data["reply_group"] = reply_group
@@ -515,77 +544,27 @@ class ThreadsSection:
         if dont_alert_followers is not None: data["dont_alert_followers"] = dont_alert_followers
         if schedule_date is not None: data["schedule_date"] = schedule_date
         if schedule_time is not None: data["schedule_time"] = schedule_time
+        if watch_thread_state is not None: data["watch_thread_state"] = watch_thread_state
+        if watch_thread is not None: data["watch_thread"] = watch_thread
+        if watch_thread_email is not None: data["watch_thread_email"] = watch_thread_email
+        if post_body is not None: data["post_body"] = post_body
         return await self._client.request_async("POST", "/claims", params=params, json=data)
 
-    def threads_followed(self, total: bool | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Followed threads"""
-
-        params: dict[str, Any] = {}
-        if total is not None: params["total"] = total
-        if fields_include is not None: params["fields_include"] = fields_include
-        return self._client.request("GET", "/threads/followed", params=params)
-
-    async def threads_followed_async(self, total: bool | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Followed threads"""
-
-        params: dict[str, Any] = {}
-        if total is not None: params["total"] = total
-        if fields_include is not None: params["fields_include"] = fields_include
-        return await self._client.request_async("GET", "/threads/followed", params=params)
-
-    def threads_unread(self, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Unread threads"""
-
-        params: dict[str, Any] = {}
-        if limit is not None: params["limit"] = limit
-        if forum_id is not None: params["forum_id"] = forum_id
-        if data_limit is not None: params["data_limit"] = data_limit
-        return self._client.request("GET", "/threads/new", params=params)
-
-    async def threads_unread_async(self, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Unread threads"""
-
-        params: dict[str, Any] = {}
-        if limit is not None: params["limit"] = limit
-        if forum_id is not None: params["forum_id"] = forum_id
-        if data_limit is not None: params["data_limit"] = data_limit
-        return await self._client.request_async("GET", "/threads/new", params=params)
-
-    def threads_recent(self, days: int | None = None, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Recent threads"""
-
-        params: dict[str, Any] = {}
-        if days is not None: params["days"] = days
-        if limit is not None: params["limit"] = limit
-        if forum_id is not None: params["forum_id"] = forum_id
-        if data_limit is not None: params["data_limit"] = data_limit
-        return self._client.request("GET", "/threads/recent", params=params)
-
-    async def threads_recent_async(self, days: int | None = None, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Recent threads"""
-
-        params: dict[str, Any] = {}
-        if days is not None: params["days"] = days
-        if limit is not None: params["limit"] = limit
-        if forum_id is not None: params["forum_id"] = forum_id
-        if data_limit is not None: params["data_limit"] = data_limit
-        return await self._client.request_async("GET", "/threads/recent", params=params)
-
-    def threads_get(self, thread_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Get thread"""
+    def threads__get(self, thread_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Thread"""
 
         params: dict[str, Any] = {}
         if fields_include is not None: params["fields_include"] = fields_include
         return self._client.request("GET", f"/threads/{thread_id}", params=params)
 
-    async def threads_get_async(self, thread_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Get thread"""
+    async def threads__get_async(self, thread_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Thread"""
 
         params: dict[str, Any] = {}
         if fields_include is not None: params["fields_include"] = fields_include
         return await self._client.request_async("GET", f"/threads/{thread_id}", params=params)
 
-    def threads_edit(self, thread_id: int, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, discussion_open: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None) -> dict[str, Any]:
+    def threads__edit(self, thread_id: int, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, discussion_open: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None) -> dict[str, Any]:
         """Edit thread"""
 
         params: dict[str, Any] = {}
@@ -601,7 +580,7 @@ class ThreadsSection:
         if comment_ignore_group is not None: data["comment_ignore_group"] = comment_ignore_group
         return self._client.request("PUT", f"/threads/{thread_id}", params=params, json=data)
 
-    async def threads_edit_async(self, thread_id: int, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, discussion_open: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None) -> dict[str, Any]:
+    async def threads__edit_async(self, thread_id: int, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, tags: list[str] | None = None, discussion_open: bool | None = None, hide_contacts: bool | None = None, allow_ask_hidden_content: bool | None = None, reply_group: int | None = None, comment_ignore_group: bool | None = None) -> dict[str, Any]:
         """Edit thread"""
 
         params: dict[str, Any] = {}
@@ -617,24 +596,24 @@ class ThreadsSection:
         if comment_ignore_group is not None: data["comment_ignore_group"] = comment_ignore_group
         return await self._client.request_async("PUT", f"/threads/{thread_id}", params=params, json=data)
 
-    def threads_delete(self, thread_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete thread"""
+    def threads__delete(self, thread_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if reason is not None: data["reason"] = reason
         return self._client.request("DELETE", f"/threads/{thread_id}", params=params, json=data)
 
-    async def threads_delete_async(self, thread_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete thread"""
+    async def threads__delete_async(self, thread_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if reason is not None: data["reason"] = reason
         return await self._client.request_async("DELETE", f"/threads/{thread_id}", params=params, json=data)
 
-    def threads_move(self, thread_id: int, node_id: str, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, apply_thread_prefix: bool | None = None, send_alert: bool | None = None) -> dict[str, Any]:
-        """Move thread"""
+    def threads__move(self, thread_id: int, node_id: str, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, apply_thread_prefix: bool | None = None, send_alert: bool | None = None) -> dict[str, Any]:
+        """Move Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -646,8 +625,8 @@ class ThreadsSection:
         if send_alert is not None: data["send_alert"] = send_alert
         return self._client.request("POST", f"/threads/{thread_id}/move", params=params, json=data)
 
-    async def threads_move_async(self, thread_id: int, node_id: str, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, apply_thread_prefix: bool | None = None, send_alert: bool | None = None) -> dict[str, Any]:
-        """Move thread"""
+    async def threads__move_async(self, thread_id: int, node_id: str, title: str | None = None, title_en: str | None = None, prefix_id: list[int] | None = None, apply_thread_prefix: bool | None = None, send_alert: bool | None = None) -> dict[str, Any]:
+        """Move Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -659,120 +638,136 @@ class ThreadsSection:
         if send_alert is not None: data["send_alert"] = send_alert
         return await self._client.request_async("POST", f"/threads/{thread_id}/move", params=params, json=data)
 
-    def threads_bump(self, thread_id: int) -> dict[str, Any]:
-        """Bump thread"""
+    def threads__bump(self, thread_id: int) -> dict[str, Any]:
+        """Bump Thread"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/threads/{thread_id}/bump", params=params)
 
-    async def threads_bump_async(self, thread_id: int) -> dict[str, Any]:
-        """Bump thread"""
+    async def threads__bump_async(self, thread_id: int) -> dict[str, Any]:
+        """Bump Thread"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/threads/{thread_id}/bump", params=params)
 
-    def threads_hide(self, thread_id: int) -> dict[str, Any]:
-        """Hide thread"""
+    def threads__hide(self, thread_id: int) -> dict[str, Any]:
+        """Hide Thread"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/threads/{thread_id}/hide", params=params)
 
-    async def threads_hide_async(self, thread_id: int) -> dict[str, Any]:
-        """Hide thread"""
+    async def threads__hide_async(self, thread_id: int) -> dict[str, Any]:
+        """Hide Thread"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/threads/{thread_id}/hide", params=params)
 
-    def threads_star(self, thread_id: int) -> dict[str, Any]:
-        """Bookmark thread"""
+    def threads__star(self, thread_id: int) -> dict[str, Any]:
+        """Bookmark Thread"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/threads/{thread_id}/star", params=params)
 
-    async def threads_star_async(self, thread_id: int) -> dict[str, Any]:
-        """Bookmark thread"""
+    async def threads__star_async(self, thread_id: int) -> dict[str, Any]:
+        """Bookmark Thread"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/threads/{thread_id}/star", params=params)
 
-    def threads_unstar(self, thread_id: int) -> dict[str, Any]:
-        """Unbookmark thread"""
+    def threads__unstar(self, thread_id: int) -> dict[str, Any]:
+        """Unbookmark Thread"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/threads/{thread_id}/star", params=params)
 
-    async def threads_unstar_async(self, thread_id: int) -> dict[str, Any]:
-        """Unbookmark thread"""
+    async def threads__unstar_async(self, thread_id: int) -> dict[str, Any]:
+        """Unbookmark Thread"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/threads/{thread_id}/star", params=params)
 
-    def threads_followers(self, thread_id: int) -> dict[str, Any]:
-        """Thread followers"""
+    def threads__followers(self, thread_id: int) -> dict[str, Any]:
+        """Get Thread Followers"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/threads/{thread_id}/followers", params=params)
 
-    async def threads_followers_async(self, thread_id: int) -> dict[str, Any]:
-        """Thread followers"""
+    async def threads__followers_async(self, thread_id: int) -> dict[str, Any]:
+        """Get Thread Followers"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/threads/{thread_id}/followers", params=params)
 
-    def threads_follow(self, thread_id: int, email: bool | None = None) -> dict[str, Any]:
-        """Follow thread"""
+    def threads__follow(self, thread_id: int, email: bool | None = None) -> dict[str, Any]:
+        """Follow Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if email is not None: data["email"] = email
         return self._client.request("POST", f"/threads/{thread_id}/followers", params=params, json=data)
 
-    async def threads_follow_async(self, thread_id: int, email: bool | None = None) -> dict[str, Any]:
-        """Follow thread"""
+    async def threads__follow_async(self, thread_id: int, email: bool | None = None) -> dict[str, Any]:
+        """Follow Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if email is not None: data["email"] = email
         return await self._client.request_async("POST", f"/threads/{thread_id}/followers", params=params, json=data)
 
-    def threads_unfollow(self, thread_id: int) -> dict[str, Any]:
-        """Unfollow thread"""
+    def threads__unfollow(self, thread_id: int) -> dict[str, Any]:
+        """Unfollow Thread"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/threads/{thread_id}/followers", params=params)
 
-    async def threads_unfollow_async(self, thread_id: int) -> dict[str, Any]:
-        """Unfollow thread"""
+    async def threads__unfollow_async(self, thread_id: int) -> dict[str, Any]:
+        """Unfollow Thread"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/threads/{thread_id}/followers", params=params)
 
-    def threads_navigation(self, thread_id: int) -> dict[str, Any]:
-        """Thread navigation"""
+    def threads__followed(self, total: bool | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Followed Threads"""
+
+        params: dict[str, Any] = {}
+        if total is not None: params["total"] = total
+        if fields_include is not None: params["fields_include"] = fields_include
+        return self._client.request("GET", "/threads/followed", params=params)
+
+    async def threads__followed_async(self, total: bool | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Followed Threads"""
+
+        params: dict[str, Any] = {}
+        if total is not None: params["total"] = total
+        if fields_include is not None: params["fields_include"] = fields_include
+        return await self._client.request_async("GET", "/threads/followed", params=params)
+
+    def threads__navigation(self, thread_id: int) -> dict[str, Any]:
+        """Get Navigation Elements"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/threads/{thread_id}/navigation", params=params)
 
-    async def threads_navigation_async(self, thread_id: int) -> dict[str, Any]:
-        """Thread navigation"""
+    async def threads__navigation_async(self, thread_id: int) -> dict[str, Any]:
+        """Get Navigation Elements"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/threads/{thread_id}/navigation", params=params)
 
-    def threads_poll_get(self, thread_id: int) -> dict[str, Any]:
-        """Get thread poll"""
+    def threads__poll__get(self, thread_id: int) -> dict[str, Any]:
+        """Get Poll"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/threads/{thread_id}/poll", params=params)
 
-    async def threads_poll_get_async(self, thread_id: int) -> dict[str, Any]:
-        """Get thread poll"""
+    async def threads__poll__get_async(self, thread_id: int) -> dict[str, Any]:
+        """Get Poll"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/threads/{thread_id}/poll", params=params)
 
-    def threads_poll_vote(self, thread_id: int, response_id: int | None = None, response_ids: list[int] | None = None) -> dict[str, Any]:
-        """Vote on poll"""
+    def threads__poll__vote(self, thread_id: int, response_id: int | None = None, response_ids: list[int] | None = None) -> dict[str, Any]:
+        """Vote Poll"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -780,8 +775,8 @@ class ThreadsSection:
         if response_ids is not None: data["response_ids"] = response_ids
         return self._client.request("POST", f"/threads/{thread_id}/poll/votes", params=params, json=data)
 
-    async def threads_poll_vote_async(self, thread_id: int, response_id: int | None = None, response_ids: list[int] | None = None) -> dict[str, Any]:
-        """Vote on poll"""
+    async def threads__poll__vote_async(self, thread_id: int, response_id: int | None = None, response_ids: list[int] | None = None) -> dict[str, Any]:
+        """Vote Poll"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -789,14 +784,52 @@ class ThreadsSection:
         if response_ids is not None: data["response_ids"] = response_ids
         return await self._client.request_async("POST", f"/threads/{thread_id}/poll/votes", params=params, json=data)
 
-    def threads_finish(self, thread_id: int) -> dict[str, Any]:
-        """Finish contest"""
+    def threads__unread(self, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
+        """Get Unread Threads"""
+
+        params: dict[str, Any] = {}
+        if limit is not None: params["limit"] = limit
+        if forum_id is not None: params["forum_id"] = forum_id
+        if data_limit is not None: params["data_limit"] = data_limit
+        return self._client.request("GET", "/threads/new", params=params)
+
+    async def threads__unread_async(self, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
+        """Get Unread Threads"""
+
+        params: dict[str, Any] = {}
+        if limit is not None: params["limit"] = limit
+        if forum_id is not None: params["forum_id"] = forum_id
+        if data_limit is not None: params["data_limit"] = data_limit
+        return await self._client.request_async("GET", "/threads/new", params=params)
+
+    def threads__recent(self, days: int | None = None, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
+        """Get Recent Threads"""
+
+        params: dict[str, Any] = {}
+        if days is not None: params["days"] = days
+        if limit is not None: params["limit"] = limit
+        if forum_id is not None: params["forum_id"] = forum_id
+        if data_limit is not None: params["data_limit"] = data_limit
+        return self._client.request("GET", "/threads/recent", params=params)
+
+    async def threads__recent_async(self, days: int | None = None, limit: int | None = None, forum_id: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
+        """Get Recent Threads"""
+
+        params: dict[str, Any] = {}
+        if days is not None: params["days"] = days
+        if limit is not None: params["limit"] = limit
+        if forum_id is not None: params["forum_id"] = forum_id
+        if data_limit is not None: params["data_limit"] = data_limit
+        return await self._client.request_async("GET", "/threads/recent", params=params)
+
+    def threads__finish(self, thread_id: int) -> dict[str, Any]:
+        """Finish Contest"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/contests/{thread_id}/finish", params=params)
 
-    async def threads_finish_async(self, thread_id: int) -> dict[str, Any]:
-        """Finish contest"""
+    async def threads__finish_async(self, thread_id: int) -> dict[str, Any]:
+        """Finish Contest"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/contests/{thread_id}/finish", params=params)
@@ -804,14 +837,14 @@ class ThreadsSection:
 
 
 class PostsSection:
-    """Auto-generated section for tag: posts"""
+    """Auto-generated section for tag: Posts"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def posts_list(self, thread_id: int | None = None, page_of_post_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List posts"""
+    def posts__list(self, thread_id: int | None = None, page_of_post_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Posts"""
 
         params: dict[str, Any] = {}
         if thread_id is not None: params["thread_id"] = thread_id
@@ -821,8 +854,8 @@ class PostsSection:
         if order is not None: params["order"] = order
         return self._client.request("GET", "/posts", params=params)
 
-    async def posts_list_async(self, thread_id: int | None = None, page_of_post_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None) -> dict[str, Any]:
-        """List posts"""
+    async def posts__list_async(self, thread_id: int | None = None, page_of_post_id: int | None = None, page: int | None = None, limit: int | None = None, order: str | None = None) -> dict[str, Any]:
+        """Get Posts"""
 
         params: dict[str, Any] = {}
         if thread_id is not None: params["thread_id"] = thread_id
@@ -832,8 +865,8 @@ class PostsSection:
         if order is not None: params["order"] = order
         return await self._client.request_async("GET", "/posts", params=params)
 
-    def posts_create(self, post_body: str, thread_id: int | None = None, quote_post_id: int | None = None) -> dict[str, Any]:
-        """Create post"""
+    def posts__create(self, post_body: str, thread_id: int | None = None, quote_post_id: int | None = None) -> dict[str, Any]:
+        """Create Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -842,8 +875,8 @@ class PostsSection:
         if quote_post_id is not None: data["quote_post_id"] = quote_post_id
         return self._client.request("POST", "/posts", params=params, json=data)
 
-    async def posts_create_async(self, post_body: str, thread_id: int | None = None, quote_post_id: int | None = None) -> dict[str, Any]:
-        """Create post"""
+    async def posts__create_async(self, post_body: str, thread_id: int | None = None, quote_post_id: int | None = None) -> dict[str, Any]:
+        """Create Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -852,80 +885,120 @@ class PostsSection:
         if quote_post_id is not None: data["quote_post_id"] = quote_post_id
         return await self._client.request_async("POST", "/posts", params=params, json=data)
 
-    def posts_comments_get(self, post_id: int, before: int | None = None, before_comment: int | None = None) -> dict[str, Any]:
-        """Get post comments"""
+    def posts__get(self, post_id: int) -> dict[str, Any]:
+        """Get Post"""
 
         params: dict[str, Any] = {}
-        if post_id is not None: params["post_id"] = post_id
-        if before is not None: params["before"] = before
-        if before_comment is not None: params["before_comment"] = before_comment
-        return self._client.request("GET", "/posts/comments", params=params)
+        return self._client.request("GET", f"/posts/{post_id}", params=params)
 
-    async def posts_comments_get_async(self, post_id: int, before: int | None = None, before_comment: int | None = None) -> dict[str, Any]:
-        """Get post comments"""
+    async def posts__get_async(self, post_id: int) -> dict[str, Any]:
+        """Get Post"""
 
         params: dict[str, Any] = {}
-        if post_id is not None: params["post_id"] = post_id
-        if before is not None: params["before"] = before
-        if before_comment is not None: params["before_comment"] = before_comment
-        return await self._client.request_async("GET", "/posts/comments", params=params)
+        return await self._client.request_async("GET", f"/posts/{post_id}", params=params)
 
-    def posts_comments_create(self, post_id: int, comment_body: str) -> dict[str, Any]:
-        """Create post comment"""
+    def posts__edit(self, post_id: int, post_body: str | None = None) -> dict[str, Any]:
+        """Edit Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if post_id is not None: data["post_id"] = post_id
-        if comment_body is not None: data["comment_body"] = comment_body
-        return self._client.request("POST", "/posts/comments", params=params, json=data)
+        if post_body is not None: data["post_body"] = post_body
+        return self._client.request("PUT", f"/posts/{post_id}", params=params, json=data)
 
-    async def posts_comments_create_async(self, post_id: int, comment_body: str) -> dict[str, Any]:
-        """Create post comment"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if post_id is not None: data["post_id"] = post_id
-        if comment_body is not None: data["comment_body"] = comment_body
-        return await self._client.request_async("POST", "/posts/comments", params=params, json=data)
-
-    def posts_comments_edit(self, post_comment_id: int, comment_body: str) -> dict[str, Any]:
-        """Edit post comment"""
+    async def posts__edit_async(self, post_id: int, post_body: str | None = None) -> dict[str, Any]:
+        """Edit Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
-        if comment_body is not None: data["comment_body"] = comment_body
-        return self._client.request("PUT", "/posts/comments", params=params, json=data)
+        if post_body is not None: data["post_body"] = post_body
+        return await self._client.request_async("PUT", f"/posts/{post_id}", params=params, json=data)
 
-    async def posts_comments_edit_async(self, post_comment_id: int, comment_body: str) -> dict[str, Any]:
-        """Edit post comment"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
-        if comment_body is not None: data["comment_body"] = comment_body
-        return await self._client.request_async("PUT", "/posts/comments", params=params, json=data)
-
-    def posts_comments_delete(self, post_comment_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete post comment"""
+    def posts__delete(self, post_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
         if reason is not None: data["reason"] = reason
-        return self._client.request("DELETE", "/posts/comments", params=params, json=data)
+        return self._client.request("DELETE", f"/posts/{post_id}", params=params, json=data)
 
-    async def posts_comments_delete_async(self, post_comment_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete post comment"""
+    async def posts__delete_async(self, post_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
         if reason is not None: data["reason"] = reason
-        return await self._client.request_async("DELETE", "/posts/comments", params=params, json=data)
+        return await self._client.request_async("DELETE", f"/posts/{post_id}", params=params, json=data)
 
-    def posts_comments_report(self, post_comment_id: int, message: str) -> dict[str, Any]:
-        """Report post comment"""
+    def posts__likes(self, post_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Post Likes"""
+
+        params: dict[str, Any] = {}
+        if page is not None: params["page"] = page
+        if limit is not None: params["limit"] = limit
+        return self._client.request("GET", f"/posts/{post_id}/likes", params=params)
+
+    async def posts__likes_async(self, post_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Post Likes"""
+
+        params: dict[str, Any] = {}
+        if page is not None: params["page"] = page
+        if limit is not None: params["limit"] = limit
+        return await self._client.request_async("GET", f"/posts/{post_id}/likes", params=params)
+
+    def posts__like(self, post_id: int) -> dict[str, Any]:
+        """Like Post"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", f"/posts/{post_id}/likes", params=params)
+
+    async def posts__like_async(self, post_id: int) -> dict[str, Any]:
+        """Like Post"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", f"/posts/{post_id}/likes", params=params)
+
+    def posts__unlike(self, post_id: int) -> dict[str, Any]:
+        """Unlike Post"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("DELETE", f"/posts/{post_id}/likes", params=params)
+
+    async def posts__unlike_async(self, post_id: int) -> dict[str, Any]:
+        """Unlike Post"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("DELETE", f"/posts/{post_id}/likes", params=params)
+
+    def posts__report_reasons(self, post_id: int) -> dict[str, Any]:
+        """Get Post Report Reasons"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("GET", f"/posts/{post_id}/report", params=params)
+
+    async def posts__report_reasons_async(self, post_id: int) -> dict[str, Any]:
+        """Get Post Report Reasons"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("GET", f"/posts/{post_id}/report", params=params)
+
+    def posts__report(self, post_id: int, message: str) -> dict[str, Any]:
+        """Report Post"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if message is not None: data["message"] = message
+        return self._client.request("POST", f"/posts/{post_id}/report", params=params, json=data)
+
+    async def posts__report_async(self, post_id: int, message: str) -> dict[str, Any]:
+        """Report Post"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if message is not None: data["message"] = message
+        return await self._client.request_async("POST", f"/posts/{post_id}/report", params=params, json=data)
+
+    def posts__comments__report(self, post_comment_id: int, message: str) -> dict[str, Any]:
+        """Report Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -933,8 +1006,8 @@ class PostsSection:
         if message is not None: data["message"] = message
         return self._client.request("POST", "/posts/comments/report", params=params, json=data)
 
-    async def posts_comments_report_async(self, post_comment_id: int, message: str) -> dict[str, Any]:
-        """Report post comment"""
+    async def posts__comments__report_async(self, post_comment_id: int, message: str) -> dict[str, Any]:
+        """Report Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -942,129 +1015,98 @@ class PostsSection:
         if message is not None: data["message"] = message
         return await self._client.request_async("POST", "/posts/comments/report", params=params, json=data)
 
-    def posts_get(self, post_id: int) -> dict[str, Any]:
-        """Get post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", f"/posts/{post_id}", params=params)
-
-    async def posts_get_async(self, post_id: int) -> dict[str, Any]:
-        """Get post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", f"/posts/{post_id}", params=params)
-
-    def posts_edit(self, post_id: int, post_body: str | None = None) -> dict[str, Any]:
-        """Edit post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if post_body is not None: data["post_body"] = post_body
-        return self._client.request("PUT", f"/posts/{post_id}", params=params, json=data)
-
-    async def posts_edit_async(self, post_id: int, post_body: str | None = None) -> dict[str, Any]:
-        """Edit post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if post_body is not None: data["post_body"] = post_body
-        return await self._client.request_async("PUT", f"/posts/{post_id}", params=params, json=data)
-
-    def posts_delete(self, post_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if reason is not None: data["reason"] = reason
-        return self._client.request("DELETE", f"/posts/{post_id}", params=params, json=data)
-
-    async def posts_delete_async(self, post_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if reason is not None: data["reason"] = reason
-        return await self._client.request_async("DELETE", f"/posts/{post_id}", params=params, json=data)
-
-    def posts_likes(self, post_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Post likes"""
-
-        params: dict[str, Any] = {}
-        if page is not None: params["page"] = page
-        if limit is not None: params["limit"] = limit
-        return self._client.request("GET", f"/posts/{post_id}/likes", params=params)
-
-    async def posts_likes_async(self, post_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Post likes"""
-
-        params: dict[str, Any] = {}
-        if page is not None: params["page"] = page
-        if limit is not None: params["limit"] = limit
-        return await self._client.request_async("GET", f"/posts/{post_id}/likes", params=params)
-
-    def posts_like(self, post_id: int) -> dict[str, Any]:
-        """Like post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", f"/posts/{post_id}/likes", params=params)
-
-    async def posts_like_async(self, post_id: int) -> dict[str, Any]:
-        """Like post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", f"/posts/{post_id}/likes", params=params)
-
-    def posts_unlike(self, post_id: int) -> dict[str, Any]:
-        """Unlike post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("DELETE", f"/posts/{post_id}/likes", params=params)
-
-    async def posts_unlike_async(self, post_id: int) -> dict[str, Any]:
-        """Unlike post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("DELETE", f"/posts/{post_id}/likes", params=params)
-
-    def posts_report_reasons(self, post_id: int) -> dict[str, Any]:
-        """Get post report reasons"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", f"/posts/{post_id}/report", params=params)
-
-    async def posts_report_reasons_async(self, post_id: int) -> dict[str, Any]:
-        """Get post report reasons"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", f"/posts/{post_id}/report", params=params)
-
-    def posts_report(self, post_id: int, message: str) -> dict[str, Any]:
-        """Report post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if message is not None: data["message"] = message
-        return self._client.request("POST", f"/posts/{post_id}/report", params=params, json=data)
-
-    async def posts_report_async(self, post_id: int, message: str) -> dict[str, Any]:
-        """Report post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if message is not None: data["message"] = message
-        return await self._client.request_async("POST", f"/posts/{post_id}/report", params=params, json=data)
 
 
-
-class UsersSection:
-    """Auto-generated section for tag: users"""
+class PostCommentsSection:
+    """Auto-generated section for tag: Post comments"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def users_list(self, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """List users"""
+    def posts__comments__get(self, post_id: int, before: int | None = None, before_comment: int | None = None) -> dict[str, Any]:
+        """Get Post Comments"""
+
+        params: dict[str, Any] = {}
+        if post_id is not None: params["post_id"] = post_id
+        if before is not None: params["before"] = before
+        if before_comment is not None: params["before_comment"] = before_comment
+        return self._client.request("GET", "/posts/comments", params=params)
+
+    async def posts__comments__get_async(self, post_id: int, before: int | None = None, before_comment: int | None = None) -> dict[str, Any]:
+        """Get Post Comments"""
+
+        params: dict[str, Any] = {}
+        if post_id is not None: params["post_id"] = post_id
+        if before is not None: params["before"] = before
+        if before_comment is not None: params["before_comment"] = before_comment
+        return await self._client.request_async("GET", "/posts/comments", params=params)
+
+    def posts__comments__create(self, post_id: int, comment_body: str) -> dict[str, Any]:
+        """Create Post Comment"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if post_id is not None: data["post_id"] = post_id
+        if comment_body is not None: data["comment_body"] = comment_body
+        return self._client.request("POST", "/posts/comments", params=params, json=data)
+
+    async def posts__comments__create_async(self, post_id: int, comment_body: str) -> dict[str, Any]:
+        """Create Post Comment"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if post_id is not None: data["post_id"] = post_id
+        if comment_body is not None: data["comment_body"] = comment_body
+        return await self._client.request_async("POST", "/posts/comments", params=params, json=data)
+
+    def posts__comments__edit(self, post_comment_id: int, comment_body: str) -> dict[str, Any]:
+        """Edit Post Comment"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
+        if comment_body is not None: data["comment_body"] = comment_body
+        return self._client.request("PUT", "/posts/comments", params=params, json=data)
+
+    async def posts__comments__edit_async(self, post_comment_id: int, comment_body: str) -> dict[str, Any]:
+        """Edit Post Comment"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
+        if comment_body is not None: data["comment_body"] = comment_body
+        return await self._client.request_async("PUT", "/posts/comments", params=params, json=data)
+
+    def posts__comments__delete(self, post_comment_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Post Comment"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
+        if reason is not None: data["reason"] = reason
+        return self._client.request("DELETE", "/posts/comments", params=params, json=data)
+
+    async def posts__comments__delete_async(self, post_comment_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Post Comment"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if post_comment_id is not None: data["post_comment_id"] = post_comment_id
+        if reason is not None: data["reason"] = reason
+        return await self._client.request_async("DELETE", "/posts/comments", params=params, json=data)
+
+
+
+class UsersSection:
+    """Auto-generated section for tag: Users"""
+
+    def __init__(self, client: object) -> None:
+        self._client = client
+        self._use_json = False
+
+    def users__list(self, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Users"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
@@ -1072,8 +1114,8 @@ class UsersSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return self._client.request("GET", "/users", params=params)
 
-    async def users_list_async(self, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """List users"""
+    async def users__list_async(self, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Users"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
@@ -1081,32 +1123,20 @@ class UsersSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return await self._client.request_async("GET", "/users", params=params)
 
-    def users_me(self) -> dict[str, Any]:
-        """Get current user"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", "/users/me", params=params)
-
-    async def users_me_async(self) -> dict[str, Any]:
-        """Get current user"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", "/users/me", params=params)
-
-    def users_fields(self) -> dict[str, Any]:
-        """List user fields"""
+    def users__fields(self) -> dict[str, Any]:
+        """Get User Fields"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", "/users/fields", params=params)
 
-    async def users_fields_async(self) -> dict[str, Any]:
-        """List user fields"""
+    async def users__fields_async(self) -> dict[str, Any]:
+        """Get User Fields"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/users/fields", params=params)
 
-    def users_find(self, username: str | None = None, custom_fields: dict[str, Any] | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Find users"""
+    def users__find(self, username: str | None = None, custom_fields: dict[str, Any] | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Find Users"""
 
         params: dict[str, Any] = {}
         if username is not None: params["username"] = username
@@ -1114,8 +1144,8 @@ class UsersSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return self._client.request("GET", "/users/find", params=params)
 
-    async def users_find_async(self, username: str | None = None, custom_fields: dict[str, Any] | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Find users"""
+    async def users__find_async(self, username: str | None = None, custom_fields: dict[str, Any] | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Find Users"""
 
         params: dict[str, Any] = {}
         if username is not None: params["username"] = username
@@ -1123,72 +1153,22 @@ class UsersSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return await self._client.request_async("GET", "/users/find", params=params)
 
-    def users_ignored(self, total: bool | None = None) -> dict[str, Any]:
-        """List ignored users"""
-
-        params: dict[str, Any] = {}
-        if total is not None: params["total"] = total
-        return self._client.request("GET", "/users/ignored", params=params)
-
-    async def users_ignored_async(self, total: bool | None = None) -> dict[str, Any]:
-        """List ignored users"""
-
-        params: dict[str, Any] = {}
-        if total is not None: params["total"] = total
-        return await self._client.request_async("GET", "/users/ignored", params=params)
-
-    def users_secret_answer_types(self) -> dict[str, Any]:
-        """Get secret answer types"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", "/users/secret-answer/types", params=params)
-
-    async def users_secret_answer_types_async(self) -> dict[str, Any]:
-        """Get secret answer types"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", "/users/secret-answer/types", params=params)
-
-    def users_sa_reset(self) -> dict[str, Any]:
-        """Reset secret answer"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", "/account/secret-answer/reset", params=params)
-
-    async def users_sa_reset_async(self) -> dict[str, Any]:
-        """Reset secret answer"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", "/account/secret-answer/reset", params=params)
-
-    def users_sa_cancel_reset(self) -> dict[str, Any]:
-        """Cancel secret answer reset"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("DELETE", "/account/secret-answer/reset", params=params)
-
-    async def users_sa_cancel_reset_async(self) -> dict[str, Any]:
-        """Cancel secret answer reset"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("DELETE", "/account/secret-answer/reset", params=params)
-
-    def users_get(self, user_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Get user"""
+    def users__get(self, user_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get User"""
 
         params: dict[str, Any] = {}
         if fields_include is not None: params["fields_include"] = fields_include
         return self._client.request("GET", f"/users/{user_id}", params=params)
 
-    async def users_get_async(self, user_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """Get user"""
+    async def users__get_async(self, user_id: int, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get User"""
 
         params: dict[str, Any] = {}
         if fields_include is not None: params["fields_include"] = fields_include
         return await self._client.request_async("GET", f"/users/{user_id}", params=params)
 
-    def users_edit(self, user_id: int, username: str | None = None, user_title: str | None = None, display_group_id: int | None = None, display_icon_group_id: int | None = None, display_banner_id: int | None = None, conv_welcome_message: str | None = None, user_dob_day: int | None = None, user_dob_month: int | None = None, user_dob_year: int | None = None, secret_answer: str | None = None, secret_answer_type: int | None = None, short_link: str | None = None, language_id: int | None = None, gender: str | None = None, timezone: str | None = None, receive_admin_email: bool | None = None, activity_visible: bool | None = None, show_dob_date: bool | None = None, show_dob_year: bool | None = None, hide_username_change_logs: bool | None = None, allow_view_profile: str | None = None, allow_post_profile: str | None = None, allow_send_personal_conversation: str | None = None, allow_invite_group: str | None = None, allow_receive_news_feed: str | None = None, alert: dict[str, Any] | None = None, fields: dict[str, Any] | None = None) -> dict[str, Any]:
-        """Edit user"""
+    def users__edit(self, user_id: int, username: str | None = None, user_title: str | None = None, display_group_id: int | None = None, display_icon_group_id: int | None = None, display_banner_id: int | None = None, conv_welcome_message: str | None = None, user_dob_day: int | None = None, user_dob_month: int | None = None, user_dob_year: int | None = None, secret_answer: str | None = None, secret_answer_type: int | None = None, short_link: str | None = None, language_id: int | None = None, gender: str | None = None, timezone: str | None = None, receive_admin_email: bool | None = None, activity_visible: bool | None = None, show_dob_date: bool | None = None, show_dob_year: bool | None = None, hide_username_change_logs: bool | None = None, allow_view_profile: str | None = None, allow_post_profile: str | None = None, allow_send_personal_conversation: str | None = None, allow_invite_group: str | None = None, allow_receive_news_feed: str | None = None, alert: dict[str, Any] | None = None, fields: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Edit User"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1221,8 +1201,8 @@ class UsersSection:
         if fields is not None: data["fields"] = fields
         return self._client.request("PUT", f"/users/{user_id}", params=params, json=data)
 
-    async def users_edit_async(self, user_id: int, username: str | None = None, user_title: str | None = None, display_group_id: int | None = None, display_icon_group_id: int | None = None, display_banner_id: int | None = None, conv_welcome_message: str | None = None, user_dob_day: int | None = None, user_dob_month: int | None = None, user_dob_year: int | None = None, secret_answer: str | None = None, secret_answer_type: int | None = None, short_link: str | None = None, language_id: int | None = None, gender: str | None = None, timezone: str | None = None, receive_admin_email: bool | None = None, activity_visible: bool | None = None, show_dob_date: bool | None = None, show_dob_year: bool | None = None, hide_username_change_logs: bool | None = None, allow_view_profile: str | None = None, allow_post_profile: str | None = None, allow_send_personal_conversation: str | None = None, allow_invite_group: str | None = None, allow_receive_news_feed: str | None = None, alert: dict[str, Any] | None = None, fields: dict[str, Any] | None = None) -> dict[str, Any]:
-        """Edit user"""
+    async def users__edit_async(self, user_id: int, username: str | None = None, user_title: str | None = None, display_group_id: int | None = None, display_icon_group_id: int | None = None, display_banner_id: int | None = None, conv_welcome_message: str | None = None, user_dob_day: int | None = None, user_dob_month: int | None = None, user_dob_year: int | None = None, secret_answer: str | None = None, secret_answer_type: int | None = None, short_link: str | None = None, language_id: int | None = None, gender: str | None = None, timezone: str | None = None, receive_admin_email: bool | None = None, activity_visible: bool | None = None, show_dob_date: bool | None = None, show_dob_year: bool | None = None, hide_username_change_logs: bool | None = None, allow_view_profile: str | None = None, allow_post_profile: str | None = None, allow_send_personal_conversation: str | None = None, allow_invite_group: str | None = None, allow_receive_news_feed: str | None = None, alert: dict[str, Any] | None = None, fields: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Edit User"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1255,48 +1235,48 @@ class UsersSection:
         if fields is not None: data["fields"] = fields
         return await self._client.request_async("PUT", f"/users/{user_id}", params=params, json=data)
 
-    def users_claims(self, user_id: int, type: str | None = None, claim_state: str | None = None) -> dict[str, Any]:
-        """Get user claims"""
+    def users__claims(self, user_id: int, type: str | None = None, claim_state: str | None = None) -> dict[str, Any]:
+        """Get User Claims"""
 
         params: dict[str, Any] = {}
         if type is not None: params["type"] = type
         if claim_state is not None: params["claim_state"] = claim_state
         return self._client.request("GET", f"/users/{user_id}/claims", params=params)
 
-    async def users_claims_async(self, user_id: int, type: str | None = None, claim_state: str | None = None) -> dict[str, Any]:
-        """Get user claims"""
+    async def users__claims_async(self, user_id: int, type: str | None = None, claim_state: str | None = None) -> dict[str, Any]:
+        """Get User Claims"""
 
         params: dict[str, Any] = {}
         if type is not None: params["type"] = type
         if claim_state is not None: params["claim_state"] = claim_state
         return await self._client.request_async("GET", f"/users/{user_id}/claims", params=params)
 
-    def users_avatar_upload(self, user_id: int) -> dict[str, Any]:
-        """Upload avatar"""
+    def users__avatar__upload(self, user_id: int) -> dict[str, Any]:
+        """Upload Avatar"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/users/{user_id}/avatar", params=params)
 
-    async def users_avatar_upload_async(self, user_id: int) -> dict[str, Any]:
-        """Upload avatar"""
+    async def users__avatar__upload_async(self, user_id: int) -> dict[str, Any]:
+        """Upload Avatar"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/users/{user_id}/avatar", params=params)
 
-    def users_avatar_delete(self, user_id: int) -> dict[str, Any]:
-        """Delete avatar"""
+    def users__avatar__delete(self, user_id: int) -> dict[str, Any]:
+        """Delete Avatar"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/users/{user_id}/avatar", params=params)
 
-    async def users_avatar_delete_async(self, user_id: int) -> dict[str, Any]:
-        """Delete avatar"""
+    async def users__avatar__delete_async(self, user_id: int) -> dict[str, Any]:
+        """Delete Avatar"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/users/{user_id}/avatar", params=params)
 
-    def users_avatar_crop(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
-        """Crop avatar"""
+    def users__avatar__crop(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
+        """Crop Avatar"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1305,8 +1285,8 @@ class UsersSection:
         if crop is not None: data["crop"] = crop
         return self._client.request("POST", f"/users/{user_id}/avatar/crop", params=params, json=data)
 
-    async def users_avatar_crop_async(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
-        """Crop avatar"""
+    async def users__avatar__crop_async(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
+        """Crop Avatar"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1315,32 +1295,32 @@ class UsersSection:
         if crop is not None: data["crop"] = crop
         return await self._client.request_async("POST", f"/users/{user_id}/avatar/crop", params=params, json=data)
 
-    def users_background_upload(self, user_id: int) -> dict[str, Any]:
-        """Upload background"""
+    def users__background__upload(self, user_id: int) -> dict[str, Any]:
+        """Upload Background"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/users/{user_id}/background", params=params)
 
-    async def users_background_upload_async(self, user_id: int) -> dict[str, Any]:
-        """Upload background"""
+    async def users__background__upload_async(self, user_id: int) -> dict[str, Any]:
+        """Upload Background"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/users/{user_id}/background", params=params)
 
-    def users_background_delete(self, user_id: int) -> dict[str, Any]:
-        """Delete background"""
+    def users__background__delete(self, user_id: int) -> dict[str, Any]:
+        """Delete Background"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/users/{user_id}/background", params=params)
 
-    async def users_background_delete_async(self, user_id: int) -> dict[str, Any]:
-        """Delete background"""
+    async def users__background__delete_async(self, user_id: int) -> dict[str, Any]:
+        """Delete Background"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/users/{user_id}/background", params=params)
 
-    def users_background_crop(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
-        """Crop background"""
+    def users__background__crop(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
+        """Crop Background"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1349,8 +1329,8 @@ class UsersSection:
         if crop is not None: data["crop"] = crop
         return self._client.request("POST", f"/users/{user_id}/background/crop", params=params, json=data)
 
-    async def users_background_crop_async(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
-        """Crop background"""
+    async def users__background__crop_async(self, user_id: int, x: int | None = None, y: int | None = None, crop: int | None = None) -> dict[str, Any]:
+        """Crop Background"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1359,8 +1339,8 @@ class UsersSection:
         if crop is not None: data["crop"] = crop
         return await self._client.request_async("POST", f"/users/{user_id}/background/crop", params=params, json=data)
 
-    def users_followers(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """User followers"""
+    def users__followers(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get User Followers"""
 
         params: dict[str, Any] = {}
         if order is not None: params["order"] = order
@@ -1368,8 +1348,8 @@ class UsersSection:
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", f"/users/{user_id}/followers", params=params)
 
-    async def users_followers_async(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """User followers"""
+    async def users__followers_async(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get User Followers"""
 
         params: dict[str, Any] = {}
         if order is not None: params["order"] = order
@@ -1377,32 +1357,32 @@ class UsersSection:
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", f"/users/{user_id}/followers", params=params)
 
-    def users_follow(self, user_id: int) -> dict[str, Any]:
-        """Follow user"""
+    def users__follow(self, user_id: int) -> dict[str, Any]:
+        """Follow User"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/users/{user_id}/followers", params=params)
 
-    async def users_follow_async(self, user_id: int) -> dict[str, Any]:
-        """Follow user"""
+    async def users__follow_async(self, user_id: int) -> dict[str, Any]:
+        """Follow User"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/users/{user_id}/followers", params=params)
 
-    def users_unfollow(self, user_id: int) -> dict[str, Any]:
-        """Unfollow user"""
+    def users__unfollow(self, user_id: int) -> dict[str, Any]:
+        """Unfollow User"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/users/{user_id}/followers", params=params)
 
-    async def users_unfollow_async(self, user_id: int) -> dict[str, Any]:
-        """Unfollow user"""
+    async def users__unfollow_async(self, user_id: int) -> dict[str, Any]:
+        """Unfollow User"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/users/{user_id}/followers", params=params)
 
-    def users_followings(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Users followed by user"""
+    def users__followings(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Followed Users By User"""
 
         params: dict[str, Any] = {}
         if order is not None: params["order"] = order
@@ -1410,8 +1390,8 @@ class UsersSection:
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", f"/users/{user_id}/followings", params=params)
 
-    async def users_followings_async(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Users followed by user"""
+    async def users__followings_async(self, user_id: int, order: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Followed Users By User"""
 
         params: dict[str, Any] = {}
         if order is not None: params["order"] = order
@@ -1419,8 +1399,8 @@ class UsersSection:
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", f"/users/{user_id}/followings", params=params)
 
-    def users_likes(self, user_id: int, node_id: int | None = None, like_type: str | None = None, type: str | None = None, page: int | None = None, content_type: str | None = None, search_user_id: int | None = None, stats: bool | None = None) -> dict[str, Any]:
-        """User likes"""
+    def users__likes(self, user_id: int, node_id: int | None = None, like_type: str | None = None, type: str | None = None, page: int | None = None, content_type: str | None = None, search_user_id: int | None = None, stats: bool | None = None) -> dict[str, Any]:
+        """Get User Likes"""
 
         params: dict[str, Any] = {}
         if node_id is not None: params["node_id"] = node_id
@@ -1432,8 +1412,8 @@ class UsersSection:
         if stats is not None: params["stats"] = stats
         return self._client.request("GET", f"/users/{user_id}/likes", params=params)
 
-    async def users_likes_async(self, user_id: int, node_id: int | None = None, like_type: str | None = None, type: str | None = None, page: int | None = None, content_type: str | None = None, search_user_id: int | None = None, stats: bool | None = None) -> dict[str, Any]:
-        """User likes"""
+    async def users__likes_async(self, user_id: int, node_id: int | None = None, like_type: str | None = None, type: str | None = None, page: int | None = None, content_type: str | None = None, search_user_id: int | None = None, stats: bool | None = None) -> dict[str, Any]:
+        """Get User Likes"""
 
         params: dict[str, Any] = {}
         if node_id is not None: params["node_id"] = node_id
@@ -1445,20 +1425,34 @@ class UsersSection:
         if stats is not None: params["stats"] = stats
         return await self._client.request_async("GET", f"/users/{user_id}/likes", params=params)
 
-    def users_ignore(self, user_id: int) -> dict[str, Any]:
-        """Ignore user"""
+    def users__ignored(self, total: bool | None = None) -> dict[str, Any]:
+        """Get Ignored Users"""
+
+        params: dict[str, Any] = {}
+        if total is not None: params["total"] = total
+        return self._client.request("GET", "/users/ignored", params=params)
+
+    async def users__ignored_async(self, total: bool | None = None) -> dict[str, Any]:
+        """Get Ignored Users"""
+
+        params: dict[str, Any] = {}
+        if total is not None: params["total"] = total
+        return await self._client.request_async("GET", "/users/ignored", params=params)
+
+    def users__ignore(self, user_id: int) -> dict[str, Any]:
+        """Ignore User"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/users/{user_id}/ignore", params=params)
 
-    async def users_ignore_async(self, user_id: int) -> dict[str, Any]:
-        """Ignore user"""
+    async def users__ignore_async(self, user_id: int) -> dict[str, Any]:
+        """Ignore User"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/users/{user_id}/ignore", params=params)
 
-    def users_ignore_edit(self, user_id: int, ignore_conversations: bool | None = None, ignore_content: bool | None = None, restrict_view_profile: bool | None = None) -> dict[str, Any]:
-        """Edit ignore opts"""
+    def users__ignore_edit(self, user_id: int, ignore_conversations: bool | None = None, ignore_content: bool | None = None, restrict_view_profile: bool | None = None) -> dict[str, Any]:
+        """Edit Ignoring Options"""
 
         params: dict[str, Any] = {}
         if ignore_conversations is not None: params["ignore_conversations"] = ignore_conversations
@@ -1466,8 +1460,8 @@ class UsersSection:
         if restrict_view_profile is not None: params["restrict_view_profile"] = restrict_view_profile
         return self._client.request("PUT", f"/users/{user_id}/ignore", params=params)
 
-    async def users_ignore_edit_async(self, user_id: int, ignore_conversations: bool | None = None, ignore_content: bool | None = None, restrict_view_profile: bool | None = None) -> dict[str, Any]:
-        """Edit ignore opts"""
+    async def users__ignore_edit_async(self, user_id: int, ignore_conversations: bool | None = None, ignore_content: bool | None = None, restrict_view_profile: bool | None = None) -> dict[str, Any]:
+        """Edit Ignoring Options"""
 
         params: dict[str, Any] = {}
         if ignore_conversations is not None: params["ignore_conversations"] = ignore_conversations
@@ -1475,57 +1469,93 @@ class UsersSection:
         if restrict_view_profile is not None: params["restrict_view_profile"] = restrict_view_profile
         return await self._client.request_async("PUT", f"/users/{user_id}/ignore", params=params)
 
-    def users_unignore(self, user_id: int) -> dict[str, Any]:
-        """Unignore user"""
+    def users__unignore(self, user_id: int) -> dict[str, Any]:
+        """Unignore User"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/users/{user_id}/ignore", params=params)
 
-    async def users_unignore_async(self, user_id: int) -> dict[str, Any]:
-        """Unignore user"""
+    async def users__unignore_async(self, user_id: int) -> dict[str, Any]:
+        """Unignore User"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/users/{user_id}/ignore", params=params)
 
-    def users_contents(self, user_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """User timeline (contents)"""
+    def users__contents(self, user_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Contents"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", f"/users/{user_id}/timeline", params=params)
 
-    async def users_contents_async(self, user_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """User timeline (contents)"""
+    async def users__contents_async(self, user_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Contents"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", f"/users/{user_id}/timeline", params=params)
 
-    def users_trophies(self, user_id: int) -> dict[str, Any]:
-        """User trophies"""
+    def users__trophies(self, user_id: int) -> dict[str, Any]:
+        """Get Trophies"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/users/{user_id}/trophies", params=params)
 
-    async def users_trophies_async(self, user_id: int) -> dict[str, Any]:
-        """User trophies"""
+    async def users__trophies_async(self, user_id: int) -> dict[str, Any]:
+        """Get Trophies"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/users/{user_id}/trophies", params=params)
 
+    def users__secret_answer_types(self) -> dict[str, Any]:
+        """Get Secret Answer Types"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("GET", "/users/secret-answer/types", params=params)
+
+    async def users__secret_answer_types_async(self) -> dict[str, Any]:
+        """Get Secret Answer Types"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("GET", "/users/secret-answer/types", params=params)
+
+    def users_sa__reset(self) -> dict[str, Any]:
+        """Reset Secret Answer"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", "/account/secret-answer/reset", params=params)
+
+    async def users_sa__reset_async(self) -> dict[str, Any]:
+        """Reset Secret Answer"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", "/account/secret-answer/reset", params=params)
+
+    def users_sa__cancel_reset(self) -> dict[str, Any]:
+        """Cancel Secret Answer Reset"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("DELETE", "/account/secret-answer/reset", params=params)
+
+    async def users_sa__cancel_reset_async(self) -> dict[str, Any]:
+        """Cancel Secret Answer Reset"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("DELETE", "/account/secret-answer/reset", params=params)
+
 
 
 class ProfilePostsSection:
-    """Auto-generated section for tag: profile_posts"""
+    """Auto-generated section for tag: Profile Posts"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def profile_posts_list(self, user_id: int, posts_user_id: int | None = None, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """List profile posts"""
+    def profile_posts__list(self, user_id: int, posts_user_id: int | None = None, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Profile Posts"""
 
         params: dict[str, Any] = {}
         if posts_user_id is not None: params["posts_user_id"] = posts_user_id
@@ -1534,8 +1564,8 @@ class ProfilePostsSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return self._client.request("GET", f"/users/{user_id}/profile-posts", params=params)
 
-    async def profile_posts_list_async(self, user_id: int, posts_user_id: int | None = None, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
-        """List profile posts"""
+    async def profile_posts__list_async(self, user_id: int, posts_user_id: int | None = None, page: int | None = None, limit: int | None = None, fields_include: list[str] | None = None) -> dict[str, Any]:
+        """Get Profile Posts"""
 
         params: dict[str, Any] = {}
         if posts_user_id is not None: params["posts_user_id"] = posts_user_id
@@ -1544,38 +1574,20 @@ class ProfilePostsSection:
         if fields_include is not None: params["fields_include"] = fields_include
         return await self._client.request_async("GET", f"/users/{user_id}/profile-posts", params=params)
 
-    def profile_posts_create(self, user_id: int, post_body: str) -> dict[str, Any]:
-        """Create profile post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if user_id is not None: data["user_id"] = user_id
-        if post_body is not None: data["post_body"] = post_body
-        return self._client.request("POST", "/profile-posts", params=params, json=data)
-
-    async def profile_posts_create_async(self, user_id: int, post_body: str) -> dict[str, Any]:
-        """Create profile post"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if user_id is not None: data["user_id"] = user_id
-        if post_body is not None: data["post_body"] = post_body
-        return await self._client.request_async("POST", "/profile-posts", params=params, json=data)
-
-    def profile_posts_get(self, profile_post_id: int) -> dict[str, Any]:
-        """Get profile post"""
+    def profile_posts__get(self, profile_post_id: int) -> dict[str, Any]:
+        """Get Profile Post"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/profile-posts/{profile_post_id}", params=params)
 
-    async def profile_posts_get_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Get profile post"""
+    async def profile_posts__get_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Get Profile Post"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/profile-posts/{profile_post_id}", params=params)
 
-    def profile_posts_edit(self, profile_post_id: int, post_body: str | None = None, disable_comments: bool | None = None) -> dict[str, Any]:
-        """Edit profile post"""
+    def profile_posts__edit(self, profile_post_id: int, post_body: str | None = None, disable_comments: bool | None = None) -> dict[str, Any]:
+        """Edit Profile Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1583,8 +1595,8 @@ class ProfilePostsSection:
         if disable_comments is not None: data["disable_comments"] = disable_comments
         return self._client.request("PUT", f"/profile-posts/{profile_post_id}", params=params, json=data)
 
-    async def profile_posts_edit_async(self, profile_post_id: int, post_body: str | None = None, disable_comments: bool | None = None) -> dict[str, Any]:
-        """Edit profile post"""
+    async def profile_posts__edit_async(self, profile_post_id: int, post_body: str | None = None, disable_comments: bool | None = None) -> dict[str, Any]:
+        """Edit Profile Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1592,110 +1604,137 @@ class ProfilePostsSection:
         if disable_comments is not None: data["disable_comments"] = disable_comments
         return await self._client.request_async("PUT", f"/profile-posts/{profile_post_id}", params=params, json=data)
 
-    def profile_posts_delete(self, profile_post_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete profile post"""
+    def profile_posts__delete(self, profile_post_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Profile Post"""
 
         params: dict[str, Any] = {}
         if reason is not None: params["reason"] = reason
         return self._client.request("DELETE", f"/profile-posts/{profile_post_id}", params=params)
 
-    async def profile_posts_delete_async(self, profile_post_id: int, reason: str | None = None) -> dict[str, Any]:
-        """Delete profile post"""
+    async def profile_posts__delete_async(self, profile_post_id: int, reason: str | None = None) -> dict[str, Any]:
+        """Delete Profile Post"""
 
         params: dict[str, Any] = {}
         if reason is not None: params["reason"] = reason
         return await self._client.request_async("DELETE", f"/profile-posts/{profile_post_id}", params=params)
 
-    def profile_posts_stick(self, profile_post_id: int) -> dict[str, Any]:
-        """Stick profile post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", f"/profile-posts/{profile_post_id}/stick", params=params)
-
-    async def profile_posts_stick_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Stick profile post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", f"/profile-posts/{profile_post_id}/stick", params=params)
-
-    def profile_posts_unstick(self, profile_post_id: int) -> dict[str, Any]:
-        """Unstick profile post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("DELETE", f"/profile-posts/{profile_post_id}/stick", params=params)
-
-    async def profile_posts_unstick_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Unstick profile post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("DELETE", f"/profile-posts/{profile_post_id}/stick", params=params)
-
-    def profile_posts_likes(self, profile_post_id: int) -> dict[str, Any]:
-        """Profile post likes"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("GET", f"/profile-posts/{profile_post_id}/likes", params=params)
-
-    async def profile_posts_likes_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Profile post likes"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("GET", f"/profile-posts/{profile_post_id}/likes", params=params)
-
-    def profile_posts_like(self, profile_post_id: int) -> dict[str, Any]:
-        """Like profile post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", f"/profile-posts/{profile_post_id}/likes", params=params)
-
-    async def profile_posts_like_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Like profile post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", f"/profile-posts/{profile_post_id}/likes", params=params)
-
-    def profile_posts_unlike(self, profile_post_id: int) -> dict[str, Any]:
-        """Unlike profile post"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("DELETE", f"/profile-posts/{profile_post_id}/likes", params=params)
-
-    async def profile_posts_unlike_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Unlike profile post"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("DELETE", f"/profile-posts/{profile_post_id}/likes", params=params)
-
-    def profile_posts_report_reasons(self, profile_post_id: int) -> dict[str, Any]:
-        """Get report reasons"""
+    def profile_posts__report_reasons(self, profile_post_id: int) -> dict[str, Any]:
+        """Get Profile Post Report Reasons"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/profile-posts/{profile_post_id}/report", params=params)
 
-    async def profile_posts_report_reasons_async(self, profile_post_id: int) -> dict[str, Any]:
-        """Get report reasons"""
+    async def profile_posts__report_reasons_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Get Profile Post Report Reasons"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/profile-posts/{profile_post_id}/report", params=params)
 
-    def profile_posts_report(self, profile_post_id: int, message: str) -> dict[str, Any]:
-        """Report profile post"""
+    def profile_posts__report(self, profile_post_id: int, message: str) -> dict[str, Any]:
+        """Report a Profile Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message is not None: data["message"] = message
         return self._client.request("POST", f"/profile-posts/{profile_post_id}/report", params=params, json=data)
 
-    async def profile_posts_report_async(self, profile_post_id: int, message: str) -> dict[str, Any]:
-        """Report profile post"""
+    async def profile_posts__report_async(self, profile_post_id: int, message: str) -> dict[str, Any]:
+        """Report a Profile Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message is not None: data["message"] = message
         return await self._client.request_async("POST", f"/profile-posts/{profile_post_id}/report", params=params, json=data)
 
-    def profile_posts_comments_list(self, profile_post_id: int, before: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List profile post comments"""
+    def profile_posts__create(self, user_id: Any, post_body: str) -> dict[str, Any]:
+        """Create Profile Post"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if user_id is not None: data["user_id"] = user_id
+        if post_body is not None: data["post_body"] = post_body
+        return self._client.request("POST", "/profile-posts", params=params, json=data)
+
+    async def profile_posts__create_async(self, user_id: Any, post_body: str) -> dict[str, Any]:
+        """Create Profile Post"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if user_id is not None: data["user_id"] = user_id
+        if post_body is not None: data["post_body"] = post_body
+        return await self._client.request_async("POST", "/profile-posts", params=params, json=data)
+
+    def profile_posts__stick(self, profile_post_id: int) -> dict[str, Any]:
+        """Stick Profile Post"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", f"/profile-posts/{profile_post_id}/stick", params=params)
+
+    async def profile_posts__stick_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Stick Profile Post"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", f"/profile-posts/{profile_post_id}/stick", params=params)
+
+    def profile_posts__unstick(self, profile_post_id: int) -> dict[str, Any]:
+        """Unstick Profile Post"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("DELETE", f"/profile-posts/{profile_post_id}/stick", params=params)
+
+    async def profile_posts__unstick_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Unstick Profile Post"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("DELETE", f"/profile-posts/{profile_post_id}/stick", params=params)
+
+    def profile_posts__likes(self, profile_post_id: int) -> dict[str, Any]:
+        """Get Profile Post Likes"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("GET", f"/profile-posts/{profile_post_id}/likes", params=params)
+
+    async def profile_posts__likes_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Get Profile Post Likes"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("GET", f"/profile-posts/{profile_post_id}/likes", params=params)
+
+    def profile_posts__like(self, profile_post_id: int) -> dict[str, Any]:
+        """Like Profile Post"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", f"/profile-posts/{profile_post_id}/likes", params=params)
+
+    async def profile_posts__like_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Like Profile Post"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", f"/profile-posts/{profile_post_id}/likes", params=params)
+
+    def profile_posts__unlike(self, profile_post_id: int) -> dict[str, Any]:
+        """Unlike Profile Post"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("DELETE", f"/profile-posts/{profile_post_id}/likes", params=params)
+
+    async def profile_posts__unlike_async(self, profile_post_id: int) -> dict[str, Any]:
+        """Unlike Profile Post"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("DELETE", f"/profile-posts/{profile_post_id}/likes", params=params)
+
+
+
+class ProfilePostCommentsSection:
+    """Auto-generated section for tag: Profile Post Comments"""
+
+    def __init__(self, client: object) -> None:
+        self._client = client
+        self._use_json = False
+
+    def profile_posts__comments__list(self, profile_post_id: int, before: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Profile Post Comments"""
 
         params: dict[str, Any] = {}
         if profile_post_id is not None: params["profile_post_id"] = profile_post_id
@@ -1703,8 +1742,8 @@ class ProfilePostsSection:
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", "/profile-posts/comments", params=params)
 
-    async def profile_posts_comments_list_async(self, profile_post_id: int, before: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List profile post comments"""
+    async def profile_posts__comments__list_async(self, profile_post_id: int, before: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Profile Post Comments"""
 
         params: dict[str, Any] = {}
         if profile_post_id is not None: params["profile_post_id"] = profile_post_id
@@ -1712,8 +1751,8 @@ class ProfilePostsSection:
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", "/profile-posts/comments", params=params)
 
-    def profile_posts_comments_create(self, profile_post_id: int, comment_body: str) -> dict[str, Any]:
-        """Create profile post comment"""
+    def profile_posts__comments__create(self, profile_post_id: int, comment_body: str) -> dict[str, Any]:
+        """Create Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1721,8 +1760,8 @@ class ProfilePostsSection:
         if comment_body is not None: data["comment_body"] = comment_body
         return self._client.request("POST", "/profile-posts/comments", params=params, json=data)
 
-    async def profile_posts_comments_create_async(self, profile_post_id: int, comment_body: str) -> dict[str, Any]:
-        """Create profile post comment"""
+    async def profile_posts__comments__create_async(self, profile_post_id: int, comment_body: str) -> dict[str, Any]:
+        """Create Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1730,8 +1769,8 @@ class ProfilePostsSection:
         if comment_body is not None: data["comment_body"] = comment_body
         return await self._client.request_async("POST", "/profile-posts/comments", params=params, json=data)
 
-    def profile_posts_comments_edit(self, comment_id: int, comment_body: str) -> dict[str, Any]:
-        """Edit profile post comment"""
+    def profile_posts__comments__edit(self, comment_id: int, comment_body: str) -> dict[str, Any]:
+        """Edit Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1739,8 +1778,8 @@ class ProfilePostsSection:
         if comment_body is not None: data["comment_body"] = comment_body
         return self._client.request("PUT", "/profile-posts/comments", params=params, json=data)
 
-    async def profile_posts_comments_edit_async(self, comment_id: int, comment_body: str) -> dict[str, Any]:
-        """Edit profile post comment"""
+    async def profile_posts__comments__edit_async(self, comment_id: int, comment_body: str) -> dict[str, Any]:
+        """Edit Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1748,44 +1787,44 @@ class ProfilePostsSection:
         if comment_body is not None: data["comment_body"] = comment_body
         return await self._client.request_async("PUT", "/profile-posts/comments", params=params, json=data)
 
-    def profile_posts_comments_delete(self, comment_id: int) -> dict[str, Any]:
-        """Delete profile post comment"""
+    def profile_posts__comments__delete(self, comment_id: int) -> dict[str, Any]:
+        """Delete Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if comment_id is not None: data["comment_id"] = comment_id
         return self._client.request("DELETE", "/profile-posts/comments", params=params, json=data)
 
-    async def profile_posts_comments_delete_async(self, comment_id: int) -> dict[str, Any]:
-        """Delete profile post comment"""
+    async def profile_posts__comments__delete_async(self, comment_id: int) -> dict[str, Any]:
+        """Delete Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if comment_id is not None: data["comment_id"] = comment_id
         return await self._client.request_async("DELETE", "/profile-posts/comments", params=params, json=data)
 
-    def profile_posts_comments_get(self, profile_post_id: int, comment_id: int) -> dict[str, Any]:
-        """Get profile post comment"""
+    def profile_posts__comments__get(self, profile_post_id: int, comment_id: int) -> dict[str, Any]:
+        """Get Profile Post Comment"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/profile-posts/{profile_post_id}/comments/{comment_id}", params=params)
 
-    async def profile_posts_comments_get_async(self, profile_post_id: int, comment_id: int) -> dict[str, Any]:
-        """Get profile post comment"""
+    async def profile_posts__comments__get_async(self, profile_post_id: int, comment_id: int) -> dict[str, Any]:
+        """Get Profile Post Comment"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/profile-posts/{profile_post_id}/comments/{comment_id}", params=params)
 
-    def profile_posts_comments_report(self, comment_id: int, message: str) -> dict[str, Any]:
-        """Report profile post comment"""
+    def profile_posts__comments__report(self, comment_id: int, message: str) -> dict[str, Any]:
+        """Report a Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message is not None: data["message"] = message
         return self._client.request("POST", f"/profile-posts/comments/{comment_id}/report", params=params, json=data)
 
-    async def profile_posts_comments_report_async(self, comment_id: int, message: str) -> dict[str, Any]:
-        """Report profile post comment"""
+    async def profile_posts__comments__report_async(self, comment_id: int, message: str) -> dict[str, Any]:
+        """Report a Profile Post Comment"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1795,14 +1834,14 @@ class ProfilePostsSection:
 
 
 class ConversationsSection:
-    """Auto-generated section for tag: conversations"""
+    """Auto-generated section for tag: Conversations"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def conversations_list(self, folder: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List conversations"""
+    def conversations__list(self, folder: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Conversations"""
 
         params: dict[str, Any] = {}
         if folder is not None: params["folder"] = folder
@@ -1810,8 +1849,8 @@ class ConversationsSection:
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", "/conversations", params=params)
 
-    async def conversations_list_async(self, folder: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List conversations"""
+    async def conversations__list_async(self, folder: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Conversations"""
 
         params: dict[str, Any] = {}
         if folder is not None: params["folder"] = folder
@@ -1819,8 +1858,8 @@ class ConversationsSection:
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", "/conversations", params=params)
 
-    def conversations_create(self, recipient_id: int | None = None, recipients: list[str] | None = None, is_group: bool | None = None, title: str | None = None, open_invite: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None, message_body: str | None = None) -> dict[str, Any]:
-        """Create conversation"""
+    def conversations__create(self, recipient_id: int | None = None, recipients: list[str] | None = None, is_group: bool | None = None, title: str | None = None, open_invite: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None, message_body: str | None = None) -> dict[str, Any]:
+        """Create Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1835,8 +1874,8 @@ class ConversationsSection:
         if message_body is not None: data["message_body"] = message_body
         return self._client.request("POST", "/conversations", params=params, json=data)
 
-    async def conversations_create_async(self, recipient_id: int | None = None, recipients: list[str] | None = None, is_group: bool | None = None, title: str | None = None, open_invite: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None, message_body: str | None = None) -> dict[str, Any]:
-        """Create conversation"""
+    async def conversations__create_async(self, recipient_id: int | None = None, recipients: list[str] | None = None, is_group: bool | None = None, title: str | None = None, open_invite: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None, message_body: str | None = None) -> dict[str, Any]:
+        """Create Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1851,8 +1890,8 @@ class ConversationsSection:
         if message_body is not None: data["message_body"] = message_body
         return await self._client.request_async("POST", "/conversations", params=params, json=data)
 
-    def conversations_update(self, conversation_id: int, title: str | None = None, open_invite: bool | None = None, history_open: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None) -> dict[str, Any]:
-        """Edit conversation"""
+    def conversations__update(self, conversation_id: int, title: str | None = None, open_invite: bool | None = None, history_open: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None) -> dict[str, Any]:
+        """Edit Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1865,8 +1904,8 @@ class ConversationsSection:
         if allow_delete_own_messages is not None: data["allow_delete_own_messages"] = allow_delete_own_messages
         return self._client.request("PUT", "/conversations", params=params, json=data)
 
-    async def conversations_update_async(self, conversation_id: int, title: str | None = None, open_invite: bool | None = None, history_open: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None) -> dict[str, Any]:
-        """Edit conversation"""
+    async def conversations__update_async(self, conversation_id: int, title: str | None = None, open_invite: bool | None = None, history_open: bool | None = None, allow_edit_messages: bool | None = None, allow_sticky_messages: bool | None = None, allow_delete_own_messages: bool | None = None) -> dict[str, Any]:
+        """Edit Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1879,8 +1918,8 @@ class ConversationsSection:
         if allow_delete_own_messages is not None: data["allow_delete_own_messages"] = allow_delete_own_messages
         return await self._client.request_async("PUT", "/conversations", params=params, json=data)
 
-    def conversations_delete(self, conversation_id: int, delete_type: str) -> dict[str, Any]:
-        """Delete conversation"""
+    def conversations__delete(self, conversation_id: int, delete_type: str) -> dict[str, Any]:
+        """Leave Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1888,8 +1927,8 @@ class ConversationsSection:
         if delete_type is not None: data["delete_type"] = delete_type
         return self._client.request("DELETE", "/conversations", params=params, json=data)
 
-    async def conversations_delete_async(self, conversation_id: int, delete_type: str) -> dict[str, Any]:
-        """Delete conversation"""
+    async def conversations__delete_async(self, conversation_id: int, delete_type: str) -> dict[str, Any]:
+        """Leave Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -1897,84 +1936,52 @@ class ConversationsSection:
         if delete_type is not None: data["delete_type"] = delete_type
         return await self._client.request_async("DELETE", "/conversations", params=params, json=data)
 
-    def conversations_start(self, user_id: int) -> dict[str, Any]:
-        """Start conversation with user"""
+    def conversations__start(self, user_id: Any) -> dict[str, Any]:
+        """Start Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return self._client.request("POST", "/conversations/start", params=params, json=data)
 
-    async def conversations_start_async(self, user_id: int) -> dict[str, Any]:
-        """Start conversation with user"""
+    async def conversations__start_async(self, user_id: Any) -> dict[str, Any]:
+        """Start Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return await self._client.request_async("POST", "/conversations/start", params=params, json=data)
 
-    def conversations_save(self, link: str) -> dict[str, Any]:
-        """Save content to saved messages"""
+    def conversations__save(self, link: str) -> dict[str, Any]:
+        """Send Content To Saved Messages"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if link is not None: data["link"] = link
         return self._client.request("POST", "/conversations/save", params=params, json=data)
 
-    async def conversations_save_async(self, link: str) -> dict[str, Any]:
-        """Save content to saved messages"""
+    async def conversations__save_async(self, link: str) -> dict[str, Any]:
+        """Send Content To Saved Messages"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if link is not None: data["link"] = link
         return await self._client.request_async("POST", "/conversations/save", params=params, json=data)
 
-    def conversations_read_all(self) -> dict[str, Any]:
-        """Read all conversations"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", "/conversations/read-all", params=params)
-
-    async def conversations_read_all_async(self) -> dict[str, Any]:
-        """Read all conversations"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", "/conversations/read-all", params=params)
-
-    def conversations_search(self, q: str | None = None, conversation_id: int | None = None, search_recipients: bool | None = None) -> dict[str, Any]:
-        """Search conversations"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if q is not None: data["q"] = q
-        if conversation_id is not None: data["conversation_id"] = conversation_id
-        if search_recipients is not None: data["search_recipients"] = search_recipients
-        return self._client.request("POST", "/conversations/search", params=params, json=data)
-
-    async def conversations_search_async(self, q: str | None = None, conversation_id: int | None = None, search_recipients: bool | None = None) -> dict[str, Any]:
-        """Search conversations"""
-
-        params: dict[str, Any] = {}
-        data: dict[str, Any] = {}
-        if q is not None: data["q"] = q
-        if conversation_id is not None: data["conversation_id"] = conversation_id
-        if search_recipients is not None: data["search_recipients"] = search_recipients
-        return await self._client.request_async("POST", "/conversations/search", params=params, json=data)
-
-    def conversations_get(self, conversation_id: int) -> dict[str, Any]:
-        """Get conversation"""
+    def conversations__get(self, conversation_id: int) -> dict[str, Any]:
+        """Get Conversation"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/conversations/{conversation_id}", params=params)
 
-    async def conversations_get_async(self, conversation_id: int) -> dict[str, Any]:
-        """Get conversation"""
+    async def conversations__get_async(self, conversation_id: int) -> dict[str, Any]:
+        """Get Conversation"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/conversations/{conversation_id}", params=params)
 
-    def conversations_messages_list(self, conversation_id: int, page: int | None = None, limit: int | None = None, order: str | None = None, before: int | None = None, after: int | None = None) -> dict[str, Any]:
-        """List conversation messages"""
+    def conversations__messages__list(self, conversation_id: int, page: int | None = None, limit: int | None = None, order: str | None = None, before: int | None = None, after: int | None = None) -> dict[str, Any]:
+        """Get Conversation Messages"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
@@ -1984,8 +1991,8 @@ class ConversationsSection:
         if after is not None: params["after"] = after
         return self._client.request("GET", f"/conversations/{conversation_id}/messages", params=params)
 
-    async def conversations_messages_list_async(self, conversation_id: int, page: int | None = None, limit: int | None = None, order: str | None = None, before: int | None = None, after: int | None = None) -> dict[str, Any]:
-        """List conversation messages"""
+    async def conversations__messages__list_async(self, conversation_id: int, page: int | None = None, limit: int | None = None, order: str | None = None, before: int | None = None, after: int | None = None) -> dict[str, Any]:
+        """Get Conversation Messages"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
@@ -1995,176 +2002,208 @@ class ConversationsSection:
         if after is not None: params["after"] = after
         return await self._client.request_async("GET", f"/conversations/{conversation_id}/messages", params=params)
 
-    def conversations_messages_create(self, conversation_id: int, message_body: str, reply_message_id: int | None = None) -> dict[str, Any]:
-        """Send conversation message"""
+    def conversations__messages__create(self, conversation_id: int, message_body: str, reply_message_id: int | None = None) -> dict[str, Any]:
+        """Create Conversation Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if message_body is not None: data["message_body"] = message_body
         if reply_message_id is not None: data["reply_message_id"] = reply_message_id
+        if message_body is not None: data["message_body"] = message_body
         return self._client.request("POST", f"/conversations/{conversation_id}/messages", params=params, json=data)
 
-    async def conversations_messages_create_async(self, conversation_id: int, message_body: str, reply_message_id: int | None = None) -> dict[str, Any]:
-        """Send conversation message"""
+    async def conversations__messages__create_async(self, conversation_id: int, message_body: str, reply_message_id: int | None = None) -> dict[str, Any]:
+        """Create Conversation Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if message_body is not None: data["message_body"] = message_body
         if reply_message_id is not None: data["reply_message_id"] = reply_message_id
+        if message_body is not None: data["message_body"] = message_body
         return await self._client.request_async("POST", f"/conversations/{conversation_id}/messages", params=params, json=data)
 
-    def conversations_messages_get(self, message_id: int) -> dict[str, Any]:
-        """Get conversation message"""
+    def conversations__search(self, q: str | None = None, conversation_id: int | None = None, search_recipients: bool | None = None) -> dict[str, Any]:
+        """Search Conversations Messages"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if q is not None: data["q"] = q
+        if conversation_id is not None: data["conversation_id"] = conversation_id
+        if search_recipients is not None: data["search_recipients"] = search_recipients
+        return self._client.request("POST", "/conversations/search", params=params, json=data)
+
+    async def conversations__search_async(self, q: str | None = None, conversation_id: int | None = None, search_recipients: bool | None = None) -> dict[str, Any]:
+        """Search Conversations Messages"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if q is not None: data["q"] = q
+        if conversation_id is not None: data["conversation_id"] = conversation_id
+        if search_recipients is not None: data["search_recipients"] = search_recipients
+        return await self._client.request_async("POST", "/conversations/search", params=params, json=data)
+
+    def conversations__messages__get(self, message_id: int) -> dict[str, Any]:
+        """Get Conversation Message"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/conversations/messages/{message_id}", params=params)
 
-    async def conversations_messages_get_async(self, message_id: int) -> dict[str, Any]:
-        """Get conversation message"""
+    async def conversations__messages__get_async(self, message_id: int) -> dict[str, Any]:
+        """Get Conversation Message"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/conversations/messages/{message_id}", params=params)
 
-    def conversations_messages_edit(self, conversation_id: int, message_id: int, message_body: str) -> dict[str, Any]:
-        """Edit conversation message"""
+    def conversations__messages__edit(self, conversation_id: int, message_id: int, message_body: str) -> dict[str, Any]:
+        """Edit Conversation Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message_body is not None: data["message_body"] = message_body
         return self._client.request("PUT", f"/conversations/{conversation_id}/messages/{message_id}", params=params, json=data)
 
-    async def conversations_messages_edit_async(self, conversation_id: int, message_id: int, message_body: str) -> dict[str, Any]:
-        """Edit conversation message"""
+    async def conversations__messages__edit_async(self, conversation_id: int, message_id: int, message_body: str) -> dict[str, Any]:
+        """Edit Conversation Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message_body is not None: data["message_body"] = message_body
         return await self._client.request_async("PUT", f"/conversations/{conversation_id}/messages/{message_id}", params=params, json=data)
 
-    def conversations_messages_delete(self, conversation_id: int, message_id: int) -> dict[str, Any]:
-        """Delete conversation message"""
+    def conversations__messages__delete(self, conversation_id: int, message_id: int) -> dict[str, Any]:
+        """Delete Conversation Message"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/conversations/{conversation_id}/messages/{message_id}", params=params)
 
-    async def conversations_messages_delete_async(self, conversation_id: int, message_id: int) -> dict[str, Any]:
-        """Delete conversation message"""
+    async def conversations__messages__delete_async(self, conversation_id: int, message_id: int) -> dict[str, Any]:
+        """Delete Conversation Message"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/conversations/{conversation_id}/messages/{message_id}", params=params)
 
-    def conversations_messages_stick(self, conversation_id: int, message_id: int) -> dict[str, Any]:
-        """Stick conversation message"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
-
-    async def conversations_messages_stick_async(self, conversation_id: int, message_id: int) -> dict[str, Any]:
-        """Stick conversation message"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
-
-    def conversations_messages_unstick(self, conversation_id: int, message_id: int) -> dict[str, Any]:
-        """Unstick conversation message"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("DELETE", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
-
-    async def conversations_messages_unstick_async(self, conversation_id: int, message_id: int) -> dict[str, Any]:
-        """Unstick conversation message"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("DELETE", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
-
-    def conversations_invite(self, conversation_id: int, recipients: list[str]) -> dict[str, Any]:
-        """Invite to conversation"""
+    def conversations__invite(self, conversation_id: int, recipients: list[str]) -> dict[str, Any]:
+        """Invite Users to Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if recipients is not None: data["recipients"] = recipients
         return self._client.request("POST", f"/conversations/{conversation_id}/invite", params=params, json=data)
 
-    async def conversations_invite_async(self, conversation_id: int, recipients: list[str]) -> dict[str, Any]:
-        """Invite to conversation"""
+    async def conversations__invite_async(self, conversation_id: int, recipients: list[str]) -> dict[str, Any]:
+        """Invite Users to Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if recipients is not None: data["recipients"] = recipients
         return await self._client.request_async("POST", f"/conversations/{conversation_id}/invite", params=params, json=data)
 
-    def conversations_kick(self, conversation_id: int, user_id: int) -> dict[str, Any]:
-        """Kick from conversation"""
+    def conversations__kick(self, conversation_id: int, user_id: int) -> dict[str, Any]:
+        """Kick User from Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return self._client.request("POST", f"/conversations/{conversation_id}/kick", params=params, json=data)
 
-    async def conversations_kick_async(self, conversation_id: int, user_id: int) -> dict[str, Any]:
-        """Kick from conversation"""
+    async def conversations__kick_async(self, conversation_id: int, user_id: int) -> dict[str, Any]:
+        """Kick User from Conversation"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return await self._client.request_async("POST", f"/conversations/{conversation_id}/kick", params=params, json=data)
 
-    def conversations_read(self, conversation_id: int) -> dict[str, Any]:
-        """Read conversation"""
+    def conversations__read(self, conversation_id: int) -> dict[str, Any]:
+        """Read a Conversation"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/conversations/{conversation_id}/read", params=params)
 
-    async def conversations_read_async(self, conversation_id: int) -> dict[str, Any]:
-        """Read conversation"""
+    async def conversations__read_async(self, conversation_id: int) -> dict[str, Any]:
+        """Read a Conversation"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/conversations/{conversation_id}/read", params=params)
 
-    def conversations_star(self, conversation_id: int) -> dict[str, Any]:
-        """Star conversation"""
+    def conversations__read_all(self) -> dict[str, Any]:
+        """Read All Conversations"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", "/conversations/read-all", params=params)
+
+    async def conversations__read_all_async(self) -> dict[str, Any]:
+        """Read All Conversations"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", "/conversations/read-all", params=params)
+
+    def conversations__messages__stick(self, conversation_id: int, message_id: int) -> dict[str, Any]:
+        """Stick Conversation Message"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
+
+    async def conversations__messages__stick_async(self, conversation_id: int, message_id: int) -> dict[str, Any]:
+        """Stick Conversation Message"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
+
+    def conversations__messages__unstick(self, conversation_id: int, message_id: int) -> dict[str, Any]:
+        """Unstick Conversation Message"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("DELETE", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
+
+    async def conversations__messages__unstick_async(self, conversation_id: int, message_id: int) -> dict[str, Any]:
+        """Unstick Conversation Message"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("DELETE", f"/conversations/{conversation_id}/messages/{message_id}/stick", params=params)
+
+    def conversations__star(self, conversation_id: int) -> dict[str, Any]:
+        """Star Conversation"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/conversations/{conversation_id}/star", params=params)
 
-    async def conversations_star_async(self, conversation_id: int) -> dict[str, Any]:
-        """Star conversation"""
+    async def conversations__star_async(self, conversation_id: int) -> dict[str, Any]:
+        """Star Conversation"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/conversations/{conversation_id}/star", params=params)
 
-    def conversations_unstar(self, conversation_id: int) -> dict[str, Any]:
-        """Unstar conversation"""
+    def conversations__unstar(self, conversation_id: int) -> dict[str, Any]:
+        """Unstar Conversation"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/conversations/{conversation_id}/star", params=params)
 
-    async def conversations_unstar_async(self, conversation_id: int) -> dict[str, Any]:
-        """Unstar conversation"""
+    async def conversations__unstar_async(self, conversation_id: int) -> dict[str, Any]:
+        """Unstar Conversation"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/conversations/{conversation_id}/star", params=params)
 
-    def conversations_alerts_enable(self, conversation_id: int) -> dict[str, Any]:
-        """Enable conversation alerts"""
+    def conversations__alerts__enable(self, conversation_id: int) -> dict[str, Any]:
+        """Enable Conversation Alerts"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", f"/conversations/{conversation_id}/alerts", params=params)
 
-    async def conversations_alerts_enable_async(self, conversation_id: int) -> dict[str, Any]:
-        """Enable conversation alerts"""
+    async def conversations__alerts__enable_async(self, conversation_id: int) -> dict[str, Any]:
+        """Enable Conversation Alerts"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", f"/conversations/{conversation_id}/alerts", params=params)
 
-    def conversations_alerts_disable(self, conversation_id: int) -> dict[str, Any]:
-        """Disable conversation alerts"""
+    def conversations__alerts__disable(self, conversation_id: int) -> dict[str, Any]:
+        """Disable Conversation Alerts"""
 
         params: dict[str, Any] = {}
         return self._client.request("DELETE", f"/conversations/{conversation_id}/alerts", params=params)
 
-    async def conversations_alerts_disable_async(self, conversation_id: int) -> dict[str, Any]:
-        """Disable conversation alerts"""
+    async def conversations__alerts__disable_async(self, conversation_id: int) -> dict[str, Any]:
+        """Disable Conversation Alerts"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("DELETE", f"/conversations/{conversation_id}/alerts", params=params)
@@ -2172,14 +2211,14 @@ class ConversationsSection:
 
 
 class NotificationsSection:
-    """Auto-generated section for tag: notifications"""
+    """Auto-generated section for tag: Notifications"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def notifications_list(self, type: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List notifications"""
+    def notifications__list(self, type: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Notifications"""
 
         params: dict[str, Any] = {}
         if type is not None: params["type"] = type
@@ -2187,8 +2226,8 @@ class NotificationsSection:
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", "/notifications", params=params)
 
-    async def notifications_list_async(self, type: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List notifications"""
+    async def notifications__list_async(self, type: str | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Notifications"""
 
         params: dict[str, Any] = {}
         if type is not None: params["type"] = type
@@ -2196,28 +2235,28 @@ class NotificationsSection:
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", "/notifications", params=params)
 
-    def notifications_get(self, notification_id: int) -> dict[str, Any]:
-        """Get notification content"""
+    def notifications__get(self, notification_id: int) -> dict[str, Any]:
+        """Get Notification"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", f"/notifications/{notification_id}/content", params=params)
 
-    async def notifications_get_async(self, notification_id: int) -> dict[str, Any]:
-        """Get notification content"""
+    async def notifications__get_async(self, notification_id: int) -> dict[str, Any]:
+        """Get Notification"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", f"/notifications/{notification_id}/content", params=params)
 
-    def notifications_read(self, notification_id: int | None = None) -> dict[str, Any]:
-        """Mark notifications read"""
+    def notifications__read(self, notification_id: int | None = None) -> dict[str, Any]:
+        """Mark Notification Read"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if notification_id is not None: data["notification_id"] = notification_id
         return self._client.request("POST", "/notifications/read", params=params, json=data)
 
-    async def notifications_read_async(self, notification_id: int | None = None) -> dict[str, Any]:
-        """Mark notifications read"""
+    async def notifications__read_async(self, notification_id: int | None = None) -> dict[str, Any]:
+        """Mark Notification Read"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2226,66 +2265,66 @@ class NotificationsSection:
 
 
 
-class TagsSection:
-    """Auto-generated section for tag: tags"""
+class ContentTaggingSection:
+    """Auto-generated section for tag: Content Tagging"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def tags_popular(self) -> dict[str, Any]:
-        """Popular tags"""
+    def tags__popular(self) -> dict[str, Any]:
+        """Get Popular Tags"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", "/tags", params=params)
 
-    async def tags_popular_async(self) -> dict[str, Any]:
-        """Popular tags"""
+    async def tags__popular_async(self) -> dict[str, Any]:
+        """Get Popular Tags"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/tags", params=params)
 
-    def tags_list(self, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List tags"""
+    def tags__list(self, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Tags"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", "/tags/list", params=params)
 
-    async def tags_list_async(self, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """List tags"""
+    async def tags__list_async(self, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Tags"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", "/tags/list", params=params)
 
-    def tags_get(self, tag_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Tagged content"""
+    def tags__get(self, tag_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Tagged Content"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if limit is not None: params["limit"] = limit
         return self._client.request("GET", f"/tags/{tag_id}", params=params)
 
-    async def tags_get_async(self, tag_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Tagged content"""
+    async def tags__get_async(self, tag_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Tagged Content"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         if limit is not None: params["limit"] = limit
         return await self._client.request_async("GET", f"/tags/{tag_id}", params=params)
 
-    def tags_find(self, tag: str) -> dict[str, Any]:
-        """Find tags"""
+    def tags__find(self, tag: str) -> dict[str, Any]:
+        """Get Filtered Content"""
 
         params: dict[str, Any] = {}
         if tag is not None: params["tag"] = tag
         return self._client.request("GET", "/tags/find", params=params)
 
-    async def tags_find_async(self, tag: str) -> dict[str, Any]:
-        """Find tags"""
+    async def tags__find_async(self, tag: str) -> dict[str, Any]:
+        """Get Filtered Content"""
 
         params: dict[str, Any] = {}
         if tag is not None: params["tag"] = tag
@@ -2293,15 +2332,15 @@ class TagsSection:
 
 
 
-class SearchSection:
-    """Auto-generated section for tag: search"""
+class SearchingSection:
+    """Auto-generated section for tag: Searching"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def search_all(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Search all content"""
+    def search__all(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: Any | None = None, page: int | None = None, limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2311,10 +2350,11 @@ class SearchSection:
         if user_id is not None: data["user_id"] = user_id
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
+        if before is not None: data["before"] = before
         return self._client.request("POST", "/search", params=params, json=data)
 
-    async def search_all_async(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Search all content"""
+    async def search__all_async(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: Any | None = None, page: int | None = None, limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2324,10 +2364,11 @@ class SearchSection:
         if user_id is not None: data["user_id"] = user_id
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
+        if before is not None: data["before"] = before
         return await self._client.request_async("POST", "/search", params=params, json=data)
 
-    def search_threads(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Search threads"""
+    def search__threads(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: Any | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2338,10 +2379,11 @@ class SearchSection:
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
         if data_limit is not None: data["data_limit"] = data_limit
+        if before is not None: data["before"] = before
         return self._client.request("POST", "/search/threads", params=params, json=data)
 
-    async def search_threads_async(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Search threads"""
+    async def search__threads_async(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: Any | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search Thread"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2352,10 +2394,11 @@ class SearchSection:
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
         if data_limit is not None: data["data_limit"] = data_limit
+        if before is not None: data["before"] = before
         return await self._client.request_async("POST", "/search/threads", params=params, json=data)
 
-    def search_posts(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Search posts"""
+    def search__posts(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: Any | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2366,10 +2409,11 @@ class SearchSection:
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
         if data_limit is not None: data["data_limit"] = data_limit
+        if before is not None: data["before"] = before
         return self._client.request("POST", "/search/posts", params=params, json=data)
 
-    async def search_posts_async(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None) -> dict[str, Any]:
-        """Search posts"""
+    async def search__posts_async(self, q: str | None = None, tag: str | None = None, forum_id: int | None = None, user_id: Any | None = None, page: int | None = None, limit: int | None = None, data_limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search Post"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2380,10 +2424,27 @@ class SearchSection:
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
         if data_limit is not None: data["data_limit"] = data_limit
+        if before is not None: data["before"] = before
         return await self._client.request_async("POST", "/search/posts", params=params, json=data)
 
-    def search_profile_posts(self, q: str | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Search profile posts"""
+    def search__users(self, q: str | None = None) -> dict[str, Any]:
+        """Search Users"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if q is not None: data["q"] = q
+        return self._client.request("POST", "/search/users", params=params, json=data)
+
+    async def search__users_async(self, q: str | None = None) -> dict[str, Any]:
+        """Search Users"""
+
+        params: dict[str, Any] = {}
+        data: dict[str, Any] = {}
+        if q is not None: data["q"] = q
+        return await self._client.request_async("POST", "/search/users", params=params, json=data)
+
+    def search__profile_posts(self, q: str | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search Profile Posts"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2391,10 +2452,11 @@ class SearchSection:
         if user_id is not None: data["user_id"] = user_id
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
+        if before is not None: data["before"] = before
         return self._client.request("POST", "/search/profile-posts", params=params, json=data)
 
-    async def search_profile_posts_async(self, q: str | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Search profile posts"""
+    async def search__profile_posts_async(self, q: str | None = None, user_id: int | None = None, page: int | None = None, limit: int | None = None, before: int | None = None) -> dict[str, Any]:
+        """Search Profile Posts"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2402,10 +2464,11 @@ class SearchSection:
         if user_id is not None: data["user_id"] = user_id
         if page is not None: data["page"] = page
         if limit is not None: data["limit"] = limit
+        if before is not None: data["before"] = before
         return await self._client.request_async("POST", "/search/profile-posts", params=params, json=data)
 
-    def search_tagged(self, tag: str | None = None, tags: list[str] | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Search tagged content"""
+    def search__tagged(self, tag: str | None = None, tags: list[str] | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Search Tagged"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2415,8 +2478,8 @@ class SearchSection:
         if limit is not None: data["limit"] = limit
         return self._client.request("POST", "/search/tagged", params=params, json=data)
 
-    async def search_tagged_async(self, tag: str | None = None, tags: list[str] | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Search tagged content"""
+    async def search__tagged_async(self, tag: str | None = None, tags: list[str] | None = None, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Search Tagged"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2426,99 +2489,106 @@ class SearchSection:
         if limit is not None: data["limit"] = limit
         return await self._client.request_async("POST", "/search/tagged", params=params, json=data)
 
-    def search_users(self, q: str | None = None) -> dict[str, Any]:
-        """Search users"""
+    def search__results(self, search_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Search Results"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if q is not None: data["q"] = q
-        return self._client.request("POST", "/search/users", params=params, json=data)
+        if page is not None: data["page"] = page
+        if limit is not None: data["limit"] = limit
+        return self._client.request("GET", f"/search/{search_id}/results", params=params, json=data)
 
-    async def search_users_async(self, q: str | None = None) -> dict[str, Any]:
-        """Search users"""
+    async def search__results_async(self, search_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
+        """Get Search Results"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
-        if q is not None: data["q"] = q
-        return await self._client.request_async("POST", "/search/users", params=params, json=data)
-
-    def search_results(self, search_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Get search results"""
-
-        params: dict[str, Any] = {}
-        if page is not None: params["page"] = page
-        if limit is not None: params["limit"] = limit
-        return self._client.request("GET", f"/search/{search_id}/results", params=params)
-
-    async def search_results_async(self, search_id: int, page: int | None = None, limit: int | None = None) -> dict[str, Any]:
-        """Get search results"""
-
-        params: dict[str, Any] = {}
-        if page is not None: params["page"] = page
-        if limit is not None: params["limit"] = limit
-        return await self._client.request_async("GET", f"/search/{search_id}/results", params=params)
+        if page is not None: data["page"] = page
+        if limit is not None: data["limit"] = limit
+        return await self._client.request_async("GET", f"/search/{search_id}/results", params=params, json=data)
 
 
 
-class ChatboxSection:
-    """Auto-generated section for tag: chatbox"""
+class BatchRequestsSection:
+    """Auto-generated section for tag: Batch requests"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def chatbox_index(self, room_id: int | None = None) -> dict[str, Any]:
-        """Get chatbox"""
+    def batch__execute(self) -> dict[str, Any]:
+        """Batch"""
+
+        params: dict[str, Any] = {}
+        return self._client.request("POST", "/batch", params=params)
+
+    async def batch__execute_async(self) -> dict[str, Any]:
+        """Batch"""
+
+        params: dict[str, Any] = {}
+        return await self._client.request_async("POST", "/batch", params=params)
+
+
+
+class ChatboxSection:
+    """Auto-generated section for tag: Chatbox"""
+
+    def __init__(self, client: object) -> None:
+        self._client = client
+        self._use_json = False
+
+    def chatbox__index(self, room_id: Any | None = None) -> dict[str, Any]:
+        """Get Chats"""
 
         params: dict[str, Any] = {}
         if room_id is not None: params["room_id"] = room_id
         return self._client.request("GET", "/chatbox", params=params)
 
-    async def chatbox_index_async(self, room_id: int | None = None) -> dict[str, Any]:
-        """Get chatbox"""
+    async def chatbox__index_async(self, room_id: Any | None = None) -> dict[str, Any]:
+        """Get Chats"""
 
         params: dict[str, Any] = {}
         if room_id is not None: params["room_id"] = room_id
         return await self._client.request_async("GET", "/chatbox", params=params)
 
-    def chatbox_get_messages(self, room_id: int, before_message_id: int | None = None) -> dict[str, Any]:
-        """Get chat messages"""
+    def chatbox__get_messages(self, room_id: Any, before_message_id: int | None = None) -> dict[str, Any]:
+        """Get Chat Messages"""
 
         params: dict[str, Any] = {}
         if room_id is not None: params["room_id"] = room_id
         if before_message_id is not None: params["before_message_id"] = before_message_id
         return self._client.request("GET", "/chatbox/messages", params=params)
 
-    async def chatbox_get_messages_async(self, room_id: int, before_message_id: int | None = None) -> dict[str, Any]:
-        """Get chat messages"""
+    async def chatbox__get_messages_async(self, room_id: Any, before_message_id: int | None = None) -> dict[str, Any]:
+        """Get Chat Messages"""
 
         params: dict[str, Any] = {}
         if room_id is not None: params["room_id"] = room_id
         if before_message_id is not None: params["before_message_id"] = before_message_id
         return await self._client.request_async("GET", "/chatbox/messages", params=params)
 
-    def chatbox_post_message(self, room_id: int, message: str, reply_message_id: int | None = None) -> dict[str, Any]:
-        """Post chat message"""
+    def chatbox__post_message(self, room_id: Any, message: str, reply_message_id: int | None = None) -> dict[str, Any]:
+        """Create Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if room_id is not None: data["room_id"] = room_id
-        if message is not None: data["message"] = message
         if reply_message_id is not None: data["reply_message_id"] = reply_message_id
+        if message is not None: data["message"] = message
         return self._client.request("POST", "/chatbox/messages", params=params, json=data)
 
-    async def chatbox_post_message_async(self, room_id: int, message: str, reply_message_id: int | None = None) -> dict[str, Any]:
-        """Post chat message"""
+    async def chatbox__post_message_async(self, room_id: Any, message: str, reply_message_id: int | None = None) -> dict[str, Any]:
+        """Create Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if room_id is not None: data["room_id"] = room_id
-        if message is not None: data["message"] = message
         if reply_message_id is not None: data["reply_message_id"] = reply_message_id
+        if message is not None: data["message"] = message
         return await self._client.request_async("POST", "/chatbox/messages", params=params, json=data)
 
-    def chatbox_edit_message(self, message_id: int, message: str) -> dict[str, Any]:
-        """Edit chat message"""
+    def chatbox__edit_message(self, message_id: int, message: str) -> dict[str, Any]:
+        """Edit Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2526,8 +2596,8 @@ class ChatboxSection:
         if message is not None: data["message"] = message
         return self._client.request("PUT", "/chatbox/messages", params=params, json=data)
 
-    async def chatbox_edit_message_async(self, message_id: int, message: str) -> dict[str, Any]:
-        """Edit chat message"""
+    async def chatbox__edit_message_async(self, message_id: int, message: str) -> dict[str, Any]:
+        """Edit Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2535,52 +2605,52 @@ class ChatboxSection:
         if message is not None: data["message"] = message
         return await self._client.request_async("PUT", "/chatbox/messages", params=params, json=data)
 
-    def chatbox_delete_message(self, message_id: int) -> dict[str, Any]:
-        """Delete chat message"""
+    def chatbox__delete_message(self, message_id: int) -> dict[str, Any]:
+        """Delete Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message_id is not None: data["message_id"] = message_id
         return self._client.request("DELETE", "/chatbox/messages", params=params, json=data)
 
-    async def chatbox_delete_message_async(self, message_id: int) -> dict[str, Any]:
-        """Delete chat message"""
+    async def chatbox__delete_message_async(self, message_id: int) -> dict[str, Any]:
+        """Delete Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if message_id is not None: data["message_id"] = message_id
         return await self._client.request_async("DELETE", "/chatbox/messages", params=params, json=data)
 
-    def chatbox_online(self, room_id: int) -> dict[str, Any]:
-        """Get chat online"""
+    def chatbox__online(self, room_id: Any) -> dict[str, Any]:
+        """Get Chat Online"""
 
         params: dict[str, Any] = {}
         if room_id is not None: params["room_id"] = room_id
         return self._client.request("GET", "/chatbox/messages/online", params=params)
 
-    async def chatbox_online_async(self, room_id: int) -> dict[str, Any]:
-        """Get chat online"""
+    async def chatbox__online_async(self, room_id: Any) -> dict[str, Any]:
+        """Get Chat Online"""
 
         params: dict[str, Any] = {}
         if room_id is not None: params["room_id"] = room_id
         return await self._client.request_async("GET", "/chatbox/messages/online", params=params)
 
-    def chatbox_report_reasons(self, message_id: int) -> dict[str, Any]:
-        """Get chat report reasons"""
+    def chatbox__report_reasons(self, message_id: int) -> dict[str, Any]:
+        """Get Chat Message Report Reasons"""
 
         params: dict[str, Any] = {}
         if message_id is not None: params["message_id"] = message_id
         return self._client.request("GET", "/chatbox/messages/report", params=params)
 
-    async def chatbox_report_reasons_async(self, message_id: int) -> dict[str, Any]:
-        """Get chat report reasons"""
+    async def chatbox__report_reasons_async(self, message_id: int) -> dict[str, Any]:
+        """Get Chat Message Report Reasons"""
 
         params: dict[str, Any] = {}
         if message_id is not None: params["message_id"] = message_id
         return await self._client.request_async("GET", "/chatbox/messages/report", params=params)
 
-    def chatbox_report(self, message_id: int, reason: str) -> dict[str, Any]:
-        """Report chat message"""
+    def chatbox__report(self, message_id: int, reason: str) -> dict[str, Any]:
+        """Report Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2588,8 +2658,8 @@ class ChatboxSection:
         if reason is not None: data["reason"] = reason
         return self._client.request("POST", "/chatbox/messages/report", params=params, json=data)
 
-    async def chatbox_report_async(self, message_id: int, reason: str) -> dict[str, Any]:
-        """Report chat message"""
+    async def chatbox__report_async(self, message_id: int, reason: str) -> dict[str, Any]:
+        """Report Chat Message"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2597,58 +2667,58 @@ class ChatboxSection:
         if reason is not None: data["reason"] = reason
         return await self._client.request_async("POST", "/chatbox/messages/report", params=params, json=data)
 
-    def chatbox_get_leaderboard(self, duration: str | None = None) -> dict[str, Any]:
-        """Get chat leaderboard"""
+    def chatbox__get_leaderboard(self, duration: str | None = None) -> dict[str, Any]:
+        """Get Chat Leaderboard"""
 
         params: dict[str, Any] = {}
         if duration is not None: params["duration"] = duration
         return self._client.request("GET", "/chatbox/messages/leaderboard", params=params)
 
-    async def chatbox_get_leaderboard_async(self, duration: str | None = None) -> dict[str, Any]:
-        """Get chat leaderboard"""
+    async def chatbox__get_leaderboard_async(self, duration: str | None = None) -> dict[str, Any]:
+        """Get Chat Leaderboard"""
 
         params: dict[str, Any] = {}
         if duration is not None: params["duration"] = duration
         return await self._client.request_async("GET", "/chatbox/messages/leaderboard", params=params)
 
-    def chatbox_get_ignore(self) -> dict[str, Any]:
-        """Get ignored chat users"""
+    def chatbox__get_ignore(self) -> dict[str, Any]:
+        """Get Ignored Chat Users"""
 
         params: dict[str, Any] = {}
         return self._client.request("GET", "/chatbox/ignore", params=params)
 
-    async def chatbox_get_ignore_async(self) -> dict[str, Any]:
-        """Get ignored chat users"""
+    async def chatbox__get_ignore_async(self) -> dict[str, Any]:
+        """Get Ignored Chat Users"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("GET", "/chatbox/ignore", params=params)
 
-    def chatbox_post_ignore(self, user_id: int) -> dict[str, Any]:
-        """Ignore chat user"""
+    def chatbox__post_ignore(self, user_id: Any) -> dict[str, Any]:
+        """Ignore Chat User"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return self._client.request("POST", "/chatbox/ignore", params=params, json=data)
 
-    async def chatbox_post_ignore_async(self, user_id: int) -> dict[str, Any]:
-        """Ignore chat user"""
+    async def chatbox__post_ignore_async(self, user_id: Any) -> dict[str, Any]:
+        """Ignore Chat User"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return await self._client.request_async("POST", "/chatbox/ignore", params=params, json=data)
 
-    def chatbox_delete_ignore(self, user_id: int) -> dict[str, Any]:
-        """Unignore chat user"""
+    def chatbox__delete_ignore(self, user_id: Any) -> dict[str, Any]:
+        """Unignore Chat User"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
         if user_id is not None: data["user_id"] = user_id
         return self._client.request("DELETE", "/chatbox/ignore", params=params, json=data)
 
-    async def chatbox_delete_ignore_async(self, user_id: int) -> dict[str, Any]:
-        """Unignore chat user"""
+    async def chatbox__delete_ignore_async(self, user_id: Any) -> dict[str, Any]:
+        """Unignore Chat User"""
 
         params: dict[str, Any] = {}
         data: dict[str, Any] = {}
@@ -2658,77 +2728,35 @@ class ChatboxSection:
 
 
 class FormsSection:
-    """Auto-generated section for tag: forms"""
+    """Auto-generated section for tag: Forms"""
 
     def __init__(self, client: object) -> None:
         self._client = client
         self._use_json = False
 
-    def forms_list(self, page: int | None = None) -> dict[str, Any]:
-        """List forms"""
+    def forms__list(self, page: int | None = None) -> dict[str, Any]:
+        """Get Forms List"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return self._client.request("GET", "/forms", params=params)
 
-    async def forms_list_async(self, page: int | None = None) -> dict[str, Any]:
-        """List forms"""
+    async def forms__list_async(self, page: int | None = None) -> dict[str, Any]:
+        """Get Forms List"""
 
         params: dict[str, Any] = {}
         if page is not None: params["page"] = page
         return await self._client.request_async("GET", "/forms", params=params)
 
-    def forms_create(self) -> dict[str, Any]:
-        """Create form"""
+    def forms__create(self) -> dict[str, Any]:
+        """Create Form"""
 
         params: dict[str, Any] = {}
         return self._client.request("POST", "/forms/save", params=params)
 
-    async def forms_create_async(self) -> dict[str, Any]:
-        """Create form"""
+    async def forms__create_async(self) -> dict[str, Any]:
+        """Create Form"""
 
         params: dict[str, Any] = {}
         return await self._client.request_async("POST", "/forms/save", params=params)
-
-
-
-class BatchSection:
-    """Auto-generated section for tag: batch"""
-
-    def __init__(self, client: object) -> None:
-        self._client = client
-        self._use_json = False
-
-    def batch_execute(self) -> dict[str, Any]:
-        """Execute batch requests"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", "/batch", params=params)
-
-    async def batch_execute_async(self) -> dict[str, Any]:
-        """Execute batch requests"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", "/batch", params=params)
-
-
-
-class OauthSection:
-    """Auto-generated section for tag: oauth"""
-
-    def __init__(self, client: object) -> None:
-        self._client = client
-        self._use_json = False
-
-    def o_auth_token(self) -> dict[str, Any]:
-        """Get OAuth token"""
-
-        params: dict[str, Any] = {}
-        return self._client.request("POST", "/oauth/token", params=params)
-
-    async def o_auth_token_async(self) -> dict[str, Any]:
-        """Get OAuth token"""
-
-        params: dict[str, Any] = {}
-        return await self._client.request_async("POST", "/oauth/token", params=params)
 

@@ -17,3 +17,21 @@ build/
 # IDE
 .idea/
 .vscode/
+
+# Coverage
+.coverage
+htmlcov/
+.coverage.*
+
+# Pytest
+.pytest_cache/
+
+# Ruff
+.ruff_cache/
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

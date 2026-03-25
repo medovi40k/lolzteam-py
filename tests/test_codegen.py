@@ -33,12 +33,12 @@ def _run_generator(schema_path: Path, output_path: Path) -> None:
 
 class TestCodeGenerator:
     def test_forum_schema_is_valid_json(self):
-        data = json.loads(FORUM_SCHEMA.read_text())
+        data = json.loads(FORUM_SCHEMA.read_text(encoding="utf-8"))
         assert "paths" in data
         assert "openapi" in data
 
     def test_market_schema_is_valid_json(self):
-        data = json.loads(MARKET_SCHEMA.read_text())
+        data = json.loads(MARKET_SCHEMA.read_text(encoding="utf-8"))
         assert "paths" in data
 
     def test_generates_valid_python_from_forum_schema(self):
@@ -46,7 +46,7 @@ class TestCodeGenerator:
             out = Path(f.name)
         try:
             _run_generator(FORUM_SCHEMA, out)
-            source = out.read_text()
+            source = out.read_text(encoding="utf-8")
             tree = ast.parse(source)  # Should not raise SyntaxError
             assert tree is not None
         finally:
@@ -57,7 +57,7 @@ class TestCodeGenerator:
             out = Path(f.name)
         try:
             _run_generator(MARKET_SCHEMA, out)
-            source = out.read_text()
+            source = out.read_text(encoding="utf-8")
             ast.parse(source)
         finally:
             out.unlink(missing_ok=True)
@@ -67,7 +67,7 @@ class TestCodeGenerator:
             out = Path(f.name)
         try:
             _run_generator(FORUM_SCHEMA, out)
-            source = out.read_text()
+            source = out.read_text(encoding="utf-8")
             tree = ast.parse(source)
             class_names = {
                 node.name
@@ -86,16 +86,16 @@ class TestCodeGenerator:
             out = Path(f.name)
         try:
             _run_generator(MARKET_SCHEMA, out)
-            source = out.read_text()
+            source = out.read_text(encoding="utf-8")
             tree = ast.parse(source)
             class_names = {
                 node.name
                 for node in ast.walk(tree)
                 if isinstance(node, ast.ClassDef)
             }
-            assert "ManagingSection" in class_names
+            assert "AccountsManagingSection" in class_names
             assert "PaymentsSection" in class_names
-            assert "PurchasingSection" in class_names
+            assert "AccountPurchasingSection" in class_names
             assert "ProfileSection" in class_names
         finally:
             out.unlink(missing_ok=True)
@@ -106,7 +106,7 @@ class TestCodeGenerator:
             out = Path(f.name)
         try:
             _run_generator(FORUM_SCHEMA, out)
-            source = out.read_text()
+            source = out.read_text(encoding="utf-8")
             tree = ast.parse(source)
             # Collect both regular and async function names
             func_names = [
@@ -155,7 +155,7 @@ class TestCodeGenerator:
             out = Path(f.name)
         try:
             _run_generator(schema_file, out)
-            source = out.read_text()
+            source = out.read_text(encoding="utf-8")
             tree = ast.parse(source)
             func_names = {
                 node.name

@@ -27,9 +27,13 @@ TYPE_MAP = {
 
 def to_snake(name: str) -> str:
     """Convert camelCase / PascalCase / kebab-case to snake_case. Also strips [] suffixes."""
-    name = name.replace("-", "_").replace("[]", "")
+    name = name.replace("-", "_").replace("[]", "").replace(".", "_")
     s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
-    return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+    result = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+    # Prefix identifiers that start with a digit (e.g. "2fa" -> "p_2fa")
+    if result and result[0].isdigit():
+        result = "p_" + result
+    return result
 
 
 def get_py_type(schema: dict) -> str:
@@ -37,6 +41,10 @@ def get_py_type(schema: dict) -> str:
     if not schema:
         return "Any"
     t = schema.get("type")
+    # OpenAPI 3.1 allows type to be a list e.g. ["string", "null"]
+    if isinstance(t, list):
+        non_null = [x for x in t if x != "null"]
+        t = non_null[0] if non_null else None
     if t == "array":
         items = schema.get("items", {})
         inner = get_py_type(items)
@@ -207,7 +215,7 @@ def generate_section_class(tag: str, methods_code: str, use_json: bool = False) 
 
 
 def generate_from_schema(schema_path: str, output_path: str, api_name: str) -> None:
-    schema: dict = json.loads(Path(schema_path).read_text())
+    schema: dict = json.loads(Path(schema_path).read_text(encoding="utf-8"))
     paths: dict = schema.get("paths", {})
 
     # Group operations by tag
@@ -251,7 +259,7 @@ from typing import Any  # noqa: I001
 '''
 
     output = header + "\n\n".join(sections)
-    Path(output_path).write_text(output)
+    Path(output_path).write_text(output, encoding="utf-8")
     print(f"[codegen] Generated {output_path}  ({len(tag_methods)} sections, {sum(len(v) for v in tag_methods.values())} operations)")
 
 
